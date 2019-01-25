@@ -9,10 +9,10 @@ using UnityEngine;
 /// </summary>
 public static class AllLevelMapColors
 {
-    public static Dictionary<ColorType, string> ColorDict = new Dictionary<ColorType, string>();
-    public static Dictionary<string, ColorType> ColorDict_Rev = new Dictionary<string, ColorType>();
+    public static Dictionary<MapBlockType, string> ColorDict = new Dictionary<MapBlockType, string>();
+    public static Dictionary<string, MapBlockType> ColorDict_Rev = new Dictionary<string, MapBlockType>();
 
-    public enum ColorType
+    public enum MapBlockType
     {
         Wall,
         Floor,
@@ -34,7 +34,7 @@ public static class AllLevelMapColors
         for (int i = 0; i < allColors.ChildNodes.Count; i++)
         {
             XmlNode colorNode = allColors.ChildNodes.Item(i);
-            ColorType colorType = (ColorType) Enum.Parse(typeof(ColorType), colorNode.Attributes["name"].Value);
+            MapBlockType colorType = (MapBlockType) Enum.Parse(typeof(MapBlockType), colorNode.Attributes["name"].Value);
             string color_str = colorNode.Attributes["color"].Value;
             if (!ColorDict.ContainsKey(colorType)) ColorDict.Add(colorType, color_str);
             if (!ColorDict_Rev.ContainsKey(color_str)) ColorDict_Rev.Add(color_str, colorType);

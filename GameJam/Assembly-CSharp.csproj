@@ -54,22 +54,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Blocks\FloorBlock.cs" />
+    <Compile Include="Assets\Scripts\Blocks\InsideBlock.cs" />
     <Compile Include="Assets\Scripts\Blocks\LevelMapBlock.cs" />
-    <Compile Include="Assets\Scripts\Common\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\Common\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Common\GameManager_Li.cs" />
-    <Compile Include="Assets\Scripts\Common\GameManager_Xue.cs" />
-    <Compile Include="Assets\Scripts\Common\GameObjectPool.cs" />
-    <Compile Include="Assets\Scripts\Common\GameObjectPoolManager.cs" />
-    <Compile Include="Assets\Scripts\Common\MonoSingleton.cs" />
-    <Compile Include="Assets\Scripts\Common\MonoSingletonManager.cs" />
-    <Compile Include="Assets\Scripts\Common\NoticeManager.cs" />
-    <Compile Include="Assets\Scripts\Common\PoolObject.cs" />
-    <Compile Include="Assets\Scripts\Common\Utils.cs" />
+    <Compile Include="Assets\Scripts\Blocks\WallBlock.cs" />
     <Compile Include="Assets\Scripts\LevelTools\AllLevelMapColors.cs" />
     <Compile Include="Assets\Scripts\LevelTools\LevelMap.cs" />
+    <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameBoardManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager_Li.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager_Xue.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameObjectPoolManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\LevelMapManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\MonoSingleton.cs" />
+    <Compile Include="Assets\Scripts\Managers\MonoSingletonManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\NoticeManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\PoolObject.cs" />
+    <Compile Include="Assets\Scripts\Managers\Utils.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindow.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindowManager.cs" />
+    <Compile Include="Assets\Scripts\UI\ScreenFitness.cs" />
+    <Compile Include="Assets\Scripts\UI\ScreenSetting.cs" />
     <None Include="Assets\StreamingAssets\Config\LevelMapColor.xml" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>/Users/biang/WorkSpace/GameDev/GameJam2019/GameJam/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>

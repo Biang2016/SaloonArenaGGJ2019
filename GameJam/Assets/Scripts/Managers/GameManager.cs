@@ -16,9 +16,7 @@ public partial class GameManager : MonoSingleton<GameManager>
 
     #region 游戏全局参数
 
-    private void InitializeClientGameSettings()
-    {
-    }
+    
 
     #endregion
 }

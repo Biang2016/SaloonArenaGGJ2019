@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class LevelMapBlock : PoolObject
+public abstract class LevelMapBlock : PoolObject
 {
     
     
