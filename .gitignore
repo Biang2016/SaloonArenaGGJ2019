@@ -1,0 +1,9 @@
+Library/
+Temp/
+obj/
+Obj/
+**/.vs/
+Logs/
+**/.idea
+**/.DS_Store
+
