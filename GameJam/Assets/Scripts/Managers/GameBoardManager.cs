@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public partial class GameBoardManager : MonoSingleton<GameBoardManager>
 {
-    public static int GameBoardWidth;
-    public static int GameBoardHeight;
-    [SerializeField] private Transform MapContainer;
+    public static int GameBoardWidth = 57;
+    public static int GameBoardHeight = 30;
+    [SerializeField] private RectTransform MapContainer;
 
     private GameBoardManager()
     {
@@ -19,14 +20,26 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
     {
     }
 
+    public LevelMapBlock[,] LevelMapBlocks;
+
     public void GenerateMap(string levelName)
     {
+        LevelMapBlocks = new LevelMapBlock[GameBoardWidth, GameBoardHeight];
+        foreach (LevelMapBlock block in LevelMapBlocks)
+        {
+            if (block)
+            {
+                block.PoolRecycle();
+            }
+        }
+
         LevelMap levelMap = LevelMapManager.Instance.LevelMaps[levelName];
         for (int i = 0; i < levelMap.LevelMapIndices.GetLength(0); i++)
         {
             for (int j = 0; j < levelMap.LevelMapIndices.GetLength(1); j++)
             {
-//                LevelMapBlock.Instantiate()
+                LevelMapBlock block = LevelMapBlock.InitializeBlock((AllLevelMapColors.MapBlockType) levelMap.LevelMapIndices[i, j], MapContainer, i, j);
+                LevelMapBlocks[i, j] = block;
             }
         }
     }
