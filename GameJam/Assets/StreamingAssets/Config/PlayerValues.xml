@@ -11,12 +11,12 @@
                StartTrash="10" RobotScale="1"/>
         <Robot name="Robot2"
                MaxEnergy="200" StartEnergy="200"
-               SolarChargeSpeed="10" Relife_speed="100" PowerConsume="1"
+               SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
                RobotMass="0.01" RobotDrag="1" RobotRotateDrag="0.3"
                AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
-               StartTrash="10" RobotScale="1.2"/>
+               StartTrash="10" RobotScale="1"/>
         <Robot name="Robot3"
                MaxEnergy="200" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"

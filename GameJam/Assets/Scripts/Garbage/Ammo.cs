@@ -18,6 +18,7 @@ public class Ammo : PoolObject
 
     public void Initialize(Players _player)
     {
+        player = (int) _player;
         GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) _player];
         damage = rp.AmmoDamage;
         Rigidbody2D.mass = rp.AmmoMass;

@@ -444,6 +444,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 55055240, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
+      propertyPath: m_Name
+      value: Wall_up
+      objectReference: {fileID: 0}
+    - target: {fileID: 616352874, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
+      propertyPath: m_Name
+      value: Wall_left
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952245044, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
+      propertyPath: m_Name
+      value: Wall_bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014880776, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
+      propertyPath: m_Name
+      value: Wall_right
+      objectReference: {fileID: 0}
     - target: {fileID: 7459341810533137478, guid: 67c49a90fcecf4f049dff49c39ada71a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
