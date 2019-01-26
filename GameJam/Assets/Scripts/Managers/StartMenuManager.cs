@@ -54,7 +54,7 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/StartMenu_0");
+                        AudioManager.Instance.BGMFadeIn("bgm/Battle_0");
                         break;
                     }
                 }

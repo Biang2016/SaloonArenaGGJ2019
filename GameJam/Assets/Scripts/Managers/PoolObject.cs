@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PoolObject : MonoBehaviour
 {
@@ -19,8 +20,30 @@ public class PoolObject : MonoBehaviour
         m_Pool.RecycleGameObject(this);
     }
 
+    public Dictionary<string, List<AudioSource>> AllAttachedAudioSources = new Dictionary<string, List<AudioSource>>();
+
     public void SoundPlay(string path)
     {
-        AudioManager.Instance.SoundPlay(path);
+        AudioSource source = AudioManager.Instance.SoundPlay(path);
+        if (!AllAttachedAudioSources.ContainsKey(source.clip.name))
+        {
+            AllAttachedAudioSources.Add(source.clip.name, new List<AudioSource>());
+        }
+
+        AllAttachedAudioSources[source.clip.name].Add(source);
+    }
+
+    public void StopSoundPlay(string sourceName)
+    {
+        if (AllAttachedAudioSources.ContainsKey(sourceName))
+        {
+            List<AudioSource> sources = AllAttachedAudioSources[sourceName];
+            foreach (AudioSource source in sources)
+            {
+                source.Stop();
+            }
+
+            sources.Clear();
+        }
     }
 }

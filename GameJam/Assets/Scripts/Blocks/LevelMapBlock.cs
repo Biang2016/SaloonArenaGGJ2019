@@ -2,6 +2,9 @@
 
 public abstract class LevelMapBlock : PoolObject
 {
+    protected float BlockWidth;
+    protected float BlockHeight;
+
     public static LevelMapBlock InitializeBlock(AllLevelMapColors.MapBlockType blockType, RectTransform parent, int pos_X, int pos_Y)
     {
         LevelMapBlock block = null;
@@ -48,13 +51,16 @@ public abstract class LevelMapBlock : PoolObject
             }
         }
 
-        float blockWidth = parent.rect.width / GameBoardManager.Instance.GameBoardWidth;
-        float blockHeight = parent.rect.height / GameBoardManager.Instance.GameBoardHeight;
+        block.BlockWidth = parent.rect.width / GameBoardManager.Instance.GameBoardWidth;
+        block.BlockHeight = parent.rect.height / GameBoardManager.Instance.GameBoardHeight;
         Rect rect = ((RectTransform) block.transform).rect;
-        ((RectTransform) block.transform).sizeDelta = new Vector2(blockWidth, blockHeight);
-        float x = -(float) (GameBoardManager.Instance.GameBoardWidth - 1) / 2 * blockWidth + blockWidth * pos_X;
-        float y = -(float) (GameBoardManager.Instance.GameBoardHeight - 1) / 2 * blockHeight + blockHeight * pos_Y;
+        ((RectTransform) block.transform).sizeDelta = new Vector2(block.BlockWidth, block.BlockHeight);
+        float x = -(float) (GameBoardManager.Instance.GameBoardWidth - 1) / 2 * block.BlockWidth + block.BlockWidth * pos_X;
+        float y = -(float) (GameBoardManager.Instance.GameBoardHeight - 1) / 2 * block.BlockHeight + block.BlockHeight * pos_Y;
         block.transform.localPosition = new Vector2(x, y);
+        block.Init();
         return block;
     }
+
+    protected abstract void Init();
 }

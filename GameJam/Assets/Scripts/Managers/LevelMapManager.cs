@@ -18,7 +18,7 @@ public class LevelMapManager : MonoSingleton<LevelMapManager>
             int[,] indices = new int[GameBoardManager.Instance.GameBoardWidth, GameBoardManager.Instance.GameBoardHeight];
 
             Color[] colors = t2d.GetPixels();
-            string debugStr = "";
+//            string debugStr = "";
             for (int i = 0; i < t2d.height; i++)
             {
                 for (int j = 0; j < t2d.width; j++)
@@ -30,14 +30,14 @@ public class LevelMapManager : MonoSingleton<LevelMapManager>
                     {
                         int index = (int) AllLevelMapColors.ColorDict_Rev[color_str];
                         indices[j, i] = index;
-                        debugStr += index;
+//                        debugStr += index;
                     }
                 }
 
-                debugStr += "\n";
+//                debugStr += "\n";
             }
 
-            Debug.Log(debugStr);
+//            Debug.Log(debugStr);
             LevelMap levelMap = new LevelMap(t2d.name, indices);
             LevelMaps.Add(t2d.name, levelMap);
         }
