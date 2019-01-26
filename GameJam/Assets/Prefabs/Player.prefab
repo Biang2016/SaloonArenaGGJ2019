@@ -438,12 +438,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 540a6c7c09c3d437889975907a1c671d, type: 3}
   - {fileID: 21300000, guid: 9181be3717bf9428fb2681c2ee23e141, type: 3}
   - {fileID: 21300000, guid: 61752c08407d348348a8cb6f0cd37151, type: 3}
-  Energy: 0
+  Energy: 100
   Trash: 1000
-  Power: 0
+  Power: 1
   Scores: 0
   Lying: 0
   relife_speed: 2
+  Charging: 0
   UI_P: {fileID: 2026478559537164569}
   UI_sps:
   - {fileID: 21300000, guid: 9724e9e945ef54fb88a60d65fb752607, type: 3}

@@ -17,6 +17,7 @@ public class PlayerBody : PoolObject
     public int Scores; //最后的分数
     public bool Lying; //电量耗尽
     public float relife_speed;
+    public bool Charging;
 
     public Image UI_P;
     public Sprite[] UI_sps;
@@ -31,14 +32,19 @@ public class PlayerBody : PoolObject
         Index_name = "P" + ((int) WhichPlayer + 1) + "_";
         UpdateHp();
         UpdateTrash();
+        Charging = false;
     }
     private void FixedUpdate()
     {
         if(Lying)
         {
-            Add_Energy(relife_speed*Time.deltaTime);
+            Add_Energy(SolarChargeSpeed * Time.deltaTime);
             if ((Energy / MaxEnerg) > 0.2)
                 Lying = false;
+        }
+        else if(!Lying && !Charging)
+        {
+            Hitted(Power * Time.deltaTime);
         }
     }
     private void LateUpdate()
@@ -47,7 +53,7 @@ public class PlayerBody : PoolObject
         UI_P.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
-    public void Hitted(int damage) //受到伤害
+    public void Hitted(float damage) //受到伤害
     {
         if (Energy > damage)
             Energy -= damage;
@@ -57,8 +63,7 @@ public class PlayerBody : PoolObject
             Lying = true;
         }
 
-        int temp = (int) Random.Range(6, 9);
-        Loss_Garbage(temp);
+        
         UpdateHp();
     }
 
