@@ -2,5 +2,6 @@
 <Values>
     <Value GarbageBulletBeLitterSpeedThreshold="80" MaxEnergy="200" StartEnergy="200"
            SolarChargeSpeed="100" Trash="10" PowerConsume="200" relife_speed="100"
-           Rotate_Speed="500" max_speed="200" shoot_speed="500" robotMass="0.01" robotDrag="0.2" ammoMass="0.01" ammoDrag="0.01"/>
+           Rotate_Speed="500" max_speed="200" shoot_speed="500" robotMass="0.01" robotDrag="0.2" ammoMass="0.01" ammoDrag="0.01"
+           StarterFloorGarbage="10000"/>
 </Values>

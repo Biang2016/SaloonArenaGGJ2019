@@ -40,6 +40,7 @@ public partial class GameManager : MonoSingleton<GameManager>
     public float robotDrag;
     public float ammoMass;
     public float ammoDrag;
+    public int StarterFloorGarbage;
 
     private string playerValueXMLPath = Application.streamingAssetsPath + "/Config/PlayerValues.xml";
 
@@ -70,6 +71,7 @@ public partial class GameManager : MonoSingleton<GameManager>
         robotDrag = float.Parse(valueNode.Attributes["robotDrag"].Value);
         ammoMass = float.Parse(valueNode.Attributes["ammoMass"].Value);
         ammoDrag = float.Parse(valueNode.Attributes["ammoDrag"].Value);
+        StarterFloorGarbage = int.Parse(valueNode.Attributes["StarterFloorGarbage"].Value);
     }
 
     #endregion

@@ -25,12 +25,15 @@ public class PoolObject : MonoBehaviour
     public void SoundPlay(string path, float volume = 1.0f)
     {
         AudioSource source = AudioManager.Instance.SoundPlay(path, volume);
-        if (!AllAttachedAudioSources.ContainsKey(source.clip.name))
+        if (source != null)
         {
-            AllAttachedAudioSources.Add(source.clip.name, new List<AudioSource>());
-        }
+            if (!AllAttachedAudioSources.ContainsKey(source.clip.name))
+            {
+                AllAttachedAudioSources.Add(source.clip.name, new List<AudioSource>());
+            }
 
-        AllAttachedAudioSources[source.clip.name].Add(source);
+            AllAttachedAudioSources[source.clip.name].Add(source);
+        }
     }
 
     public void StopSoundPlay(string sourceName)
