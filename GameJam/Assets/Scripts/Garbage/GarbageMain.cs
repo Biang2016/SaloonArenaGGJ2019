@@ -46,6 +46,7 @@ public class GarbageMain : PoolObject
 
     void Update()
     {
+        if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
         if (!CanPick && Rigidbody2D.velocity.magnitude < GameManager.Instance.GarbageBulletBeLitterSpeedThreshold)
         {
             Rigidbody2D.drag = 100000;

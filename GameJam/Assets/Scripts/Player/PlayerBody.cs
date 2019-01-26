@@ -53,6 +53,7 @@ public class PlayerBody : PoolObject
 
     private void FixedUpdate()
     {
+        if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
         if (Lying)
         {
             Add_Energy(SolarChargeSpeed * Time.deltaTime);
@@ -67,6 +68,7 @@ public class PlayerBody : PoolObject
 
     private void LateUpdate()
     {
+        if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
         UI_P.gameObject.transform.position = transform.position + Vector3.up * (100 + transform.sizeDelta.x / 2);
         UI_P.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
     }

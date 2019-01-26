@@ -94,7 +94,7 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
         if (Input.anyKey)
         {
             M_StateMachine.SetState(StateMachine.States.Hide);
-            TutorialMenuManager.Instance.M_StateMachine.SetState(TutorialMenuManager.StateMachine.States.Show);
+            SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Show);
         }
     }
 }
