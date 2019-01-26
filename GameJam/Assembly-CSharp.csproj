@@ -65,6 +65,8 @@
     <Compile Include="Assets\Scripts\Blocks\LevelMapBlock.cs" />
     <Compile Include="Assets\Scripts\Blocks\PlayerSlotBlock.cs" />
     <Compile Include="Assets\Scripts\Blocks\WallBlock.cs" />
+    <Compile Include="Assets\Scripts\Garbage\Ammo.cs" />
+    <Compile Include="Assets\Scripts\Garbage\GarbageMain.cs" />
     <Compile Include="Assets\Scripts\LevelTools\AllLevelMapColors.cs" />
     <Compile Include="Assets\Scripts\LevelTools\LevelMap.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\Scripts\Managers\Utils.cs" />
     <Compile Include="Assets\Scripts\Player\LoadPlayerValue.cs" />
     <Compile Include="Assets\Scripts\Player\Move.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerParameter.cs" />
     <Compile Include="Assets\Scripts\Player\Shoot.cs" />
     <Compile Include="Assets\Scripts\Players.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindow.cs" />

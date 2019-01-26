@@ -122,6 +122,11 @@ public class Move : MonoBehaviour
     }
     void Trans()
     {
+        if (rb.velocity.x > -max_speed && rb.velocity.x < max_speed)
+            rb.AddForce(new Vector2(hor, 0));
+        if (rb.velocity.y > -max_speed && rb.velocity.y < max_speed)
+            rb.AddForce(new Vector2(0, ver));
+        speed = rb.velocity.magnitude;
         /*if (rb.velocity.magnitude < max_speeed)
             rb.AddForce(new Vector2(hor, ver) * Move_Force);
         else if (rb.velocity.magnitude >= max_speeed)
@@ -147,7 +152,7 @@ public class Move : MonoBehaviour
         speed = rb.velocity.magnitude;
         */
 
-        if (speed_h > -max_speed && speed_h < max_speed)
+        /*if (speed_h > -max_speed && speed_h < max_speed)
         {
             speed_h += hor * AcSpeed * Time.deltaTime;
         }
@@ -195,22 +200,34 @@ public class Move : MonoBehaviour
                     speed_v = 0;
             }
         }
+
         /////////////////////////////////////////////
         rb.velocity = new Vector2(speed_h, speed_v);
         speed = rb.velocity.magnitude;
+        speed_h = rb.velocity.x;
+        speed_v = rb.velocity.y;
+        */
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.transform.CompareTag("Wall"))
         {
-            Vector3 temp;
-            temp = collision.transform.position - transform.position;
-
-
-
-           
+            if(collision.contacts[0].normal.y==1 || collision.contacts[0].normal.y == -1)
+            {
+                Vector2 temp;
+                temp = rb.velocity;
+                temp.y = -temp.y;
+                rb.velocity = temp;
+            }
+            if (collision.contacts[0].normal.x == 1 || collision.contacts[0].normal.x == -1)
+            {
+                Vector2 temp;
+                temp = rb.velocity;
+                temp.x = -temp.x;
+                rb.velocity = temp;
+            }
         }
     }
-
+    */
 }
