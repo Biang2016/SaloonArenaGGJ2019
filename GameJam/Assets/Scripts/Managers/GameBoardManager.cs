@@ -22,6 +22,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
     }
 
     [SerializeField] private Canvas GameBoardCanvas;
+    [SerializeField] private Canvas GameBoardMovingThingsCanvas;
     public StateMachine M_StateMachine;
 
     public class StateMachine
@@ -88,11 +89,13 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
         private void ShowMenu()
         {
             Instance.GameBoardCanvas.enabled = true;
+            Instance.GameBoardMovingThingsCanvas.enabled = true;
         }
 
         private void HideMenu()
         {
             Instance.GameBoardCanvas.enabled = false;
+            Instance.GameBoardMovingThingsCanvas.enabled = false;
         }
     }
 

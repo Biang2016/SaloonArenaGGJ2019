@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Managers\Utils.cs" />
     <Compile Include="Assets\Scripts\Player\LoadPlayerValue.cs" />
     <Compile Include="Assets\Scripts\Player\Move.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerImageLoader.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerParameter.cs" />
     <Compile Include="Assets\Scripts\Player\Shoot.cs" />
     <Compile Include="Assets\Scripts\Players.cs" />
