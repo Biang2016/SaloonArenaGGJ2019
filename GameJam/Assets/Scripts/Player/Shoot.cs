@@ -7,7 +7,7 @@ public class Shoot : MonoBehaviour
     public PlayerBody PlayerBody;
     public Transform shoot_point;
     public float shoot_speed;
-
+    public GameObject ammo;
     private void FixedUpdate()
     {
         if (Input.GetButtonDown(PlayerBody.Index_name + "fire"))
@@ -24,9 +24,13 @@ public class Shoot : MonoBehaviour
         dir.Normalize();
         int sfx_index = Random.Range(0, 2);
         PlayerBody.SoundPlay("sfx/HitFromFar_" + sfx_index, 0.5f);
-        GarbageMain am = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
-        am.Initialize();
-        am.transform.position = shoot_point.position;
+        Ammo am = GameObjectPoolManager.Instance.Pool_GarbageLitter.AllocateGameObject<Ammo>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
+        Instantiate(ammo, shoot_point.position,Quaternion.Euler(dir)).GetComponent<Ammo>();
+        
+        am.player = (int)PlayerBody.WhichPlayer;
+        //am.CanPick = false;
+        am.transform.position = shoot_point.transform.position;
+        am.transform.rotation = transform.rotation;
         am.Rigidbody2D.velocity = dir * shoot_speed;
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GarbageMain : PoolObject
 {
     private bool can_Pick;
-
+    public int player;
     public bool CanPick
     {
         get { return can_Pick; }
@@ -25,7 +25,7 @@ public class GarbageMain : PoolObject
     public Image Image;
     public SpriteAtlas GarbageSpriteAtlas;
     public static Sprite[] Sprites;
-
+    float time = 0;
     public override void PoolRecycle()
     {
         base.PoolRecycle();
@@ -52,6 +52,14 @@ public class GarbageMain : PoolObject
             CanPick = true;
             SoundPlay("sfx/ShootMiss", 0.3f);
         }
+        if(!CanPick)
+        {
+            time += Time.deltaTime;
+            if(time>2f)
+            {
+                CanPick = true;
+            }
+        }
     }
 
     public void Initialize()
@@ -60,18 +68,14 @@ public class GarbageMain : PoolObject
         Image.sprite = Sprites[index];
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-            collision.gameObject.GetComponent<PlayerBody>().Hitted(damage);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
+        {
             collision.gameObject.GetComponent<PlayerBody>().Pick_Garbage(num_);
+            PoolRecycle();
+        }
     }
 
-    public float time;
-    public int Damage;
 }
