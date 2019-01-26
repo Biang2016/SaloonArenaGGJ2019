@@ -11,7 +11,6 @@ public class Ammo : PoolObject
     public Rigidbody2D Rigidbody2D;
     public Image Image;
     public Sprite[] Sprites;
-    public GameObject garbage;
 
     private void Awake()
     {
@@ -20,8 +19,9 @@ public class Ammo : PoolObject
 
     void Start()
     {
-        Rigidbody2D.mass = GameManager.Instance.AmmoMass;
-        Rigidbody2D.drag = GameManager.Instance.AmmoDrag;
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) player];
+        Rigidbody2D.mass = rp.AmmoMass;
+        Rigidbody2D.drag = rp.AmmoDrag;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,12 +44,21 @@ public class Ammo : PoolObject
             Vector2 vector2 = Vector2.zero;
             switch (collision.name)
             {
-                case "Wall_left":vector2.x = 1;break;
-                case "Wall_right":vector2.x = -1;break;
-                case "Wall_up":vector2.y = -1;break;
-                case "Wall_down":vector2.y = 1;break;
-            default:break;
+                case "Wall_left":
+                    vector2.x = 1;
+                    break;
+                case "Wall_right":
+                    vector2.x = -1;
+                    break;
+                case "Wall_up":
+                    vector2.y = -1;
+                    break;
+                case "Wall_down":
+                    vector2.y = 1;
+                    break;
+                default: break;
             }
+
             Drop(vector2);
             Rigidbody2D.velocity = Vector3.zero;
             PoolRecycle();
@@ -60,8 +69,8 @@ public class Ammo : PoolObject
     {
         GarbageMain am = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
         am.CanPick = true;
-        am.transform.position = transform.position;       
-        am.Rigidbody2D.velocity = vector2.normalized * Random.Range(100,200);
+        am.transform.position = transform.position;
+        am.Rigidbody2D.velocity = vector2.normalized * Random.Range(100, 200);
         am.Initialize();
     }
 }

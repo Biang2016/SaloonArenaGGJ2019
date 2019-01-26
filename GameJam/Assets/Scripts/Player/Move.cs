@@ -21,15 +21,17 @@ public class Move : MonoBehaviour
 
     void Start()
     {
-        Rotate_Speed = GameManager.Instance.Rotate_Speed;
-        max_speed = GameManager.Instance.Max_Speed;
-        Rigidbody2D.mass = GameManager.Instance.RobotMass;
-        Rigidbody2D.drag = GameManager.Instance.RobotDrag;
-        Rigidbody2D.angularDrag = GameManager.Instance.RobotRotateDrag;
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) PlayerBody.WhichPlayer];
+        Rotate_Speed = rp.Rotate_Speed;
+        max_speed = rp.Max_Speed;
+        Rigidbody2D.mass = rp.RobotMass;
+        Rigidbody2D.drag = rp.RobotDrag;
+        Rigidbody2D.angularDrag = rp.RobotRotateDrag;
     }
 
     private void FixedUpdate()
     {
+        if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
         if (!PlayerBody.Lying)
         {
             hor = Input.GetAxisRaw(PlayerBody.Index_name + "hor");

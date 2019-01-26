@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GarbageMain : PoolObject
 {
     private bool can_Pick;
-    public int player;
+
     public bool CanPick
     {
         get { return can_Pick; }
@@ -19,20 +19,18 @@ public class GarbageMain : PoolObject
     }
 
     public int num_;
-    public int damage;
     public CircleCollider2D circle;
     public Rigidbody2D Rigidbody2D;
     public Image Image;
     public SpriteAtlas GarbageSpriteAtlas;
     public static Sprite[] Sprites;
     float time = 0;
+
     public override void PoolRecycle()
     {
-
         Rigidbody2D.drag = 0;
         CanPick = false;
         base.PoolRecycle();
-       
     }
 
     private void Awake()
@@ -54,10 +52,11 @@ public class GarbageMain : PoolObject
             CanPick = true;
             SoundPlay("sfx/ShootMiss", 0.3f);
         }
-        if(!CanPick)
+
+        if (!CanPick)
         {
             time += Time.deltaTime;
-            if(time>2f)
+            if (time > 2f)
             {
                 CanPick = true;
             }
@@ -70,7 +69,6 @@ public class GarbageMain : PoolObject
         Image.sprite = Sprites[index];
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -79,5 +77,4 @@ public class GarbageMain : PoolObject
             PoolRecycle();
         }
     }
-
 }

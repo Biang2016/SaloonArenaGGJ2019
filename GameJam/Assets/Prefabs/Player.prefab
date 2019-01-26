@@ -435,9 +435,9 @@ MonoBehaviour:
   WhichPlayer: 0
   sps:
   - {fileID: 21300000, guid: 542074562203849f483dcd75d83d26ec, type: 3}
-  - {fileID: 21300000, guid: 540a6c7c09c3d437889975907a1c671d, type: 3}
-  - {fileID: 21300000, guid: 9181be3717bf9428fb2681c2ee23e141, type: 3}
-  - {fileID: 21300000, guid: 61752c08407d348348a8cb6f0cd37151, type: 3}
+  - {fileID: 21300000, guid: 9399095dfd45e439db3f76743ff5ac24, type: 3}
+  - {fileID: 21300000, guid: 5d3d06cb54b6d4bc695234a864728d56, type: 3}
+  - {fileID: 21300000, guid: eba406b83bd7b4273aee08c943abcb2d, type: 3}
   Energy: 100
   Trash: 1000
   Power: 1

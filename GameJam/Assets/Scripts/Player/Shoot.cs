@@ -10,8 +10,9 @@ public class Shoot : MonoBehaviour
 
     void Start()
     {
-        shoot_speed = GameManager.Instance.Shoot_Speed;
-        ShootCD = GameManager.Instance.Shoot_CD;
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) PlayerBody.WhichPlayer];
+        shoot_speed = rp.Shoot_Speed;
+        ShootCD = rp.Shoot_CD;
     }
 
     public float ShootCD = 1.0f;
@@ -19,6 +20,11 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+        if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide)
+        {
+            return;
+        }
+
         shootTick += Time.deltaTime;
         if (Input.GetButtonDown(PlayerBody.Index_name + "fire"))
         {

@@ -20,7 +20,6 @@ public class PlayerBody : PoolObject
     public bool Charging;
     public RectTransform transform;
     public RectTransform arrow;
-    
 
     public Image UI_P;
     public Sprite[] UI_sps;
@@ -37,15 +36,16 @@ public class PlayerBody : PoolObject
 
     void Start()
     {
-        MaxEnerg = GameManager.Instance.MaxEnergy;
-        SolarChargeSpeed = GameManager.Instance.SolarChargeSpeed;
-        Trash = GameManager.Instance.StartTrash;
-        Power = GameManager.Instance.PowerConsume;
-        relife_speed = GameManager.Instance.Relife_speed;
-        Energy = GameManager.Instance.StartEnergy;
-        transform.sizeDelta *= GameManager.Instance.RobotScale;
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) WhichPlayer];
+        MaxEnerg = rp.MaxEnergy;
+        SolarChargeSpeed = rp.SolarChargeSpeed;
+        Trash = rp.StartTrash;
+        Power = rp.PowerConsume;
+        relife_speed = rp.Relife_speed;
+        Energy = rp.StartEnergy;
+        transform.sizeDelta *= rp.RobotScale;
         transform.GetComponent<CircleCollider2D>().radius = transform.sizeDelta.x / 2;
-        arrow.sizeDelta *= GameManager.Instance.RobotScale;
+        arrow.sizeDelta *= rp.RobotScale;
         UpdateHp();
         UpdateTrash();
         Charging = false;
@@ -59,7 +59,7 @@ public class PlayerBody : PoolObject
             if ((Energy / MaxEnerg) > 0.2)
                 Lying = false;
         }
-        else if(!Lying && !Charging)
+        else if (!Lying && !Charging)
         {
             Hitted(Power * Time.deltaTime);
         }
@@ -67,7 +67,7 @@ public class PlayerBody : PoolObject
 
     private void LateUpdate()
     {
-        UI_P.gameObject.transform.position = transform.position + Vector3.up * (100+ transform.sizeDelta.x / 2);
+        UI_P.gameObject.transform.position = transform.position + Vector3.up * (100 + transform.sizeDelta.x / 2);
         UI_P.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
@@ -81,7 +81,6 @@ public class PlayerBody : PoolObject
             Lying = true;
         }
 
-        
         UpdateHp();
     }
 
