@@ -49,6 +49,11 @@ public partial class GameManager : MonoSingleton<GameManager>
         public float AmmoScale; //子弹尺寸
         public int AmmoDamage; //子弹伤害
         public float RobotScale; //机体尺寸
+        public float wake;//重新恢复百分比
+        public float ContactDamage;//相撞造成的伤害值
+        public float ContactX;//相撞造成伤害的相对速度最小值
+        public float Move_Speed;
+        public int Do_num;//偷垃圾量的百分比
     }
 
     public int StarterFloorGarbage; //起始地面垃圾
@@ -97,9 +102,14 @@ public partial class GameManager : MonoSingleton<GameManager>
                         rp.RobotScale = float.Parse(robotNode.Attributes["RobotScale"].Value);
                         rp.AmmoScale = float.Parse(robotNode.Attributes["AmmoScale"].Value);
                         rp.AmmoDamage = int.Parse(robotNode.Attributes["AmmoDamage"].Value);
+                        rp.wake = float.Parse(robotNode.Attributes["wake"].Value);
+                        rp.ContactDamage = float.Parse(robotNode.Attributes["ContactDamage"].Value);
+                        rp.ContactX = float.Parse(robotNode.Attributes["ContactX"].Value);
+                        rp.Move_Speed = float.Parse(robotNode.Attributes["Move_Speed"].Value);
+                        rp.Do_num= int.Parse(robotNode.Attributes["Do_num"].Value);
                         if (!RobotParameters.ContainsKey(robot))
                         {
-                            RobotParameters.Add(robot, rp);
+                          RobotParameters.Add(robot, rp);
                         }
                     }
 
