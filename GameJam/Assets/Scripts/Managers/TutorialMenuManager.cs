@@ -140,19 +140,17 @@ public class TutorialMenuManager : MonoSingleton<TutorialMenuManager>
 
         if (canStartGame)
         {
-            StartCoroutine(Co_StartGame());
+            Co_StartGame();
         }
     }
 
-    IEnumerator Co_StartGame()
+    void Co_StartGame()
     {
-        yield return new WaitForSeconds(1f);
         IsGameStart = true;
         M_StateMachine.SetState(StateMachine.States.Hide);
         GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
         BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Show);
         GameBoardManager.Instance.InitializePlayers();
         GameBoardManager.Instance.StartGame();
-        yield return null;
     }
 }
