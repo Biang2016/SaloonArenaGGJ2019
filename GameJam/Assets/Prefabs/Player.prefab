@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 3163565826358998786}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,10 +138,10 @@ MonoBehaviour:
   playerIndex: 1
   ro: {x: 0, y: 0, z: 0}
   Rotate_Speed: 200
-  Move_Speed: 0
-  max_speed: 0
-  Slow_Down: 0
-  AcSpeed: 0
+  Move_Speed: 50
+  max_speed: 500
+  Slow_Down: 100
+  AcSpeed: 50
   speed: 0
   speed_h: 0
   speed_v: 0
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

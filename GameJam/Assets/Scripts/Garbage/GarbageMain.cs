@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GarbageMain : MonoBehaviour
 {
-    public bool Can_Pick;
+    public bool Can_Pick;   
+    public int num_;
+    public int damage;
     CircleCollider2D circle;
     private void Awake()
     {
@@ -21,5 +23,16 @@ public class GarbageMain : MonoBehaviour
         {
             circle.isTrigger = false;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+            collision.gameObject.GetComponent<PlayerParameter>().Hitted(damage);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            collision.gameObject.GetComponent<PlayerParameter>().Pick_Garbage(num_);
     }
 }

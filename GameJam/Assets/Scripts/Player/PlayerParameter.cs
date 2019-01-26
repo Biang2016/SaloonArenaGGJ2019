@@ -13,6 +13,7 @@ public class PlayerParameter : PoolObject
     public float MaxSpeed;                 //最大移动速度
     public int Scores;						//最后的分数
     public bool Lying;                      //电量耗尽
+    GameObject garbage;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,26 @@ public class PlayerParameter : PoolObject
         {
             Energy = 0;
         }
+        int temp = (int)Random.Range(6, 9);
+        Loss_Garbage(temp);
+       for(int i = 0;i<temp;i++)
+        {
+           
+        }
+
     }
+    public void Pick_Garbage(int num)
+    {
+        Trash += num;
+    }
+    public void Loss_Garbage(int num)
+    {
+        if (Trash >= num)
+            Trash -= num;
+        else
+            Trash = 0;
+    }
+
     void PowerDown()
     {
         if (Energy >= Power * Time.deltaTime)
