@@ -71,9 +71,10 @@ public class Ammo : PoolObject
     void Drop(Vector2 vector2)
     {
         GarbageMain am = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
+        am.Initialize();
         am.CanPick = true;
         am.transform.position = transform.position;       
         am.Rigidbody2D.velocity = vector2.normalized * Random.Range(100,200);
-        am.Initialize();
+        
     }
 }

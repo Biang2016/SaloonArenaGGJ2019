@@ -7,6 +7,6 @@
            Shoot_Speed="500" Shoot_CD="0.5"
            RobotMass="0.01" RobotDrag="1" RobotRotateDrag="0.3"
            AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01"
-           StartTrash="10" StarterFloorGarbage="100" RobotScale="1"
+           StartTrash="0" StarterFloorGarbage="100" RobotScale="1"
            AmmoScale ="1" AmmoDamage="12"/>
 </Values>
