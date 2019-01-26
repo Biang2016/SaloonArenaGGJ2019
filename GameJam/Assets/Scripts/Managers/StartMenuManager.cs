@@ -88,15 +88,13 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
         }
     }
 
-    public void OnStartGameButtonClick()
+    void Update()
     {
-        GameBoardManager.Instance.GenerateMap("LevelTest");
-        GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
-        M_StateMachine.SetState(StateMachine.States.Hide);
-    }
-
-    public void OnQuitGameButtonClick()
-    {
-        Application.Quit();
+        if (M_StateMachine.GetState() == StateMachine.States.Hide) return;
+        if (Input.anyKey)
+        {
+            M_StateMachine.SetState(StateMachine.States.Hide);
+            TutorialMenuManager.Instance.M_StateMachine.SetState(TutorialMenuManager.StateMachine.States.Show);
+        }
     }
 }

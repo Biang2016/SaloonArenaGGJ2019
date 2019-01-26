@@ -112,18 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!50 &34990630 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 1429513932560656947, guid: 67c49a90fcecf4f049dff49c39ada71a,
-    type: 3}
-  m_PrefabInstance: {fileID: 887700495}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &538138274 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 3993302147749890129, guid: 67c49a90fcecf4f049dff49c39ada71a,
-    type: 3}
-  m_PrefabInstance: {fileID: 887700495}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &887700495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -429,21 +417,6 @@ PrefabInstance:
     - target: {fileID: 7877360235807612749, guid: 67c49a90fcecf4f049dff49c39ada71a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1429513932560656948, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: Rigidbody2D
-      value: 
-      objectReference: {fileID: 34990630}
-    - target: {fileID: 3993302147749890134, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: Rigidbody2D
-      value: 
-      objectReference: {fileID: 538138274}
-    - target: {fileID: 3993302147749890129, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

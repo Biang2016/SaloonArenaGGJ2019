@@ -109,6 +109,7 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
 
     void Update()
     {
+        if (M_StateMachine.GetState() == StateMachine.States.Hide) return;
         if (IsGameStart) return;
         for (int i = 0; i < 4; i++)
         {
@@ -167,7 +168,7 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
 
         if (canStartGame)
         {
-            StartGame();
+            StartTutorial();
         }
     }
 
@@ -183,13 +184,10 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         }
     }
 
-    public void StartGame()
+    public void StartTutorial()
     {
         IsGameStart = true;
-        GameBoardManager.Instance.GenerateMap("LevelTest");
         M_StateMachine.SetState(StateMachine.States.Hide);
-        GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
-        BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Show);
-        GameBoardManager.Instance.StartGame();
+        TutorialMenuManager.Instance.M_StateMachine.SetState(TutorialMenuManager.StateMachine.States.Show);
     }
 }

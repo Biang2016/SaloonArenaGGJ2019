@@ -13,7 +13,7 @@
 
     public GameObjectPool[] Pool_PlayerSlotPools;
     public PoolObject[] PlayerSlotPrefabs;
-    
+
     public GameObjectPool Pool_Garbage;
     public PoolObject GarbagePrefab;
     public GameObjectPool Pool_HeroButton;
@@ -31,6 +31,7 @@
         {
             Pool_PlayerSlotPools[i].Initiate(PlayerSlotPrefabs[i], 1);
         }
+
         Pool_HeroButton.Initiate(HeroButtonPrefab, 4);
         Pool_Garbage.Initiate(GarbagePrefab, 300);
         Pool_GarbageLitter.Initiate(GarbageLitterPrefabs, 300);

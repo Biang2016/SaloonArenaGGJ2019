@@ -35,14 +35,13 @@ public partial class GameManager : MonoSingleton<GameManager>
     public float Relife_speed; //充电桩充电速度
     public float Rotate_Speed; //旋转灵敏度
     public float Max_Speed; //移动最大速度
-    public float Shoot_Speed; //子弹速度
+    public float Shoot_Speed; //子弹速度s
     public float Shoot_CD; //子弹CD
     public float RobotMass; //子弹速度
     public float RobotDrag; //机器人移动阻力
     public float RobotRotateDrag; //机器人转动阻力
     public float AmmoMass; //子弹质量
     public float AmmoDrag; //子弹阻力
-    public float AmmoRotateDrag; //子弹转动阻力
 
     public int StarterFloorGarbage;
 
@@ -78,7 +77,6 @@ public partial class GameManager : MonoSingleton<GameManager>
         AmmoMass = float.Parse(valueNode.Attributes["AmmoMass"].Value);
         AmmoDrag = float.Parse(valueNode.Attributes["AmmoDrag"].Value);
         StarterFloorGarbage = int.Parse(valueNode.Attributes["StarterFloorGarbage"].Value);
-        AmmoRotateDrag = float.Parse(valueNode.Attributes["AmmoRotateDrag"].Value);
     }
 
     #endregion
