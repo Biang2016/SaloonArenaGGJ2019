@@ -110,8 +110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 298.05557}
-  m_SizeDelta: {x: 234, y: 947}
+  m_AnchoredPosition: {x: 38, y: 69}
+  m_SizeDelta: {x: 468, y: 1700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8777827307862598923
 Canvas:
@@ -541,7 +541,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5d3d06cb54b6d4bc695234a864728d56, type: 3}
   - {fileID: 21300000, guid: eba406b83bd7b4273aee08c943abcb2d, type: 3}
   Energy: 100
-  Trash: 1000
   Power: 1
   Scores: 0
   Lying: 0
@@ -570,6 +569,8 @@ MonoBehaviour:
   LootedArea: {fileID: 6230563756175378364}
   DoArea: {fileID: 2940399741482287757}
   do_time: 0
+  EmojiImage: {fileID: 0}
+  EmojiSprites: []
 --- !u!114 &3993302147596268467
 MonoBehaviour:
   m_ObjectHideFlags: 0
