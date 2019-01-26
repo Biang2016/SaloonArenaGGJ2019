@@ -6,18 +6,30 @@ using UnityEngine.UI;
 
 public class Ammo : PoolObject
 {
+    public override void PoolRecycle()
+    {
+        base.PoolRecycle();Initialize();
+    }
     public int player;
     public int damage;
     public Rigidbody2D Rigidbody2D;
     public Image Image;
     public Sprite[] Sprites;
     public GameObject garbage;
+    public RectTransform transform;
 
     private void Awake()
     {
+        //transform.localScale *= GameManager.Instance.AmmoScale;
+        damage = GameManager.Instance.AmmoDamage;
         Image.sprite = Sprites[Random.Range(0, 3)];
     }
-
+    public void Initialize()
+    {
+        damage = GameManager.Instance.AmmoDamage;
+        transform.localScale *= GameManager.Instance.AmmoScale;
+        Image.sprite = Sprites[Random.Range(0, 3)];
+    }
     void Start()
     {
         Rigidbody2D.mass = GameManager.Instance.AmmoMass;

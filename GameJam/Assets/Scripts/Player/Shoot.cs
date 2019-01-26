@@ -20,7 +20,7 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         shootTick += Time.deltaTime;
-        if (Input.GetButtonDown(PlayerBody.Index_name + "fire"))
+        if (Input.GetButtonDown(PlayerBody.Index_name + "fire") && !PlayerBody.Lying)
         {
             if (shootTick > ShootCD)
             {
@@ -45,5 +45,6 @@ public class Shoot : MonoBehaviour
         am.transform.position = shoot_point.transform.position;
         am.transform.rotation = shoot_point.transform.rotation;
         am.Rigidbody2D.velocity = dir * shoot_speed;
+        am.Initialize();
     }
 }

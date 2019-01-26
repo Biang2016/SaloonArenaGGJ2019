@@ -43,6 +43,8 @@ public partial class GameManager : MonoSingleton<GameManager>
     public float AmmoMass; //子弹质量
     public float AmmoDrag; //子弹阻力
     public float RobotScale;//机体尺寸
+    public float AmmoScale;//子弹半径
+    public int AmmoDamage;//子弹威力
 
     public int StarterFloorGarbage;
 
@@ -79,6 +81,8 @@ public partial class GameManager : MonoSingleton<GameManager>
         AmmoDrag = float.Parse(valueNode.Attributes["AmmoDrag"].Value);
         StarterFloorGarbage = int.Parse(valueNode.Attributes["StarterFloorGarbage"].Value);
         RobotScale = float.Parse(valueNode.Attributes["RobotScale"].Value);
+        AmmoScale = float.Parse(valueNode.Attributes["AmmoScale"].Value);
+        AmmoDamage = int.Parse(valueNode.Attributes["AmmoDamage"].Value);
     }
 
     #endregion
