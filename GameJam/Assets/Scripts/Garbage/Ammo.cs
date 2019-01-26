@@ -26,11 +26,14 @@ public class Ammo : PoolObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player") && player != (int) collision.gameObject.GetComponent<PlayerBody>().WhichPlayer)
+        if (collision.transform.CompareTag("Player") && player != (int) collision.gameObject.GetComponent<PlayerBody>().WhichPlayer && !collision.gameObject.GetComponent<PlayerBody>().Lying)
         {
             collision.gameObject.GetComponent<PlayerBody>().Hitted(damage);
-            int temp = (int)Random.Range(6, 9);
+            /*int temp = (int)Random.Range(6, 9);
             collision.gameObject.GetComponent<PlayerBody>().Loss_Garbage(temp);
+            */
+            Vector2 vector2 = new Vector2(-transform.up.x, -transform.up.y);
+            Drop(vector2);
             SoundPlay("sfx/ShootHit");
             Rigidbody2D.velocity = Vector3.zero;
             PoolRecycle();
@@ -38,21 +41,27 @@ public class Ammo : PoolObject
 
         if (collision.transform.CompareTag("Wall"))
         {
-            Drop();
+            Vector2 vector2 = Vector2.zero;
+            switch (collision.name)
+            {
+                case "Wall_left":vector2.x = 1;break;
+                case "Wall_right":vector2.x = -1;break;
+                case "Wall_up":vector2.y = -1;break;
+                case "Wall_down":vector2.y = 1;break;
+            default:break;
+            }
+            Drop(vector2);
             Rigidbody2D.velocity = Vector3.zero;
             PoolRecycle();
         }
     }
 
-    void Drop()
+    void Drop(Vector2 vector2)
     {
         GarbageMain am = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
-        Vector3 temp = new Vector3(0, 0, Random.Range(0, 360));
-        //am.CanPick = false;
-        am.CanPick = false;
-        am.transform.position = transform.position;
-        am.transform.rotation = transform.rotation;
-        am.Rigidbody2D.velocity = temp.normalized * Random.Range(500,800);
-
+        am.CanPick = true;
+        am.transform.position = transform.position;       
+        am.Rigidbody2D.velocity = vector2.normalized * Random.Range(100,200);
+        am.Initialize();
     }
 }

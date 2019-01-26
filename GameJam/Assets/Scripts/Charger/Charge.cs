@@ -32,6 +32,7 @@ public class Charge : MonoBehaviour
     {
         if (((int) collision.GetComponent<PlayerBody>().WhichPlayer + 1) == whichPlayer)
             Charging = false;
-        p.Charging = false;
+        if (p != null)
+            p.Charging = false;
     }
 }
