@@ -10,9 +10,10 @@ public partial class GameManager
 
     void Start_Xue()
     {
-        StartMenuManager.Instance.M_StateMachine.SetState(StartMenuManager.StateMachine.States.Show);
+        StartMenuManager.Instance.M_StateMachine.SetState(StartMenuManager.StateMachine.States.Hide);
         GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Hide);
-        SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Hide);
+        SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Show);
+        BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Hide);
     }
 
     public static int GameBoardWidth;

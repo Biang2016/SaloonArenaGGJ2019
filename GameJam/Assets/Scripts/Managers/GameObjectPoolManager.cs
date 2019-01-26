@@ -15,7 +15,9 @@
     public PoolObject[] PlayerSlotPrefabs;
     
     public GameObjectPool Pool_Garbage;
-    public PoolObject GarbagePrefabs;
+    public PoolObject GarbagePrefab;
+    public GameObjectPool Pool_HeroButton;
+    public PoolObject HeroButtonPrefab;
 
     void Awake()
     {
@@ -26,6 +28,7 @@
         {
             Pool_PlayerSlotPools[i].Initiate(PlayerSlotPrefabs[i], 1);
         }
-        Pool_Garbage.Initiate(GarbagePrefabs, 300);
+        Pool_Garbage.Initiate(GarbagePrefab, 300);
+        Pool_HeroButton.Initiate(HeroButtonPrefab, 4);
     }
 }

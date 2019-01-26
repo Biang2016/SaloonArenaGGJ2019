@@ -91,8 +91,8 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
     public void OnStartGameButtonClick()
     {
         GameBoardManager.Instance.GenerateMap("LevelTest");
-        M_StateMachine.SetState(StateMachine.States.Hide);
         GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
+        M_StateMachine.SetState(StateMachine.States.Hide);
     }
 
     public void OnQuitGameButtonClick()
