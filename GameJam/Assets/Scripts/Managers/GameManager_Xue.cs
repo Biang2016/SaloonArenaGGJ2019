@@ -5,7 +5,6 @@ public partial class GameManager
     void Awake_Xue()
     {
         InitializeClientGameSettings();
-      
     }
 
     void Start_Xue()
@@ -15,9 +14,6 @@ public partial class GameManager
         SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Show);
         BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Hide);
     }
-
-    public static int GameBoardWidth;
-    public static int GameBoardHeight;
 
     private void InitializeClientGameSettings()
     {

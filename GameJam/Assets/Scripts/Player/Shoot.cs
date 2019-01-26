@@ -10,15 +10,26 @@ public class Shoot : MonoBehaviour
 
     void Start()
     {
-        shoot_speed = GameManager.Instance.shoot_speed;
+        shoot_speed = GameManager.Instance.Shoot_Speed;
+        ShootCD = GameManager.Instance.Shoot_CD;
     }
-    
-    private void FixedUpdate()
+
+    public float ShootCD = 1.0f;
+    private float shootTick = 0;
+
+    void Update()
     {
+        shootTick += Time.deltaTime;
         if (Input.GetButtonDown(PlayerBody.Index_name + "fire"))
         {
-            if (PlayerBody.Trash > 0)
-                Fire();
+            if (shootTick > ShootCD)
+            {
+                shootTick = 0f;
+                if (PlayerBody.Trash > 0)
+                {
+                    Fire();
+                }
+            }
         }
     }
 

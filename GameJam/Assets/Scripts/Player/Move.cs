@@ -22,9 +22,9 @@ public class Move : MonoBehaviour
     void Start()
     {
         Rotate_Speed = GameManager.Instance.Rotate_Speed;
-        max_speed = GameManager.Instance.max_speed;
-        Rigidbody2D.mass = GameManager.Instance.robotMass;
-        Rigidbody2D.drag = GameManager.Instance.robotMass;
+        max_speed = GameManager.Instance.Max_Speed;
+        Rigidbody2D.mass = GameManager.Instance.RobotMass;
+        Rigidbody2D.drag = GameManager.Instance.RobotDrag;
     }
 
     private void FixedUpdate()

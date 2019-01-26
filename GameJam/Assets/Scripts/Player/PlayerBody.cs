@@ -35,9 +35,9 @@ public class PlayerBody : PoolObject
     {
         MaxEnerg = GameManager.Instance.MaxEnergy;
         SolarChargeSpeed = GameManager.Instance.SolarChargeSpeed;
-        Trash = GameManager.Instance.Trash;
+        Trash = GameManager.Instance.StartTrash;
         Power = GameManager.Instance.PowerConsume;
-        relife_speed = GameManager.Instance.relife_speed;
+        relife_speed = GameManager.Instance.Relife_speed;
         Energy = GameManager.Instance.StartEnergy;
         UpdateHp();
         UpdateTrash();

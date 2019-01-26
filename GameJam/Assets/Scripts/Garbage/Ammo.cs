@@ -20,8 +20,8 @@ public class Ammo : PoolObject
 
     void Start()
     {
-        Rigidbody2D.mass = GameManager.Instance.ammoMass;
-        Rigidbody2D.drag = GameManager.Instance.ammoDrag;
+        Rigidbody2D.mass = GameManager.Instance.AmmoMass;
+        Rigidbody2D.drag = GameManager.Instance.AmmoDrag;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,8 +46,6 @@ public class Ammo : PoolObject
         GarbageMain am = GameObjectPoolManager.Instance.Pool_GarbageLitter.AllocateGameObject<GarbageMain>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
         Instantiate(garbage, transform).GetComponent<Ammo>();
         Vector3 temp = new Vector3(0, 0, Random.Range(0, 360));
-        //am.CanPick = false;
-        am.CanPick = false;
         am.transform.position = transform.position;
         am.transform.rotation = transform.rotation;
         am.Rigidbody2D.velocity = temp * Random.Range(500, 800);

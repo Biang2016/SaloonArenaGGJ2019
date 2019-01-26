@@ -183,7 +183,6 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
             GarbageMain gm = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardGarbagesCanvas.transform);
             gm.Initialize();
             gm.transform.position = new Vector2(Random.Range(-MapContainer.rect.width / 2, MapContainer.rect.width / 2), Random.Range(-MapContainer.rect.height / 2, MapContainer.rect.height / 2));
-            gm.CanPick = true;
         }
     }
 
