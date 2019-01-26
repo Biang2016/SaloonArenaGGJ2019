@@ -12,4 +12,8 @@ public class PlayerSlotBlock : LevelMapBlock
     {
         PlayerSlotImage.sprite = PlayerSlotSprites[(int) player];
     }
+
+    protected override void Init()
+    {
+    }
 }

@@ -7,9 +7,8 @@ public class AudioManager : MonoSingleton<AudioManager>
 {
     private Dictionary<string, int> AudioDictionary = new Dictionary<string, int>();
 
-    private const int MaxAudioCount = 10;
+    private const int MaxAudioCount = 30;
     private const string ResourcePath = "Audios/";
-    private const string StreamingAssetsPath = "";
     private AudioSource BGMAudioSource;
     private AudioSource LastAudioSource;
 
@@ -17,17 +16,18 @@ public class AudioManager : MonoSingleton<AudioManager>
     public AudioMixerGroup BGMAudioMixerGroup;
     public AudioMixerGroup SoundAudioMixerGroup;
 
-    public void SoundPlay(string audioname)
+    public AudioSource SoundPlay(string audioname)
     {
-        SoundPlay(audioname, 1f);
+        return SoundPlay(audioname, 1f);
     }
 
     /// <summary>
     /// 播放
     /// </summary>
     /// <param name="audioname"></param>
-    public void SoundPlay(string audioname, float volume = 1)
+    public AudioSource SoundPlay(string audioname, float volume = 1)
     {
+        AudioSource source = null;
         if (AudioDictionary.ContainsKey(audioname))
         {
             if (AudioDictionary[audioname] <= MaxAudioCount)
@@ -36,7 +36,7 @@ public class AudioManager : MonoSingleton<AudioManager>
                 if (sound != null)
                 {
                     StartCoroutine(PlayClipEnd(sound, audioname));
-                    PlayClip(sound, volume);
+                    source = PlayClip(sound, volume);
                     AudioDictionary[audioname]++;
                 }
             }
@@ -48,10 +48,12 @@ public class AudioManager : MonoSingleton<AudioManager>
             if (sound != null)
             {
                 StartCoroutine(PlayClipEnd(sound, audioname));
-                PlayClip(sound, volume);
+                source = PlayClip(sound, volume);
                 AudioDictionary[audioname]++;
             }
         }
+
+        return source;
     }
 
     /// <summary>
@@ -87,7 +89,7 @@ public class AudioManager : MonoSingleton<AudioManager>
     /// <param name="audioname"></param>
     public void SoundStop(string audioname)
     {
-        GameObject obj = transform.Find("audioname").gameObject;
+        GameObject obj = transform.Find(audioname).gameObject;
         if (obj != null)
         {
             Destroy(obj);
@@ -262,11 +264,11 @@ public class AudioManager : MonoSingleton<AudioManager>
     /// <param name="audioClip"></param>
     /// <param name="volume"></param>
     /// <param name="name"></param>
-    private void PlayClip(AudioClip audioClip, float volume = 1f, string name = null)
+    private AudioSource PlayClip(AudioClip audioClip, float volume = 1f, string name = null)
     {
         if (audioClip == null)
         {
-            return;
+            return null;
         }
         else
         {
@@ -280,6 +282,7 @@ public class AudioManager : MonoSingleton<AudioManager>
             source.outputAudioMixerGroup = SoundAudioMixerGroup;
             source.Play();
             LastAudioSource = source;
+            return source;
         }
     }
 
