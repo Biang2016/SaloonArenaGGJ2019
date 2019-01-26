@@ -172,6 +172,19 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
                 LevelMapBlocks[i, j] = block;
             }
         }
+
+        GenerateStarterGarbages();
+    }
+
+    public void GenerateStarterGarbages()
+    {
+        for (int i = 0; i < GameManager.Instance.StarterFloorGarbage; i++)
+        {
+            GarbageMain gm = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardGarbagesCanvas.transform);
+            gm.Initialize();
+            gm.transform.position = new Vector2(Random.Range(-MapContainer.rect.width / 2, MapContainer.rect.width / 2), Random.Range(-MapContainer.rect.height / 2, MapContainer.rect.height / 2));
+            gm.CanPick = true;
+        }
     }
 
     public void StartGame()
