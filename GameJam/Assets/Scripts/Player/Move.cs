@@ -9,10 +9,14 @@ public class Move : MonoBehaviour
     public int playerIndex;
     public Vector3 ro;
     public float Rotate_Speed;
-    public float Move_Force;
-    string Index_name;  
-    
-    
+    public float Move_Speed;
+    public float max_speed;
+    public float Slow_Down;
+    public float AcSpeed;
+    public float speed;//当前速度
+    string Index_name;
+    public float speed_h, speed_v;
+    Vector3 lastestSpeed;
     Rigidbody2D rb;
     // Start is called before the first frame update
     private void Awake()
@@ -20,6 +24,9 @@ public class Move : MonoBehaviour
         Index_name = "P" + playerIndex.ToString() + "_";
         rb = GetComponent<Rigidbody2D>();
         GetComponent<Shoot>().Index_name = Index_name;
+        speed_h = 0;
+        speed_v = 0;
+
     }
     
 
@@ -115,7 +122,95 @@ public class Move : MonoBehaviour
     }
     void Trans()
     {
-        rb.AddForce(new Vector2(hor, ver) *Move_Force );
+        /*if (rb.velocity.magnitude < max_speeed)
+            rb.AddForce(new Vector2(hor, ver) * Move_Force);
+        else if (rb.velocity.magnitude >= max_speeed)
+            rb.velocity = new Vector2(hor, ver) * max_speeed;
+
+        if(hor==0&&ver==0&&rb.velocity.magnitude>0)
+        {
+            rb.velocity -= Slow_Down * rb.velocity.normalized;
+        }
+
+        speed = rb.velocity.magnitude;
+        */
+        /*if (rb.velocity.magnitude < max_speeed)
+            rb.velocity += Move_Force * new Vector2(hor, ver);
+        else
+            rb.velocity = new Vector2(hor, ver) * max_speeed;
+
+        if (hor == 0 && ver == 0 && rb.velocity.magnitude > 0)
+        {
+            rb.velocity -= Slow_Down * rb.velocity.normalized;
+        }
+
+        speed = rb.velocity.magnitude;
+        */
+
+        if (speed_h > -max_speed && speed_h < max_speed)
+        {
+            speed_h += hor * AcSpeed * Time.deltaTime;
+        }
+        else if (speed_h < -max_speed)
+            speed_h = -max_speed;
+        else if (speed_h > max_speed)
+            speed_h = max_speed;
+
+        if (speed_v > -max_speed && speed_v < max_speed)
+        {
+            speed_v += ver * AcSpeed *Time.deltaTime;
+        }
+        else if (speed_v < -max_speed)
+            speed_h = -max_speed;
+        else if (speed_v > max_speed)
+            speed_h = max_speed;
+/////////////////////////////////////////////////////////////////
+        if (hor == 0)
+        {
+            if(speed_h<0)
+            {
+                speed_h += Slow_Down*Time.deltaTime;
+                if (speed_h > 0)
+                    speed_h = 0;
+            }
+            else if(speed_h>0)
+            {
+                speed_h -= Slow_Down * Time.deltaTime;
+                if (speed_h < 0)
+                    speed_h = 0;
+            }
+        }
+        if (ver== 0)
+        {
+            if (speed_v < 0)
+            {
+                speed_v += Slow_Down * Time.deltaTime;
+                if (speed_v > 0)
+                    speed_v = 0;
+            }
+            else if (speed_v > 0)
+            {
+                speed_v -= Slow_Down * Time.deltaTime;
+                if (speed_v < 0)
+                    speed_v = 0;
+            }
+        }
+        /////////////////////////////////////////////
+        rb.velocity = new Vector2(speed_h, speed_v);
+        speed = rb.velocity.magnitude;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.CompareTag("Wall"))
+        {
+            Vector3 temp;
+            temp = collision.transform.position - transform.position;
+
+
+
+           
+        }
     }
 
 }
