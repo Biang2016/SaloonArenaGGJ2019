@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 3993302147596268469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_LocalScale: {x: 5, y: 5, z: 2}
   m_Children:
   - {fileID: 3993302147097541910}
   m_Father: {fileID: 0}
@@ -132,7 +132,6 @@ MonoBehaviour:
   ro: {x: 0, y: 0, z: 0}
   Rotate_Speed: 200
   Move_Force: 1
-  Index_name: 
 --- !u!50 &3993302147596268468
 Rigidbody2D:
   serializedVersion: 4
@@ -167,9 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot_point: {fileID: 3993302147097541911}
-  Index_name: 
   ammo: {fileID: 1779689151875134073, guid: 9c07c634abf709a47a09cc42007b7b65, type: 3}
   shoot_speed: 5
+  Index_name: 
 --- !u!58 &3993302147596268479
 CircleCollider2D:
   m_ObjectHideFlags: 0
