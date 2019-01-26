@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Blocks\PlayerSlotBlock.cs" />
     <Compile Include="Assets\Scripts\Blocks\WallBlock.cs" />
     <Compile Include="Assets\Scripts\Charger\Charge.cs" />
+    <Compile Include="Assets\Scripts\Garbage\Ammo.cs" />
     <Compile Include="Assets\Scripts\Garbage\GarbageMain.cs" />
     <Compile Include="Assets\Scripts\LevelTools\AllLevelMapColors.cs" />
     <Compile Include="Assets\Scripts\LevelTools\LevelMap.cs" />

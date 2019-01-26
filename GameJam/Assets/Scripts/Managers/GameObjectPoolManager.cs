@@ -17,6 +17,9 @@
     public GameObjectPool Pool_Garbage;
     public PoolObject GarbagePrefabs;
 
+    public GameObjectPool Pool_GarbageLitter;
+    public PoolObject GarbageLitterPrefabs;
+
     void Awake()
     {
         Pool_WallBlockPool.Initiate(WallBlocksPrefab, 100);
@@ -27,5 +30,6 @@
             Pool_PlayerSlotPools[i].Initiate(PlayerSlotPrefabs[i], 1);
         }
         Pool_Garbage.Initiate(GarbagePrefabs, 300);
+        Pool_GarbageLitter.Initiate(GarbageLitterPrefabs, 300);
     }
 }

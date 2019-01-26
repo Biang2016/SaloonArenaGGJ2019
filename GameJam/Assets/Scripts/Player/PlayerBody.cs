@@ -9,7 +9,7 @@ public class PlayerBody : PoolObject
     public Players WhichPlayer;
     internal string Index_name;
     public Sprite[] sps;
-    static int MaxEnerg; //最大电量
+    static float MaxEnerg = 100; //最大电量
     static int SolarChargeSpeed; //电力耗尽后复活速度
     public float Energy; //当前电量
     public int Trash; //携带垃圾量
@@ -20,6 +20,7 @@ public class PlayerBody : PoolObject
     public Image UI_P;
     public Sprite[] UI_sps;
     public Text Trash_Text;
+    public Text Hp_Text;
     public Slider Hp;
 
     void Awake()
@@ -27,12 +28,16 @@ public class PlayerBody : PoolObject
         UI_P.sprite = UI_sps[(int)WhichPlayer];
         PlayerImage.sprite = sps[(int) WhichPlayer];
         Index_name = "P" + ((int) WhichPlayer + 1) + "_";
+        UpdateHp();
+        UpdateTrash();
     }
-    private void FixedUpdate()
+
+    private void LateUpdate()
     {
         UI_P.gameObject.transform.position = transform.position + Vector3.up * 140;
         UI_P.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
     }
+
     public void Hitted(int damage) //受到伤害
     {
         if (Energy >= damage)
@@ -95,5 +100,6 @@ public class PlayerBody : PoolObject
     void UpdateHp()
     {
         Hp.value = Energy / MaxEnerg;
+        Hp_Text.text = (Hp.value * 100).ToString("##0") + "%";
     }
 }
