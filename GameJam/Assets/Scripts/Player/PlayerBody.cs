@@ -9,8 +9,8 @@ public class PlayerBody : PoolObject
     public Players WhichPlayer;
     internal string Index_name;
     public Sprite[] sps;
-    static float MaxEnerg = 100; //最大电量
-    static int SolarChargeSpeed; //电力耗尽后复活速度
+    float MaxEnerg = 100; //最大电量
+    int SolarChargeSpeed; //电力耗尽后复活速度
     public float Energy; //当前电量
     public int Trash; //携带垃圾量
     public int Power; //电量消耗速度
@@ -133,6 +133,7 @@ public class PlayerBody : PoolObject
     void UpdateHp()
     {
         Hp.value = Energy / MaxEnerg;
-        Hp_Text.text = (Hp.value * 100).ToString("##0") + "%";
+        //Hp_Text.text = (Hp.value * 100).ToString("##0") + "%";
+        Hp_Text.text = MaxEnerg.ToString("##0") ;
     }
 }

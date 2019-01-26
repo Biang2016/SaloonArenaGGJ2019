@@ -2,7 +2,7 @@
 <Level>
     <Robots>
         <Robot name="Robot1"
-               MaxEnergy="200" StartEnergy="200"
+               MaxEnergy="250" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
@@ -10,7 +10,7 @@
                AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="1"/>
         <Robot name="Robot2"
-               MaxEnergy="200" StartEnergy="200"
+               MaxEnergy="1000" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
@@ -18,7 +18,7 @@
                AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="1"/>
         <Robot name="Robot3"
-               MaxEnergy="200" StartEnergy="200"
+               MaxEnergy="100" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
@@ -26,7 +26,7 @@
                AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="1"/>
         <Robot name="Robot4"
-               MaxEnergy="200" StartEnergy="200"
+               MaxEnergy="600" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
