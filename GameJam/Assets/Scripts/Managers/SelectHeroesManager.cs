@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -91,26 +92,99 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         }
     }
 
+    void Start()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            HeroButton hb = GameObjectPoolManager.Instance.Pool_HeroButton.AllocateGameObject<HeroButton>(BG.transform);
+            hb.Initialize(Players.NoPlayer, (Robots) i);
+            HeroButtons[i] = hb;
+        }
+    }
+
+    public float SelectButtonPressCD = 0.3f;
+    private float[] SelectButtonPressTicks = new float[4] {1f, 1f, 1f, 1f};
+
+    public bool IsGameStart = false;
+
     void Update()
     {
-        for (int i = 0; i < 3; i++)
+        if (IsGameStart) return;
+        for (int i = 0; i < 4; i++)
+        {
+            if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Waiting)
+            {
+                SelectButtonPressTicks[i] += Time.deltaTime;
+                string Index_name = "P" + (i + 1) + "_";
+                float hor = Input.GetAxisRaw(Index_name + "hor");
+
+                if (hor == -1)
+                {
+                    if (SelectButtonPressTicks[i] > SelectButtonPressCD)
+                    {
+                        SelectButtonPressTicks[i] = 0;
+                        SelectHeroForPlayer((Players) i, false);
+                    }
+                }
+                else if (hor == 1)
+                {
+                    if (SelectButtonPressTicks[i] > SelectButtonPressCD)
+                    {
+                        SelectButtonPressTicks[i] = 0;
+                        SelectHeroForPlayer((Players) i, true);
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 4; i++)
         {
             string Index_name = "P" + (i + 1) + "_";
-            float hor = Input.GetAxisRaw(Index_name + "hor");
-            if (hor == -1)
+            if (Input.GetButtonDown(Index_name + "fire"))
             {
-                SelectHeroForPlayer((Players) i, false);
+                if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.None)
+                {
+                    HeroButtons[i].M_PlayerState = HeroButton.PlayerState.Waiting;
+                    HeroButtons[i].Initialize((Players) i, (Robots) i);
+                }
+                else if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Waiting)
+                {
+                    HeroButtons[i].M_PlayerState = HeroButton.PlayerState.Ready;
+                }
+                else if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Ready)
+                {
+                    HeroButtons[i].M_PlayerState = HeroButton.PlayerState.Waiting;
+                }
             }
+        }
 
-            if (hor == 1)
-            {
-                SelectHeroForPlayer((Players) i, true);
-            }
+        bool canStartGame = true;
+
+        for (int i = 0; i < 4; i++)
+        {
+            canStartGame &= HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Ready;
+        }
+
+        if (canStartGame)
+        {
+            IsGameStart = true;
+            GameBoardManager.Instance.GenerateMap("LevelTest");
+            M_StateMachine.SetState(StateMachine.States.Hide);
+            GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
+            BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Show);
+            GameBoardManager.Instance.StartGame();
         }
     }
 
     void SelectHeroForPlayer(Players player, bool upScroll)
     {
-        HeroButtons[(int) player].CurrentRobotIndex1++;
+        if (upScroll)
+        {
+            HeroButtons[(int) player].CurrentRobotIndex++;
+        }
+        else
+        {
+            HeroButtons[(int) player].CurrentRobotIndex--;
+        }
     }
 }

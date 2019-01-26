@@ -8,6 +8,49 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
     public int GameBoardHeight = 30;
     [SerializeField] private RectTransform MapContainer;
 
+    private float leftTime;
+
+    public float LeftTime
+    {
+        get { return leftTime; }
+        set
+        {
+            leftTime = value;
+            Min = Mathf.CeilToInt(Mathf.CeilToInt(leftTime) / 60);
+            Second = Mathf.CeilToInt(Mathf.CeilToInt(leftTime) - Min * 60);
+        }
+    }
+
+    private int min;
+
+    public int Min
+    {
+        get { return min; }
+        set
+        {
+            if (value != min)
+            {
+                BattleScorePanelManager.Instance.TimeText.text = Min.ToString() + ":" + Second.ToString();
+                min = value;
+            }
+        }
+    }
+
+    private int second;
+
+    public int Second
+    {
+        get { return second; }
+        set
+        {
+            if (value != second)
+            {
+                BattleScorePanelManager.Instance.TimeText.text = Min.ToString() + ":" + Second.ToString();
+                second = value;
+            }
+        }
+    }
+
     private GameBoardManager()
     {
     }
@@ -102,6 +145,11 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
         }
     }
 
+    void Update()
+    {
+        LeftTime -= Time.deltaTime;
+    }
+
     public LevelMapBlock[,] LevelMapBlocks;
 
     public void GenerateMap(string levelName)
@@ -124,5 +172,11 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
                 LevelMapBlocks[i, j] = block;
             }
         }
+    }
+
+    public void StartGame()
+    {
+        LeftTime = 59.5f;
+        BattleScorePanelManager.Instance.TimeText.text = "1:00";
     }
 }
