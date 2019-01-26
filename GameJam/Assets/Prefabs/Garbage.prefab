@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 1779689151875134073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,7 +82,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.01
-  m_LinearDrag: 0.2
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.005
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 2e9dc77b6ed5f014180e0a9fd85d6905, type: 2}

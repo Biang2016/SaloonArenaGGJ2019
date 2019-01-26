@@ -438,12 +438,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 540a6c7c09c3d437889975907a1c671d, type: 3}
   - {fileID: 21300000, guid: 9181be3717bf9428fb2681c2ee23e141, type: 3}
   - {fileID: 21300000, guid: 61752c08407d348348a8cb6f0cd37151, type: 3}
-  Energy: 0
+  Energy: 100
   Trash: 1000
-  Power: 0
+  Power: 1
   Scores: 0
   Lying: 0
   relife_speed: 2
+  Charging: 0
   UI_P: {fileID: 2026478559537164569}
   UI_sps:
   - {fileID: 21300000, guid: 9724e9e945ef54fb88a60d65fb752607, type: 3}
@@ -468,11 +469,8 @@ MonoBehaviour:
   PlayerBody: {fileID: 1787280921256431183}
   hor: 0
   ver: 0
-  ro: {x: 0, y: 0, z: 0}
   Rotate_Speed: 200
-  Move_Speed: 50
   max_speed: 500
-  Slow_Down: 500
   speed: 0
   Rigidbody2D: {fileID: 3993302147596268468}
 --- !u!114 &3993302147596268464
@@ -490,7 +488,6 @@ MonoBehaviour:
   PlayerBody: {fileID: 1787280921256431183}
   shoot_point: {fileID: 3993302147097541910}
   shoot_speed: 1000
-  ammo: {fileID: 1779689151875134073, guid: 1f02815186e99474fbe261d06863ad9e, type: 3}
 --- !u!50 &3993302147596268468
 Rigidbody2D:
   serializedVersion: 4
@@ -504,10 +501,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.01
-  m_LinearDrag: 0
+  m_LinearDrag: 50
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: df609c400a0422e4691cb9bb48e34c33, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -527,7 +524,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 28
+  m_Radius: 34
 --- !u!222 &294249023003279045
 CanvasRenderer:
   m_ObjectHideFlags: 0

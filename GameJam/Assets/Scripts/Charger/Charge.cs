@@ -11,7 +11,11 @@ public class Charge : MonoBehaviour
     private void FixedUpdate()
     {
         if (Charging)
+        {
+            p.Charging = true;
             p.Add_Energy(p.relife_speed * Time.deltaTime);
+        }
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -28,5 +32,7 @@ public class Charge : MonoBehaviour
     {
         if (((int) collision.GetComponent<PlayerBody>().WhichPlayer + 1) == whichPlayer)
             Charging = false;
+        if (p != null)
+            p.Charging = false;
     }
 }
