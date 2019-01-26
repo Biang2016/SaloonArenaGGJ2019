@@ -19,6 +19,7 @@ public class GarbageMain : PoolObject
     {
         base.PoolRecycle();
         Rigidbody2D.drag = GameManager.Instance.AmmoDrag;
+        Rigidbody2D.angularDrag = GameManager.Instance.AmmoRotateDrag;
     }
 
     private void Awake()

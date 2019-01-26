@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Values>
-    <Value GarbageBulletBeLitterSpeedThreshold="80" MaxEnergy="200" StartEnergy="200"
-           SolarChargeSpeed="100" StartTrash="10" PowerConsume="200" Relife_speed="100"
-           Rotate_Speed="500" Max_Speed="200" Shoot_Speed="500" Shoot_CD="0.5" RobotMass="0.01" RobotDrag="0.3" AmmoMass="0.01" AmmoDrag="0.01"
-           StarterFloorGarbage="100"/>
+    <Value GarbageBulletBeLitterSpeedThreshold="80"
+           MaxEnergy="200" StartEnergy="200"
+           SolarChargeSpeed="100" Relife_speed="100" PowerConsume="200"
+           Rotate_Speed="500" Max_Speed="200"
+           Shoot_Speed="500" Shoot_CD="0.5"
+           RobotMass="0.01" RobotDrag="0.3" RobotRotateDrag="0.3"
+           AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01"
+           StartTrash="10" StarterFloorGarbage="100"/>
 </Values>

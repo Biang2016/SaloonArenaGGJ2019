@@ -25,6 +25,7 @@ public class Move : MonoBehaviour
         max_speed = GameManager.Instance.Max_Speed;
         Rigidbody2D.mass = GameManager.Instance.RobotMass;
         Rigidbody2D.drag = GameManager.Instance.RobotDrag;
+        Rigidbody2D.angularDrag = GameManager.Instance.RobotRotateDrag;
     }
 
     private void FixedUpdate()

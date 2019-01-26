@@ -5,7 +5,10 @@ public class HeroButton : PoolObject
 {
     [SerializeField] private Image ButtonBG;
     [SerializeField] private Image RobotImage;
-    [SerializeField] private Text PlayerName;
+    [SerializeField] private Image SwitchArrowImage;
+    [SerializeField] private Image PlayerName;
+    [SerializeField] private Image PressJoinTipImage;
+    [SerializeField] private Image KeyTips;
     public Sprite[] SPs;
     public Slider[] Sliders;
     public float[] Values;
@@ -13,6 +16,8 @@ public class HeroButton : PoolObject
     public MonoBehaviour Ready;
     public Players Player;
     public Sprite NoPlayerSP;
+
+    public Sprite[] PlayerTitleSprites;
 
     public PlayerState m_PlayerState;
 
@@ -23,22 +28,28 @@ public class HeroButton : PoolObject
         {
             if (value == PlayerState.None)
             {
-                ButtonBG.enabled = true;
-                ButtonBG.sprite = NoPlayerSP;
-                RobotImage.enabled = false;
-                Ready.enabled = false;
                 Player = Players.NoPlayer;
+                RobotImage.sprite = NoPlayerSP;
+                PressJoinTipImage.enabled = true;
+                KeyTips.enabled = false;
+                Ready.enabled = false;
+                SwitchArrowImage.enabled = false;
             }
             else
             {
-                ButtonBG.enabled = false;
                 RobotImage.enabled = true;
+                PressJoinTipImage.enabled = false;
+                KeyTips.enabled = true;
                 Ready.enabled = false;
+                SwitchArrowImage.enabled = true;
             }
 
             if (value == PlayerState.Ready)
             {
+                PressJoinTipImage.enabled = false;
+                KeyTips.enabled = true;
                 Ready.enabled = true;
+                SwitchArrowImage.enabled = false;
             }
 
             m_PlayerState = value;
@@ -48,7 +59,6 @@ public class HeroButton : PoolObject
     public void Initialize(Players player, Robots robot)
     {
         Player = player;
-        PlayerName.text = player.ToString();
         if (player == Players.NoPlayer)
         {
             M_PlayerState = PlayerState.None;
@@ -57,6 +67,7 @@ public class HeroButton : PoolObject
         {
             M_PlayerState = PlayerState.Waiting;
             RobotImage.sprite = SPs[(int) robot];
+            PlayerName.sprite = PlayerTitleSprites[(int) player];
         }
     }
 
