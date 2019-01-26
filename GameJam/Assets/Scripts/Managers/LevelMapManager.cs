@@ -37,7 +37,7 @@ public class LevelMapManager : MonoSingleton<LevelMapManager>
                 debugStr += "\n";
             }
 
-            Debug.Log("level : " + t2d.name + "," + debugStr);
+            Debug.Log(debugStr);
             LevelMap levelMap = new LevelMap(t2d.name, indices);
             LevelMaps.Add(t2d.name, levelMap);
         }

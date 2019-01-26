@@ -9,6 +9,7 @@ public partial class GameManager
 
     void Start_Xue()
     {
+        
     }
 
     public static int GameBoardWidth;
