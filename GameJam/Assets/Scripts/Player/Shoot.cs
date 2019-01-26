@@ -7,8 +7,12 @@ public class Shoot : MonoBehaviour
     public PlayerBody PlayerBody;
     public Transform shoot_point;
     public float shoot_speed;
-    public GameObject ammo;
 
+    void Start()
+    {
+        shoot_speed = GameManager.Instance.shoot_speed;
+    }
+    
     private void FixedUpdate()
     {
         if (Input.GetButtonDown(PlayerBody.Index_name + "fire"))

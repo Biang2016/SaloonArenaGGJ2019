@@ -26,21 +26,33 @@ public class PlayerBody : PoolObject
 
     void Awake()
     {
-        UI_P.sprite = UI_sps[(int)WhichPlayer];
+        UI_P.sprite = UI_sps[(int) WhichPlayer];
         PlayerImage.sprite = sps[(int) WhichPlayer];
         Index_name = "P" + ((int) WhichPlayer + 1) + "_";
+    }
+
+    void Start()
+    {
+        MaxEnerg = GameManager.Instance.MaxEnergy;
+        SolarChargeSpeed = GameManager.Instance.SolarChargeSpeed;
+        Trash = GameManager.Instance.Trash;
+        Power = GameManager.Instance.PowerConsume;
+        relife_speed = GameManager.Instance.relife_speed;
+        Energy = GameManager.Instance.StartEnergy;
         UpdateHp();
         UpdateTrash();
     }
+
     private void FixedUpdate()
     {
-        if(Lying)
+        if (Lying)
         {
-            Add_Energy(relife_speed*Time.deltaTime);
+            Add_Energy(relife_speed * Time.deltaTime);
             if ((Energy / MaxEnerg) > 0.2)
                 Lying = false;
         }
     }
+
     private void LateUpdate()
     {
         UI_P.gameObject.transform.position = transform.position + Vector3.up * 140;
@@ -77,6 +89,7 @@ public class PlayerBody : PoolObject
 
         UpdateTrash();
     }
+
     public void Add_Energy(float n)
     {
         if ((Energy + n) <= MaxEnerg)
@@ -86,6 +99,7 @@ public class PlayerBody : PoolObject
 
         UpdateHp();
     }
+
     void PowerDown()
     {
         if (Energy > Power * Time.deltaTime)
@@ -95,6 +109,7 @@ public class PlayerBody : PoolObject
             Energy = 0;
             Lying = true;
         }
+
         UpdateHp();
     }
 
@@ -102,6 +117,7 @@ public class PlayerBody : PoolObject
     {
         Trash_Text.text = Trash.ToString();
     }
+
     void UpdateHp()
     {
         Hp.value = Energy / MaxEnerg;

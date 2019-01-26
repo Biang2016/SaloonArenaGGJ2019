@@ -91,7 +91,7 @@
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindowManager.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenFitness.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenSetting.cs" />
-    <None Include="Assets\StreamingAssets\Config\PlayerValue.xml" />
+    <None Include="Assets\StreamingAssets\Config\PlayerValues.xml" />
     <None Include="Assets\StreamingAssets\Config\LevelMapColor.xml" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>/Users/biang/WorkSpace/GameDev/GameJam2019/GameJam/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
