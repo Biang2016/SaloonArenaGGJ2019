@@ -78,7 +78,7 @@ public partial class GameManager : MonoSingleton<GameManager>
         AmmoMass = float.Parse(valueNode.Attributes["AmmoMass"].Value);
         AmmoDrag = float.Parse(valueNode.Attributes["AmmoDrag"].Value);
         StarterFloorGarbage = int.Parse(valueNode.Attributes["StarterFloorGarbage"].Value);
-        AmmoRotateDrag = int.Parse(valueNode.Attributes["AmmoRotateDrag"].Value);
+        AmmoRotateDrag = float.Parse(valueNode.Attributes["AmmoRotateDrag"].Value);
     }
 
     #endregion
