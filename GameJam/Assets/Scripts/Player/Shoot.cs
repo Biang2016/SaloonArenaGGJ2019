@@ -4,37 +4,26 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    public GameObject shoot_point;   
-    public GameObject ammo;
+    public PlayerBody PlayerBody;
+    public Transform shoot_point;
     public float shoot_speed;
-    public string Index_name;
-    public PlayerParameter PlayerParameter;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-        //shoot_point = GetComponentInChildren<GameObject>();
-        //Index_name = GetComponent<Move>().Index_name;
-    }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
-        if(Input.GetButtonDown(Index_name + "fire"))
+        if (Input.GetButtonDown(PlayerBody.Index_name + "fire"))
         {
-            if (PlayerParameter.Trash > 0)
-            Fire();
+            if (PlayerBody.Trash > 0)
+                Fire();
         }
     }
 
     void Fire()
     {
-        PlayerParameter.Loss_Garbage(1);
-        Vector3 dir;
-        dir = shoot_point.transform.position - transform.position;
+        PlayerBody.Loss_Garbage(1);
+        Vector3 dir = shoot_point.position - transform.position;
         dir.Normalize();
-        GameObject am = Instantiate(ammo, shoot_point.transform.position,Quaternion.Euler(dir));
-        am.GetComponent<Rigidbody2D>().velocity = dir*shoot_speed;
+        GarbageMain am = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardManager.Instance.GameBoardMovingThingsCanvas.transform);
+        am.transform.position = shoot_point.position;
+        am.Rigidbody2D.velocity = dir * shoot_speed;
     }
 }

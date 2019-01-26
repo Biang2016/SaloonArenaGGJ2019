@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GarbageMain : MonoBehaviour
+public class GarbageMain : PoolObject
 {
-    public bool Can_Pick;   
+    public bool Can_Pick;
     public int num_;
     public int damage;
-    CircleCollider2D circle;
+    public CircleCollider2D circle;
+    public Rigidbody2D Rigidbody2D;
+
     private void Awake()
     {
-        circle = GetComponent<CircleCollider2D>();
+    }
+
+    void Start()
+    {
     }
 
     private void FixedUpdate()
     {
-        if(Can_Pick)
+        if (Can_Pick)
         {
             circle.isTrigger = true;
         }
@@ -28,11 +33,15 @@ public class GarbageMain : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player"))
-            collision.gameObject.GetComponent<PlayerParameter>().Hitted(damage);
+            collision.gameObject.GetComponent<PlayerBody>().Hitted(damage);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-            collision.gameObject.GetComponent<PlayerParameter>().Pick_Garbage(num_);
+            collision.gameObject.GetComponent<PlayerBody>().Pick_Garbage(num_);
     }
+
+    public float time;
+    public int Damage;
 }

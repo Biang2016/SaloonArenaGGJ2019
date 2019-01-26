@@ -22,7 +22,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
     }
 
     [SerializeField] private Canvas GameBoardCanvas;
-    [SerializeField] private Canvas GameBoardMovingThingsCanvas;
+    public Canvas GameBoardMovingThingsCanvas;
     public StateMachine M_StateMachine;
 
     public class StateMachine

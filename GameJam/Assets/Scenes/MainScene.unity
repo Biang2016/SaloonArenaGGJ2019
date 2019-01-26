@@ -179,81 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6843552458800538483, guid: 67c49a90fcecf4f049dff49c39ada71a,
+    - target: {fileID: 4355010505453787080, guid: 67c49a90fcecf4f049dff49c39ada71a,
         type: 3}
-      propertyPath: GameBoardMovingThingsCanvas
-      value: 
-      objectReference: {fileID: 3568558520098009515}
-    - target: {fileID: 58336087, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616352875, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
-      propertyPath: m_RootOrder
+      propertyPath: WhichPlayer
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 55055241, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2014880777, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1952245045, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7459341809923425536, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 315
-      objectReference: {fileID: 0}
-    - target: {fileID: 7459341809923425536, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4843990451732281236, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 428
-      objectReference: {fileID: 0}
-    - target: {fileID: 4843990451732281236, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 61
-      objectReference: {fileID: 0}
-    - target: {fileID: 1429513932560656948, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: playerIndex
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1340789056030843690, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 17974889872649317, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832620544362763963, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 482864053962677410, guid: 67c49a90fcecf4f049dff49c39ada71a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67c49a90fcecf4f049dff49c39ada71a, type: 3}
---- !u!223 &3568558520098009515 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 3568558520098009515, guid: 67c49a90fcecf4f049dff49c39ada71a,
-    type: 3}
-  m_PrefabInstance: {fileID: 723004820}
-  m_PrefabAsset: {fileID: 0}
