@@ -65,6 +65,7 @@ public class GarbageMain : PoolObject
 
     public void Initialize()
     {
+        Rigidbody2D.drag = 0.5f;
         int index = Random.Range(0, Sprites.Length);
         Image.sprite = Sprites[index];
     }
