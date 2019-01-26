@@ -25,7 +25,7 @@ public class Shoot : MonoBehaviour
         int sfx_index = Random.Range(0, 2);
         PlayerBody.SoundPlay("sfx/HitFromFar_" + sfx_index, 0.5f);
         Ammo am = GameObjectPoolManager.Instance.Pool_GarbageLitter.AllocateGameObject<Ammo>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
-        Instantiate(ammo, shoot_point.position,Quaternion.Euler(dir)).GetComponent<Ammo>();
+        
         
         am.player = (int)PlayerBody.WhichPlayer;
         //am.CanPick = false;

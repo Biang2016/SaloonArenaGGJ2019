@@ -24,11 +24,14 @@ public class Move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        hor = Input.GetAxisRaw(PlayerBody.Index_name + "hor");
-        ver = Input.GetAxisRaw(PlayerBody.Index_name + "ver");
-        if (hor != 0 || ver != 0)
-            Rota();
-        Trans();
+        if (!PlayerBody.Lying)
+        {
+            hor = Input.GetAxisRaw(PlayerBody.Index_name + "hor");
+            ver = Input.GetAxisRaw(PlayerBody.Index_name + "ver");
+            if (hor != 0 || ver != 0)
+                Rota();
+            Trans();
+        }
     }
 
     void Rota()

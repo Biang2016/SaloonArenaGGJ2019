@@ -443,6 +443,7 @@ MonoBehaviour:
   Power: 0
   Scores: 0
   Lying: 0
+  relife_speed: 2
   UI_P: {fileID: 2026478559537164569}
   UI_sps:
   - {fileID: 21300000, guid: 9724e9e945ef54fb88a60d65fb752607, type: 3}

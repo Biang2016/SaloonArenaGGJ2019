@@ -16,6 +16,7 @@ public class PlayerBody : PoolObject
     public int Power; //电量消耗速度
     public int Scores; //最后的分数
     public bool Lying; //电量耗尽
+    public float relife_speed;
 
     public Image UI_P;
     public Sprite[] UI_sps;
@@ -31,7 +32,15 @@ public class PlayerBody : PoolObject
         UpdateHp();
         UpdateTrash();
     }
-
+    private void FixedUpdate()
+    {
+        if(Lying)
+        {
+            Add_Energy(relife_speed*Time.deltaTime);
+            if ((Energy / MaxEnerg) > 0.2)
+                Lying = false;
+        }
+    }
     private void LateUpdate()
     {
         UI_P.gameObject.transform.position = transform.position + Vector3.up * 140;
@@ -40,20 +49,16 @@ public class PlayerBody : PoolObject
 
     public void Hitted(int damage) //受到伤害
     {
-        if (Energy >= damage)
+        if (Energy > damage)
             Energy -= damage;
         else
         {
             Energy = 0;
+            Lying = true;
         }
 
         int temp = (int) Random.Range(6, 9);
         Loss_Garbage(temp);
-        for (int i = 0; i < temp; i++)
-        {
-            
-        }
-
         UpdateHp();
     }
 
@@ -83,7 +88,7 @@ public class PlayerBody : PoolObject
     }
     void PowerDown()
     {
-        if (Energy >= Power * Time.deltaTime)
+        if (Energy > Power * Time.deltaTime)
             Energy -= Power * Time.deltaTime;
         else
         {
