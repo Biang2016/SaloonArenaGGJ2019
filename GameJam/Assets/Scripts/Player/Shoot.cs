@@ -8,9 +8,12 @@ public class Shoot : MonoBehaviour
     public GameObject ammo;
     public float shoot_speed;
     public string Index_name;
+    public PlayerParameter PlayerParameter;
+    
     // Start is called before the first frame update
     void Start()
     {
+       
         //shoot_point = GetComponentInChildren<GameObject>();
         //Index_name = GetComponent<Move>().Index_name;
     }
@@ -19,13 +22,15 @@ public class Shoot : MonoBehaviour
     private void FixedUpdate()
     {
         if(Input.GetButtonDown(Index_name + "fire"))
-        {         
+        {
+            if (PlayerParameter.Trash > 0)
             Fire();
         }
     }
 
     void Fire()
     {
+        PlayerParameter.Loss_Garbage(1);
         Vector3 dir;
         dir = shoot_point.transform.position - transform.position;
         dir.Normalize();

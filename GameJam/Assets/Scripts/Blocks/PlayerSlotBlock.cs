@@ -1,5 +1,4 @@
-﻿using UnityEditor.IMGUI.Controls;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerSlotBlock : LevelMapBlock

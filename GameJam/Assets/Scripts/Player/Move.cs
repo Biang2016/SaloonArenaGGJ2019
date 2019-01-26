@@ -12,10 +12,10 @@ public class Move : MonoBehaviour
     public float Move_Speed;
     public float max_speed;
     public float Slow_Down;
-    public float AcSpeed;
+
     public float speed;//当前速度
     string Index_name;
-    public float speed_h, speed_v;
+   
     Vector3 lastestSpeed;
     Rigidbody2D rb;
     // Start is called before the first frame update
@@ -24,8 +24,7 @@ public class Move : MonoBehaviour
         Index_name = "P" + playerIndex.ToString() + "_";
         rb = GetComponent<Rigidbody2D>();
         GetComponent<Shoot>().Index_name = Index_name;
-        speed_h = 0;
-        speed_v = 0;
+ 
 
     }
     
