@@ -167,12 +167,7 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
 
         if (canStartGame)
         {
-            IsGameStart = true;
-            GameBoardManager.Instance.GenerateMap("LevelTest");
-            M_StateMachine.SetState(StateMachine.States.Hide);
-            GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
-            BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Show);
-            GameBoardManager.Instance.StartGame();
+            StartGame();
         }
     }
 
@@ -186,5 +181,15 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         {
             HeroButtons[(int) player].CurrentRobotIndex--;
         }
+    }
+
+    public void StartGame()
+    {
+        IsGameStart = true;
+        GameBoardManager.Instance.GenerateMap("LevelTest");
+        M_StateMachine.SetState(StateMachine.States.Hide);
+        GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
+        BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Show);
+        GameBoardManager.Instance.StartGame();
     }
 }
