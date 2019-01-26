@@ -22,9 +22,9 @@ public class PoolObject : MonoBehaviour
 
     public Dictionary<string, List<AudioSource>> AllAttachedAudioSources = new Dictionary<string, List<AudioSource>>();
 
-    public void SoundPlay(string path)
+    public void SoundPlay(string path, float volume = 1.0f)
     {
-        AudioSource source = AudioManager.Instance.SoundPlay(path);
+        AudioSource source = AudioManager.Instance.SoundPlay(path, volume);
         if (!AllAttachedAudioSources.ContainsKey(source.clip.name))
         {
             AllAttachedAudioSources.Add(source.clip.name, new List<AudioSource>());

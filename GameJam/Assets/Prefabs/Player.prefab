@@ -190,19 +190,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerImage: {fileID: 3163565826358998786}
-  playerIndex: 0
-  Shoot: {fileID: 0}
-  Index_name: 
-  player: 0
+  WhichPlayer: 0
   sps:
   - {fileID: 21300000, guid: 542074562203849f483dcd75d83d26ec, type: 3}
   - {fileID: 21300000, guid: 540a6c7c09c3d437889975907a1c671d, type: 3}
   - {fileID: 21300000, guid: 9181be3717bf9428fb2681c2ee23e141, type: 3}
   - {fileID: 21300000, guid: 61752c08407d348348a8cb6f0cd37151, type: 3}
   Energy: 0
-  Trash: 100
+  Trash: 1000
   Power: 0
-  MaxSpeed: 0
   Scores: 0
   Lying: 0
 --- !u!114 &3993302147596268467

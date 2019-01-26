@@ -82,7 +82,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.01
-  m_LinearDrag: 0.002
+  m_LinearDrag: 0.2
   m_AngularDrag: 0.005
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 2e9dc77b6ed5f014180e0a9fd85d6905, type: 2}
@@ -126,10 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9ff9f0a3e58d442a845342f31ea391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Can_Pick: 0
   num_: 0
   damage: 0
   circle: {fileID: 5981800375324846840}
   Rigidbody2D: {fileID: 1779689151875134068}
+  Image: {fileID: 7326328642597970813}
+  GarbageSpriteAtlas: {fileID: 4343727234628468602, guid: e0aee7f5453744f89898a796d397cfe8,
+    type: 2}
   time: 0
   Damage: 0

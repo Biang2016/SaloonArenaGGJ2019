@@ -22,5 +22,7 @@ public partial class GameManager : MonoSingleton<GameManager>
 
     #region 游戏全局参数
 
+    public float GarbageBulletBeLitterSpeedThreshold = 80f;
+
     #endregion
 }

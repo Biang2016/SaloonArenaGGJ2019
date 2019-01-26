@@ -12,6 +12,7 @@ public partial class GameManager
     {
         StartMenuManager.Instance.M_StateMachine.SetState(StartMenuManager.StateMachine.States.Show);
         GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Hide);
+        SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Hide);
     }
 
     public static int GameBoardWidth;

@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Managers\MonoSingletonManager.cs" />
     <Compile Include="Assets\Scripts\Managers\NoticeManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PoolObject.cs" />
+    <Compile Include="Assets\Scripts\Managers\SelectHeroesManager.cs" />
     <Compile Include="Assets\Scripts\Managers\StartMenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\Utils.cs" />
     <Compile Include="Assets\Scripts\Player\LoadPlayerValue.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
     <Compile Include="Assets\Scripts\Player\Shoot.cs" />
     <Compile Include="Assets\Scripts\Players.cs" />
+    <Compile Include="Assets\Scripts\Robots\Robots.cs" />
+    <Compile Include="Assets\Scripts\SelectHeros\HeroButton.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindow.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindowManager.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenFitness.cs" />
