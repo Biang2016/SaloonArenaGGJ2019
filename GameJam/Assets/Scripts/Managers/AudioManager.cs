@@ -126,49 +126,6 @@ public class AudioManager : MonoSingleton<AudioManager>
         }
     }
 
-    private Coroutine BGMLoop;
-
-    public void BGMLoopInList(List<string> bgmNames, float volume = 1.0f)
-    {
-        if (BGMLoop != null) StopCoroutine(BGMLoop);
-        StartCoroutine(Co_BGMFadeOut(0.5f));
-        BGMLoop = StartCoroutine(Co_BGMLoopInList(bgmNames, volume));
-    }
-
-    IEnumerator Co_BGMLoopInList(List<string> bgmNames, float volume = 1.0f)
-    {
-        if (bgmNames.Count == 1)
-        {
-            while (true)
-            {
-                while (BGMAudioSource != null && BGMAudioSource.isPlaying)
-                {
-                    yield return new WaitForSeconds(0.5f);
-                }
-
-                BGMFadeIn(bgmNames[0], volume: volume);
-            }
-        }
-        else
-        {
-            int lastIndex = Random.Range(0, bgmNames.Count);
-            while (true)
-            {
-                int index = Random.Range(0, bgmNames.Count);
-                if (index != lastIndex)
-                {
-                    lastIndex = index;
-                    while (BGMAudioSource != null && BGMAudioSource.isPlaying)
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                    }
-
-                    BGMFadeIn(bgmNames[index], volume: volume);
-                }
-            }
-        }
-    }
-
     IEnumerator Co_BGMFadeIn(float duration, float targetVolume)
     {
         if (BGMAudioSource != null && BGMAudioSource.gameObject)
@@ -216,7 +173,6 @@ public class AudioManager : MonoSingleton<AudioManager>
     /// </summary>
     public void BGMStop()
     {
-        if (BGMLoop != null) StopCoroutine(BGMLoop);
         if (BGMAudioSource != null && BGMAudioSource.gameObject)
         {
             Destroy(BGMAudioSource.gameObject);
@@ -237,21 +193,7 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     #region 音效资源路径
 
-    public static Dictionary<string, AudioClip> AudioClipDict_ABModeOnly = new Dictionary<string, AudioClip>();
-
-    private AudioClip GetAudioClip(string audioName)
-    {
-        if (AudioClipDict_ABModeOnly.ContainsKey(audioName))
-        {
-            return AudioClipDict_ABModeOnly[audioName];
-        }
-
-        AudioClip audioclip = GetResAudioClip(audioName);
-
-        return audioclip;
-    }
-
-    private AudioClip GetResAudioClip(string aduioname)
+    private AudioClip GetAudioClip(string aduioname)
     {
         return Resources.Load(ResourcePath + aduioname) as AudioClip;
     }

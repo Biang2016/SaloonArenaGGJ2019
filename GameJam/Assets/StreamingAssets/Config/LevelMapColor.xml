@@ -2,5 +2,9 @@
 <MapGrids>
     <MapGrid name="Wall" color="#ff000000"/>
     <MapGrid name="Floor" color="#ffffffff"/>
-    <MapGrid name="InsideBlock" color="#ff0000ff"/>
+    <MapGrid name="InsideBlock" color="#bfbfbfff"/>
+    <MapGrid name="Player1Slot" color="#ff00ffff"/>
+    <MapGrid name="Player2Slot" color="#00ff00ff"/>
+    <MapGrid name="Player3Slot" color="#0000ffff"/>
+    <MapGrid name="Player4Slot" color="#00ffffff"/>
 </MapGrids>
