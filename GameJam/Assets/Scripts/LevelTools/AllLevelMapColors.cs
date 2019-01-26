@@ -17,6 +17,10 @@ public static class AllLevelMapColors
         Wall,
         Floor,
         InsideBlock,
+        Player1Slot,
+        Player2Slot,
+        Player3Slot,
+        Player4Slot,
     }
 
     public static void AddAllColors(string colorXMLPath)

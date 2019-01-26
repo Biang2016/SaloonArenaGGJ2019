@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
-public partial class GameBoardManager : MonoSingleton<GameBoardManager>
+public class StartMenuManager : MonoSingleton<StartMenuManager>
 {
-    public int GameBoardWidth = 57;
-    public int GameBoardHeight = 30;
-    [SerializeField] private RectTransform MapContainer;
-
-    private GameBoardManager()
+    private StartMenuManager()
     {
     }
 
@@ -17,11 +13,8 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
         M_StateMachine = new StateMachine();
     }
 
-    void Start()
-    {
-    }
+    [SerializeField] private Canvas StartMenuCanvas;
 
-    [SerializeField] private Canvas GameBoardCanvas;
     public StateMachine M_StateMachine;
 
     public class StateMachine
@@ -61,7 +54,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/Battle_0");
+                        AudioManager.Instance.BGMFadeIn("bgm/StartMenu_0");
                         break;
                     }
                 }
@@ -87,36 +80,24 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
 
         private void ShowMenu()
         {
-            Instance.GameBoardCanvas.enabled = true;
+            Instance.StartMenuCanvas.enabled = true;
         }
 
         private void HideMenu()
         {
-            Instance.GameBoardCanvas.enabled = false;
+            Instance.StartMenuCanvas.enabled = false;
         }
     }
 
-    public LevelMapBlock[,] LevelMapBlocks;
-
-    public void GenerateMap(string levelName)
+    public void OnStartGameButtonClick()
     {
-        LevelMapBlocks = new LevelMapBlock[GameBoardWidth, GameBoardHeight];
-        foreach (LevelMapBlock block in LevelMapBlocks)
-        {
-            if (block)
-            {
-                block.PoolRecycle();
-            }
-        }
+        GameBoardManager.Instance.GenerateMap("LevelTest");
+        M_StateMachine.SetState(StateMachine.States.Hide);
+        GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
+    }
 
-        LevelMap levelMap = LevelMapManager.Instance.LevelMaps[levelName];
-        for (int i = 0; i < levelMap.LevelMapIndices.GetLength(0); i++)
-        {
-            for (int j = 0; j < levelMap.LevelMapIndices.GetLength(1); j++)
-            {
-                LevelMapBlock block = LevelMapBlock.InitializeBlock((AllLevelMapColors.MapBlockType) levelMap.LevelMapIndices[i, j], MapContainer, i, j);
-                LevelMapBlocks[i, j] = block;
-            }
-        }
+    public void OnQuitGameButtonClick()
+    {
+        Application.Quit();
     }
 }

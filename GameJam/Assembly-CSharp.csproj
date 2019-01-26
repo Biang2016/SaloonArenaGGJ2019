@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Blocks\FloorBlock.cs" />
     <Compile Include="Assets\Scripts\Blocks\InsideBlock.cs" />
     <Compile Include="Assets\Scripts\Blocks\LevelMapBlock.cs" />
+    <Compile Include="Assets\Scripts\Blocks\PlayerSlotBlock.cs" />
     <Compile Include="Assets\Scripts\Blocks\WallBlock.cs" />
     <Compile Include="Assets\Scripts\LevelTools\AllLevelMapColors.cs" />
     <Compile Include="Assets\Scripts\LevelTools\LevelMap.cs" />
@@ -78,10 +79,12 @@
     <Compile Include="Assets\Scripts\Managers\MonoSingletonManager.cs" />
     <Compile Include="Assets\Scripts\Managers\NoticeManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PoolObject.cs" />
+    <Compile Include="Assets\Scripts\Managers\StartMenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\Utils.cs" />
     <Compile Include="Assets\Scripts\Player\LoadPlayerValue.cs" />
     <Compile Include="Assets\Scripts\Player\Move.cs" />
     <Compile Include="Assets\Scripts\Player\Shoot.cs" />
+    <Compile Include="Assets\Scripts\Players.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindow.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindowManager.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenFitness.cs" />

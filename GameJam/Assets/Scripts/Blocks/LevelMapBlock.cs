@@ -22,6 +22,30 @@ public abstract class LevelMapBlock : PoolObject
                 block = GameObjectPoolManager.Instance.Pool_InsideBlockPool.AllocateGameObject<InsideBlock>(parent);
                 break;
             }
+            case AllLevelMapColors.MapBlockType.Player1Slot:
+            {
+                block = GameObjectPoolManager.Instance.Pool_PlayerSlotPools[0].AllocateGameObject<PlayerSlotBlock>(parent);
+                ((PlayerSlotBlock) block).Initialize(Players.Player1);
+                break;
+            }
+            case AllLevelMapColors.MapBlockType.Player2Slot:
+            {
+                block = GameObjectPoolManager.Instance.Pool_PlayerSlotPools[1].AllocateGameObject<PlayerSlotBlock>(parent);
+                ((PlayerSlotBlock) block).Initialize(Players.Player2);
+                break;
+            }
+            case AllLevelMapColors.MapBlockType.Player3Slot:
+            {
+                block = GameObjectPoolManager.Instance.Pool_PlayerSlotPools[2].AllocateGameObject<PlayerSlotBlock>(parent);
+                ((PlayerSlotBlock) block).Initialize(Players.Player3);
+                break;
+            }
+            case AllLevelMapColors.MapBlockType.Player4Slot:
+            {
+                block = GameObjectPoolManager.Instance.Pool_PlayerSlotPools[3].AllocateGameObject<PlayerSlotBlock>(parent);
+                ((PlayerSlotBlock) block).Initialize(Players.Player4);
+                break;
+            }
         }
 
         float blockWidth = parent.rect.width / GameBoardManager.Instance.GameBoardWidth;
