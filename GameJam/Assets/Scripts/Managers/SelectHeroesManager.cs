@@ -111,6 +111,11 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
     {
         if (M_StateMachine.GetState() == StateMachine.States.Hide) return;
         if (IsGameStart) return;
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            StartTutorial();
+            return;
+        }
         for (int i = 0; i < 4; i++)
         {
             if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Waiting)

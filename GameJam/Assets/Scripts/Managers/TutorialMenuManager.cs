@@ -106,7 +106,11 @@ public class TutorialMenuManager : MonoSingleton<TutorialMenuManager>
     {
         if (M_StateMachine.GetState() == StateMachine.States.Hide) return;
         if (IsGameStart) return;
-
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            StartGame();
+            return;
+        }
         for (int i = 0; i < 4; i++)
         {
             string Index_name = "P" + (i + 1) + "_";
