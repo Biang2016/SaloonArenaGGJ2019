@@ -18,6 +18,9 @@ public class PlayerBody : PoolObject
     public bool Lying; //电量耗尽
     public float relife_speed;
     public bool Charging;
+    public RectTransform transform;
+    public RectTransform arrow;
+    
 
     public Image UI_P;
     public Sprite[] UI_sps;
@@ -40,6 +43,9 @@ public class PlayerBody : PoolObject
         Power = GameManager.Instance.PowerConsume;
         relife_speed = GameManager.Instance.Relife_speed;
         Energy = GameManager.Instance.StartEnergy;
+        transform.sizeDelta *= GameManager.Instance.RobotScale;
+        transform.GetComponent<CircleCollider2D>().radius = transform.sizeDelta.x / 2;
+        arrow.sizeDelta *= GameManager.Instance.RobotScale;
         UpdateHp();
         UpdateTrash();
         Charging = false;
@@ -61,7 +67,7 @@ public class PlayerBody : PoolObject
 
     private void LateUpdate()
     {
-        UI_P.gameObject.transform.position = transform.position + Vector3.up * 140;
+        UI_P.gameObject.transform.position = transform.position + Vector3.up * (100+ transform.sizeDelta.x / 2);
         UI_P.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
