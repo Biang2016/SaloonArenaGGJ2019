@@ -114,7 +114,7 @@ public class TutorialMenuManager : MonoSingleton<TutorialMenuManager>
         for (int i = 0; i < 4; i++)
         {
             string Index_name = "P" + (i + 1) + "_";
-            if (Input.GetButtonDown(Index_name + "fire"))
+            if (Input.GetButtonDown(Index_name + "fire") && Input.GetAxisRaw(Index_name + "fire")==-1)
             {
                 if (PlayerTutorialConfirms[i].M_PlayerState == PlayerTutorialConfirm.PlayerState.None)
                 {

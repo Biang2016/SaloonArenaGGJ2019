@@ -7,8 +7,10 @@ public class Move : MonoBehaviour
 {
     public PlayerBody PlayerBody;
     public float hor, ver;
+    public float Rhor, Rver;
     public float Rotate_Speed;
     public float max_speed;
+    public float tar;
 
     public float speed; //当前速度
 
@@ -35,8 +37,12 @@ public class Move : MonoBehaviour
         if (!PlayerBody.Lying)
         {
             hor = Input.GetAxisRaw(PlayerBody.Index_name + "hor");
-            ver = Input.GetAxisRaw(PlayerBody.Index_name + "ver");
-            if (hor != 0 || ver != 0)
+            ver = -Input.GetAxisRaw(PlayerBody.Index_name + "ver");
+
+            Rhor = Input.GetAxis(PlayerBody.Index_name + "Rhor");
+            Rver = Input.GetAxis(PlayerBody.Index_name + "Rver");
+
+            if (Rhor != 0 || Rver != 0)
                 Rota();
             Trans();
         }
@@ -44,6 +50,45 @@ public class Move : MonoBehaviour
 
     void Rota()
     {
+        //float target_z = Vector2.Angle(new Vector2(0, 1), new Vector2(Rhor, Rver));
+        float target_z = 180-Vector2.SignedAngle(new Vector2(0, 1), new Vector2(Rhor, Rver));
+        tar = target_z;
+        float cha = target_z - this.transform.rotation.eulerAngles.z;
+        if (this.transform.rotation.eulerAngles.z > target_z - Rotate_Speed * Time.deltaTime && this.transform.rotation.eulerAngles.z < target_z + Rotate_Speed * Time.deltaTime)
+        {
+            Vector3 temp;
+            temp = this.transform.rotation.eulerAngles;
+            temp.z = target_z;
+            this.transform.rotation = Quaternion.Euler(temp);
+        }
+
+        if (this.transform.rotation.eulerAngles.z < target_z)
+        {
+            Vector3 temp;
+            temp = this.transform.rotation.eulerAngles;
+            if (cha - 180 > 0)
+            {
+                temp.z -= Rotate_Speed * Time.deltaTime;
+            }
+            else
+                temp.z += Rotate_Speed * Time.deltaTime;
+
+            this.transform.rotation = Quaternion.Euler(temp);
+        }
+        else if (this.transform.rotation.eulerAngles.z > target_z)
+        {
+            Vector3 temp;
+            temp = this.transform.rotation.eulerAngles;
+            if (cha + 180 < 0)
+            {
+                temp.z += Rotate_Speed * Time.deltaTime;
+            }
+            else
+                temp.z -= Rotate_Speed * Time.deltaTime;
+
+            this.transform.rotation = Quaternion.Euler(temp);
+        }
+        /*
         float target_z = 0;
         if (hor == 1)
         {
@@ -122,6 +167,10 @@ public class Move : MonoBehaviour
 
             this.transform.rotation = Quaternion.Euler(temp);
         }
+        */
+
+
+
     }
 
     void Trans()
