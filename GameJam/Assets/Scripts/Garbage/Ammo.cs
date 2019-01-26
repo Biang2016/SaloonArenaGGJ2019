@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.U2D;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Ammo : PoolObject
@@ -11,17 +8,22 @@ public class Ammo : PoolObject
     public Rigidbody2D Rigidbody2D;
     public Image Image;
     public Sprite[] Sprites;
+    public GameObject garbage;
+    public RectTransform transform;
 
     private void Awake()
     {
-        Image.sprite = Sprites[Random.Range(0, 3)];
+        Initialize(Players.Player1);
     }
 
-    void Start()
+    public void Initialize(Players _player)
     {
-        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) player];
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) _player];
+        damage = rp.AmmoDamage;
         Rigidbody2D.mass = rp.AmmoMass;
         Rigidbody2D.drag = rp.AmmoDrag;
+        transform.localScale *= rp.AmmoScale;
+        Image.sprite = Sprites[Random.Range(0, 3)];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -46,6 +46,8 @@ public partial class GameManager : MonoSingleton<GameManager>
         public float RobotRotateDrag; //机器人转动阻力
         public float AmmoMass; //子弹质量
         public float AmmoDrag; //子弹阻力
+        public float AmmoScale; //子弹尺寸
+        public int AmmoDamage; //子弹伤害
         public float RobotScale; //机体尺寸
     }
 
@@ -65,7 +67,6 @@ public partial class GameManager : MonoSingleton<GameManager>
         XmlDocument doc = new XmlDocument();
         doc.LoadXml(text);
         XmlElement allValues = doc.DocumentElement;
-
         for (int i = 0; i < allValues.ChildNodes.Count; i++)
         {
             XmlNode valueNode = allValues.ChildNodes.Item(i);
@@ -94,6 +95,8 @@ public partial class GameManager : MonoSingleton<GameManager>
                         rp.AmmoMass = float.Parse(robotNode.Attributes["AmmoMass"].Value);
                         rp.AmmoDrag = float.Parse(robotNode.Attributes["AmmoDrag"].Value);
                         rp.RobotScale = float.Parse(robotNode.Attributes["RobotScale"].Value);
+                        rp.AmmoScale = float.Parse(robotNode.Attributes["AmmoScale"].Value);
+                        rp.AmmoDamage = int.Parse(robotNode.Attributes["AmmoDamage"].Value);
                         if (!RobotParameters.ContainsKey(robot))
                         {
                             RobotParameters.Add(robot, rp);

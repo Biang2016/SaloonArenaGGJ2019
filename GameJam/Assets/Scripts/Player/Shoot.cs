@@ -26,7 +26,7 @@ public class Shoot : MonoBehaviour
         }
 
         shootTick += Time.deltaTime;
-        if (Input.GetButtonDown(PlayerBody.Index_name + "fire"))
+        if (Input.GetButtonDown(PlayerBody.Index_name + "fire") && !PlayerBody.Lying)
         {
             if (shootTick > ShootCD)
             {
@@ -47,9 +47,9 @@ public class Shoot : MonoBehaviour
         int sfx_index = Random.Range(0, 2);
         PlayerBody.SoundPlay("sfx/HitFromFar_" + sfx_index, 0.5f);
         Ammo am = GameObjectPoolManager.Instance.Pool_GarbageLitter.AllocateGameObject<Ammo>(GameBoardManager.Instance.GameBoardGarbagesCanvas.transform);
-        am.player = (int) PlayerBody.WhichPlayer;
         am.transform.position = shoot_point.transform.position;
         am.transform.rotation = shoot_point.transform.rotation;
         am.Rigidbody2D.velocity = dir * shoot_speed;
+        am.Initialize(PlayerBody.WhichPlayer);
     }
 }

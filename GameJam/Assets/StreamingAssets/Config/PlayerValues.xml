@@ -2,40 +2,36 @@
 <Level>
     <Robots>
         <Robot name="Robot1"
-               GarbageBulletBeLitterSpeedThreshold="80"
                MaxEnergy="200" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
                RobotMass="0.01" RobotDrag="1" RobotRotateDrag="0.3"
-               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01"
+               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="1"/>
         <Robot name="Robot2"
-               GarbageBulletBeLitterSpeedThreshold="80"
                MaxEnergy="200" StartEnergy="200"
-               SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
+               SolarChargeSpeed="10" Relife_speed="100" PowerConsume="1"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
                RobotMass="0.01" RobotDrag="1" RobotRotateDrag="0.3"
-               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01"
+               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="1.2"/>
         <Robot name="Robot3"
-               GarbageBulletBeLitterSpeedThreshold="80"
                MaxEnergy="200" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
                RobotMass="0.01" RobotDrag="1" RobotRotateDrag="0.3"
-               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01"
+               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="1"/>
         <Robot name="Robot4"
-               GarbageBulletBeLitterSpeedThreshold="80"
                MaxEnergy="200" StartEnergy="200"
                SolarChargeSpeed="10" Relife_speed="100" PowerConsume="5"
                Rotate_Speed="500" Max_Speed="200"
                Shoot_Speed="500" Shoot_CD="0.5"
                RobotMass="0.01" RobotDrag="1" RobotRotateDrag="0.3"
-               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01"
+               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="1"/>
     </Robots>
     <Map name="LevelTest" StarterFloorGarbage="100" GarbageBulletBeLitterSpeedThreshold="80"/>
