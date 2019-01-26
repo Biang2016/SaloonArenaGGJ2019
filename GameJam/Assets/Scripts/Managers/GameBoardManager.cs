@@ -8,6 +8,8 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
     public int GameBoardHeight = 30;
     [SerializeField] private RectTransform MapContainer;
 
+    public PlayerBody[] Players;
+
     private float leftTime;
 
     public float LeftTime
@@ -183,6 +185,21 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
             GarbageMain gm = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardGarbagesCanvas.transform);
             gm.Initialize();
             gm.transform.position = new Vector2(Random.Range(-MapContainer.rect.width / 2, MapContainer.rect.width / 2), Random.Range(-MapContainer.rect.height / 2, MapContainer.rect.height / 2));
+        }
+    }
+
+    public void InitializePlayers()
+    {
+        foreach (PlayerBody player in Players)
+        {
+            player.gameObject.SetActive(false);
+        }
+
+        foreach (KeyValuePair<Players, Robots> kv in TutorialMenuManager.Instance.PlayerSelection)
+        {
+            Players[(int) kv.Key].gameObject.SetActive(true);
+            Players[(int) kv.Key].WhichRobot = kv.Value;
+            Players[(int) kv.Key].Initialize();
         }
     }
 

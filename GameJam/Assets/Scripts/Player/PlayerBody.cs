@@ -7,6 +7,7 @@ public class PlayerBody : PoolObject
 {
     public Image PlayerImage;
     public Players WhichPlayer;
+    public Robots WhichRobot;
     internal string Index_name;
     public Sprite[] sps;
     static float MaxEnerg = 100; //最大电量
@@ -30,13 +31,13 @@ public class PlayerBody : PoolObject
     void Awake()
     {
         UI_P.sprite = UI_sps[(int) WhichPlayer];
-        PlayerImage.sprite = sps[(int) WhichPlayer];
         Index_name = "P" + ((int) WhichPlayer + 1) + "_";
     }
 
-    void Start()
+    public void Initialize()
     {
-        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) WhichPlayer];
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[WhichRobot];
+        PlayerImage.sprite = sps[(int) WhichRobot];
         MaxEnerg = rp.MaxEnergy;
         SolarChargeSpeed = rp.SolarChargeSpeed;
         Trash = rp.StartTrash;

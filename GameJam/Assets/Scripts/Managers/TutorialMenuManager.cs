@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -91,67 +92,67 @@ public class TutorialMenuManager : MonoSingleton<TutorialMenuManager>
         }
     }
 
-    void Start()
+    public void Initialize()
     {
         foreach (PlayerTutorialConfirm ptc in PlayerTutorialConfirms)
         {
             ptc.Initialize(Players.NoPlayer);
         }
+
+        foreach (Players player in PlayerSelection.Keys)
+        {
+            PlayerTutorialConfirms[(int) player].Initialize(player);
+        }
     }
 
-    public bool IsGameStart = false;
+    internal bool IsGameStart = false;
     public PlayerTutorialConfirm[] PlayerTutorialConfirms = new PlayerTutorialConfirm[4];
+
+    public Dictionary<Players, Robots> PlayerSelection = new Dictionary<Players, Robots>();
 
     void Update()
     {
         if (M_StateMachine.GetState() == StateMachine.States.Hide) return;
         if (IsGameStart) return;
-        if (Input.GetKeyDown(KeyCode.F6))
+
+        foreach (Players player in PlayerSelection.Keys)
         {
-            StartGame();
-            return;
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            string Index_name = "P" + (i + 1) + "_";
+            string Index_name = "P" + ((int) player + 1) + "_";
             if (Input.GetButtonDown(Index_name + "fire"))
             {
-                if (PlayerTutorialConfirms[i].M_PlayerState == PlayerTutorialConfirm.PlayerState.None)
+                if (PlayerTutorialConfirms[(int) player].M_PlayerState == PlayerTutorialConfirm.PlayerState.Waiting)
                 {
-                    PlayerTutorialConfirms[i].M_PlayerState = PlayerTutorialConfirm.PlayerState.Waiting;
-                    PlayerTutorialConfirms[i].Initialize((Players) i);
+                    PlayerTutorialConfirms[(int) player].M_PlayerState = PlayerTutorialConfirm.PlayerState.Ready;
                 }
-                else if (PlayerTutorialConfirms[i].M_PlayerState == PlayerTutorialConfirm.PlayerState.Waiting)
+                else if (PlayerTutorialConfirms[(int) player].M_PlayerState == PlayerTutorialConfirm.PlayerState.Ready)
                 {
-                    PlayerTutorialConfirms[i].M_PlayerState = PlayerTutorialConfirm.PlayerState.Ready;
-                }
-                else if (PlayerTutorialConfirms[i].M_PlayerState == PlayerTutorialConfirm.PlayerState.Ready)
-                {
-                    PlayerTutorialConfirms[i].M_PlayerState = PlayerTutorialConfirm.PlayerState.Waiting;
+                    PlayerTutorialConfirms[(int) player].M_PlayerState = PlayerTutorialConfirm.PlayerState.Waiting;
                 }
             }
         }
 
         bool canStartGame = true;
 
-        for (int i = 0; i < 4; i++)
+        foreach (Players player in PlayerSelection.Keys)
         {
-            canStartGame &= PlayerTutorialConfirms[i].M_PlayerState == PlayerTutorialConfirm.PlayerState.Ready;
+            canStartGame &= PlayerTutorialConfirms[(int) player].M_PlayerState == PlayerTutorialConfirm.PlayerState.Ready;
         }
 
         if (canStartGame)
         {
-            StartGame();
+            StartCoroutine(Co_StartGame());
         }
     }
 
-    public void StartGame()
+    IEnumerator Co_StartGame()
     {
+        yield return new WaitForSeconds(1f);
         IsGameStart = true;
         M_StateMachine.SetState(StateMachine.States.Hide);
-        GameBoardManager.Instance.GenerateMap("LevelTest");
         GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Show);
         BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Show);
+        GameBoardManager.Instance.InitializePlayers();
         GameBoardManager.Instance.StartGame();
+        yield return null;
     }
 }

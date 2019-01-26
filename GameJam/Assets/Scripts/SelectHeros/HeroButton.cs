@@ -34,6 +34,7 @@ public class HeroButton : PoolObject
                 KeyTips.enabled = false;
                 Ready.enabled = false;
                 SwitchArrowImage.enabled = false;
+                PlayerName.enabled = false;
             }
             else
             {
@@ -42,6 +43,7 @@ public class HeroButton : PoolObject
                 KeyTips.enabled = true;
                 Ready.enabled = false;
                 SwitchArrowImage.enabled = true;
+                PlayerName.enabled = true;
             }
 
             if (value == PlayerState.Ready)
@@ -50,6 +52,7 @@ public class HeroButton : PoolObject
                 KeyTips.enabled = true;
                 Ready.enabled = true;
                 SwitchArrowImage.enabled = false;
+                PlayerName.enabled = true;
             }
 
             m_PlayerState = value;
@@ -65,6 +68,7 @@ public class HeroButton : PoolObject
         }
         else
         {
+            _currentRobotIndex = (int) player;
             M_PlayerState = PlayerState.Waiting;
             RobotImage.sprite = SPs[(int) robot];
             PlayerName.sprite = PlayerTitleSprites[(int) player];

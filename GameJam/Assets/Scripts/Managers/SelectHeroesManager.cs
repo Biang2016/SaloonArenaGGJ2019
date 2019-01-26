@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -102,20 +101,49 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         }
     }
 
-    public float SelectButtonPressCD = 0.3f;
-    private float[] SelectButtonPressTicks = new float[4] {1f, 1f, 1f, 1f};
-
-    public bool IsGameStart = false;
+    internal float SelectButtonPressCD = 0.3f;
+    internal float[] SelectButtonPressTicks = new float[4] {1f, 1f, 1f, 1f};
+    internal bool IsGameStart = false;
 
     void Update()
     {
         if (M_StateMachine.GetState() == StateMachine.States.Hide) return;
         if (IsGameStart) return;
-        if (Input.GetKeyDown(KeyCode.F6))
+        if (Input.GetKeyUp(KeyCode.F6))
         {
-            StartTutorial();
-            return;
+            int countPlayer = 0;
+            bool isPlayerNoReady = false;
+            for (int i = 0; i < 4; i++)
+            {
+                if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Ready)
+                {
+                    countPlayer++;
+                }
+
+                if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Waiting)
+                {
+                    isPlayerNoReady = true;
+                }
+            }
+
+            if (isPlayerNoReady)
+            {
+                NoticeManager.Instance.ShowInfoPanelCenter("还有玩家没有准备呀", 0f, 1f);
+                return;
+            }
+
+            if (countPlayer >= 2)
+            {
+                StartCoroutine(Co_StartTutorial());
+                return;
+            }
+            else
+            {
+                NoticeManager.Instance.ShowInfoPanelCenter("需要两名以上玩家才能开始游戏", 0f, 1f);
+                return;
+            }
         }
+
         for (int i = 0; i < 4; i++)
         {
             if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Waiting)
@@ -173,7 +201,7 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
 
         if (canStartGame)
         {
-            StartTutorial();
+            StartCoroutine(Co_StartTutorial());
         }
     }
 
@@ -189,10 +217,22 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         }
     }
 
-    public void StartTutorial()
+    IEnumerator Co_StartTutorial()
     {
+        yield return new WaitForSeconds(1f);
         IsGameStart = true;
         M_StateMachine.SetState(StateMachine.States.Hide);
         TutorialMenuManager.Instance.M_StateMachine.SetState(TutorialMenuManager.StateMachine.States.Show);
+        foreach (HeroButton bh in HeroButtons)
+        {
+            if (bh.M_PlayerState == HeroButton.PlayerState.Ready)
+            {
+                TutorialMenuManager.Instance.PlayerSelection.Add(bh.Player, (Robots) bh.CurrentRobotIndex);
+            }
+        }
+
+        TutorialMenuManager.Instance.Initialize();
+
+        yield return null;
     }
 }
