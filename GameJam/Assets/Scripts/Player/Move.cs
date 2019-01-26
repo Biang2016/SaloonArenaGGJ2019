@@ -1,25 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Xml;
 
 public class Move : MonoBehaviour
 {
     public float hor, ver;
     public int playerIndex;
-    string Index_name;  
-    string a = "b";
-    int b = 0;
     public Vector3 ro;
     public float Rotate_Speed;
+    public float Move_Force;
+    string Index_name;  
+    
+    
     Rigidbody2D rb;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        Index_name = "P" + playerIndex.ToString()+"_";
+        Index_name = "P" + playerIndex.ToString() + "_";
         rb = GetComponent<Rigidbody2D>();
-        
+        GetComponent<Shoot>().Index_name = Index_name;
     }
+    
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -113,7 +115,7 @@ public class Move : MonoBehaviour
     }
     void Trans()
     {
-        rb.AddForce(new Vector2(hor, ver));
+        rb.AddForce(new Vector2(hor, ver) *Move_Force );
     }
 
 }

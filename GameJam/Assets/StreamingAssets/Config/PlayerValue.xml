@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PlayerValues>
+    <PlayerValue name="Mass" Value="0.1"/>
+    <PlayerValue name="Rotate_Speed" Value="200"/>
+    <PlayerValue name="Move_Speed" Value="1"/>
+    <PlayerValue name="Shoot_Speed" Value="5"/>
+</PlayerValues>
