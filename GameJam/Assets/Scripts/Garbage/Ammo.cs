@@ -15,13 +15,18 @@ public class Ammo : PoolObject
 
     private void Awake()
     {
-        Image.sprite = Sprites[Random.Range(0,3)];
-
-
+        Image.sprite = Sprites[Random.Range(0, 3)];
     }
+
+    void Start()
+    {
+        Rigidbody2D.mass = GameManager.Instance.ammoMass;
+        Rigidbody2D.drag = GameManager.Instance.ammoDrag;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player") && player != (int)collision.gameObject.GetComponent<PlayerBody>().WhichPlayer)
+        if (collision.transform.CompareTag("Player") && player != (int) collision.gameObject.GetComponent<PlayerBody>().WhichPlayer)
         {
             collision.gameObject.GetComponent<PlayerBody>().Hitted(damage);
             int temp = (int)Random.Range(6, 9);
@@ -29,16 +34,15 @@ public class Ammo : PoolObject
             SoundPlay("sfx/ShootHit");
             Rigidbody2D.velocity = Vector3.zero;
             PoolRecycle();
-
         }
-        if(collision.transform.CompareTag("Wall"))
+
+        if (collision.transform.CompareTag("Wall"))
         {
             Drop();
             Rigidbody2D.velocity = Vector3.zero;
             PoolRecycle();
         }
     }
-
 
     void Drop()
     {
@@ -49,6 +53,6 @@ public class Ammo : PoolObject
         am.transform.position = transform.position;
         am.transform.rotation = transform.rotation;
         am.Rigidbody2D.velocity = temp.normalized * Random.Range(500,800);
-    }
 
+    }
 }

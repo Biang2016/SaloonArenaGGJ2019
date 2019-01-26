@@ -7,11 +7,8 @@ public class Move : MonoBehaviour
 {
     public PlayerBody PlayerBody;
     public float hor, ver;
-    public Vector3 ro;
     public float Rotate_Speed;
-    public float Move_Speed;
     public float max_speed;
-    public float Slow_Down;
 
     public float speed; //当前速度
 
@@ -20,6 +17,14 @@ public class Move : MonoBehaviour
 
     private void Awake()
     {
+    }
+
+    void Start()
+    {
+        Rotate_Speed = GameManager.Instance.Rotate_Speed;
+        max_speed = GameManager.Instance.max_speed;
+        Rigidbody2D.mass = GameManager.Instance.robotMass;
+        Rigidbody2D.drag = GameManager.Instance.robotMass;
     }
 
     private void FixedUpdate()
@@ -36,7 +41,6 @@ public class Move : MonoBehaviour
 
     void Rota()
     {
-        ro = this.transform.rotation.eulerAngles;
         float target_z = 0;
         if (hor == 1)
         {

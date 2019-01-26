@@ -15,24 +15,23 @@ public class Charge : MonoBehaviour
             p.Charging = true;
             p.Add_Energy(p.relife_speed * Time.deltaTime);
         }
-            
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (((int)collision.GetComponent<PlayerBody>().WhichPlayer+1) == whichPlayer)
+        if (((int) collision.GetComponent<PlayerBody>().WhichPlayer + 1) == whichPlayer)
         {
             Charging = true;
             if (p == null)
                 p = collision.gameObject.GetComponent<PlayerBody>();
         }
-           
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (((int)collision.GetComponent<PlayerBody>().WhichPlayer + 1) == whichPlayer)
+        if (((int) collision.GetComponent<PlayerBody>().WhichPlayer + 1) == whichPlayer)
             Charging = false;
         p.Charging = false;
     }
-
 }
