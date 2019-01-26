@@ -9,6 +9,12 @@ public class HeroButton : PoolObject
     [SerializeField] private Image PlayerName;
     [SerializeField] private Image PressJoinTipImage;
     [SerializeField] private Image KeyTips;
+    [SerializeField] private Text JoinKeyText;
+    [SerializeField] private Text UpKeyText;
+    [SerializeField] private Text LeftKeyText;
+    [SerializeField] private Text DownKeyText;
+    [SerializeField] private Text RightKeyText;
+    [SerializeField] private Text ShootKeyText;
     public Sprite[] SPs;
     public Slider[] Sliders;
     public float[] Values;
@@ -30,8 +36,17 @@ public class HeroButton : PoolObject
             {
                 Player = Players.NoPlayer;
                 RobotImage.sprite = NoPlayerSP;
+
                 PressJoinTipImage.enabled = true;
+                JoinKeyText.enabled = true;
+
                 KeyTips.enabled = false;
+                UpKeyText.enabled = false;
+                LeftKeyText.enabled = false;
+                DownKeyText.enabled = false;
+                RightKeyText.enabled = false;
+                ShootKeyText.enabled = false;
+
                 Ready.enabled = false;
                 SwitchArrowImage.enabled = false;
                 PlayerName.enabled = false;
@@ -39,8 +54,17 @@ public class HeroButton : PoolObject
             else
             {
                 RobotImage.enabled = true;
+
                 PressJoinTipImage.enabled = false;
+                JoinKeyText.enabled = false;
+
                 KeyTips.enabled = true;
+                UpKeyText.enabled = true;
+                LeftKeyText.enabled = true;
+                DownKeyText.enabled = true;
+                RightKeyText.enabled = true;
+                ShootKeyText.enabled = true;
+
                 Ready.enabled = false;
                 SwitchArrowImage.enabled = true;
                 PlayerName.enabled = true;
@@ -49,7 +73,15 @@ public class HeroButton : PoolObject
             if (value == PlayerState.Ready)
             {
                 PressJoinTipImage.enabled = false;
+                JoinKeyText.enabled = false;
+
                 KeyTips.enabled = true;
+                UpKeyText.enabled = true;
+                LeftKeyText.enabled = true;
+                DownKeyText.enabled = true;
+                RightKeyText.enabled = true;
+                ShootKeyText.enabled = true;
+
                 Ready.enabled = true;
                 SwitchArrowImage.enabled = false;
                 PlayerName.enabled = true;

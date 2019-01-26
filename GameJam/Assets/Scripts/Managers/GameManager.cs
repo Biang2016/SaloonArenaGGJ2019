@@ -53,6 +53,7 @@ public partial class GameManager : MonoSingleton<GameManager>
 
     public int StarterFloorGarbage; //起始地面垃圾
     public float GarbageBulletBeLitterSpeedThreshold; //子弹减速阈值（速度低于这个值阻力大幅增大然后停下消失）
+    public float LevelTime; //关卡时间
 
     private string playerValueXMLPath = Application.streamingAssetsPath + "/Config/PlayerValues.xml";
 
@@ -109,6 +110,7 @@ public partial class GameManager : MonoSingleton<GameManager>
                 {
                     GarbageBulletBeLitterSpeedThreshold = float.Parse(valueNode.Attributes["GarbageBulletBeLitterSpeedThreshold"].Value);
                     StarterFloorGarbage = int.Parse(valueNode.Attributes["StarterFloorGarbage"].Value);
+                    LevelTime = float.Parse(valueNode.Attributes["LevelTime"].Value);
                     break;
                 }
             }

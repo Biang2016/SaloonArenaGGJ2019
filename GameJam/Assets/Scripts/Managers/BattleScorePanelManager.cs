@@ -161,19 +161,55 @@ public class BattleScorePanelManager : MonoSingleton<BattleScorePanelManager>
         }
     }
 
+    public IOrderedEnumerable<KeyValuePair<Players, int>> PlayerScoreRank;
+
     public void OnChangePlayerScore()
     {
         Dictionary<Players, int> PlayerScores = new Dictionary<Players, int>();
-        PlayerScores.Add(Players.Player1, ScorePlayer1);
-        PlayerScores.Add(Players.Player2, ScorePlayer2);
-        PlayerScores.Add(Players.Player3, ScorePlayer3);
-        PlayerScores.Add(Players.Player4, ScorePlayer4);
-        IOrderedEnumerable<KeyValuePair<Players, int>> dicSort = from objDic in PlayerScores orderby objDic.Value descending select objDic;
+        foreach (KeyValuePair<Players, Robots> kv in TutorialMenuManager.Instance.PlayerSelection)
+        {
+            switch (kv.Key)
+            {
+                case Players.Player1:
+                {
+                    PlayerScores.Add(kv.Key, ScorePlayer1);
+                    break;
+                }
+                case Players.Player2:
+                {
+                    PlayerScores.Add(kv.Key, ScorePlayer2);
+                    break;
+                }
+                case Players.Player3:
+                {
+                    PlayerScores.Add(kv.Key, ScorePlayer3);
+                    break;
+                }
+                case Players.Player4:
+                {
+                    PlayerScores.Add(kv.Key, ScorePlayer4);
+                    break;
+                }
+            }
+        }
+
+        PlayerScoreRank = from objDic in PlayerScores orderby objDic.Value descending select objDic;
         int index = 0;
-        foreach (KeyValuePair<Players, int> kv in dicSort)
+        foreach (KeyValuePair<Players, int> kv in PlayerScoreRank)
         {
             PlayerIcons[(int) kv.Key].sprite = PlayerIconSprites[index];
+            PlayerScoreTexts[index].text = kv.Value.ToString();
             index++;
         }
+    }
+
+    public void Reset()
+    {
+        ScorePlayer1 = 0;
+        ScorePlayer2 = 0;
+        ScorePlayer3 = 0;
+        ScorePlayer4 = 0;
+        OnChangePlayerScore();
+        M_StateMachine.SetState(StateMachine.States.Hide);
     }
 }

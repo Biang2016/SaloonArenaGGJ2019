@@ -56,7 +56,7 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/Battle_0");
+                        AudioManager.Instance.BGMFadeIn("bgm/SelectHero_2");
                         break;
                     }
                 }
@@ -183,10 +183,12 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
                 }
                 else if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Waiting)
                 {
+                    AudioManager.Instance.SoundPlay("sfx/Select", 0.2f);
                     HeroButtons[i].M_PlayerState = HeroButton.PlayerState.Ready;
                 }
                 else if (HeroButtons[i].M_PlayerState == HeroButton.PlayerState.Ready)
                 {
+                    AudioManager.Instance.SoundPlay("sfx/ShootHit", 0.6f);
                     HeroButtons[i].M_PlayerState = HeroButton.PlayerState.Waiting;
                 }
             }
@@ -215,6 +217,8 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         {
             HeroButtons[(int) player].CurrentRobotIndex--;
         }
+
+        AudioManager.Instance.SoundPlay("sfx/SelectSwitch_0");
     }
 
     IEnumerator Co_StartTutorial()
@@ -234,5 +238,23 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         TutorialMenuManager.Instance.Initialize();
 
         yield return null;
+    }
+
+    public void Reset()
+    {
+        M_StateMachine.SetState(StateMachine.States.Show);
+        int index = 0;
+        foreach (HeroButton heroButton in HeroButtons)
+        {
+            heroButton.Initialize(Players.NoPlayer, (Robots) index);
+            index++;
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            SelectButtonPressTicks[i] = 0;
+        }
+
+        IsGameStart = false;
     }
 }

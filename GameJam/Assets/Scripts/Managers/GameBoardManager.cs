@@ -20,6 +20,11 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
             leftTime = value;
             Min = Mathf.CeilToInt(Mathf.CeilToInt(leftTime) / 60);
             Second = Mathf.CeilToInt(Mathf.CeilToInt(leftTime) - Min * 60);
+
+            if (Min == 0 && Second == 0)
+            {
+                EndGame();
+            }
         }
     }
 
@@ -69,6 +74,9 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
     [SerializeField] private Canvas GameBoardCanvas;
     public Canvas GameBoardMovingThingsCanvas;
     public Canvas GameBoardGarbagesCanvas;
+
+    public List<GarbageMain> Garbages = new List<GarbageMain>();
+
     public StateMachine M_StateMachine;
 
     public class StateMachine
@@ -147,8 +155,15 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
         }
     }
 
+    private bool isInGame = false;
+
     void Update()
     {
+        if (!isInGame)
+        {
+            return;
+        }
+
         LeftTime -= Time.deltaTime;
     }
 
@@ -185,6 +200,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
             GarbageMain gm = GameObjectPoolManager.Instance.Pool_Garbage.AllocateGameObject<GarbageMain>(GameBoardGarbagesCanvas.transform);
             gm.Initialize();
             gm.transform.position = new Vector2(Random.Range(-MapContainer.rect.width / 2, MapContainer.rect.width / 2), Random.Range(-MapContainer.rect.height / 2, MapContainer.rect.height / 2));
+            Garbages.Add(gm);
         }
     }
 
@@ -205,7 +221,29 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
 
     public void StartGame()
     {
-        LeftTime = 59.5f;
+        isInGame = true;
+        LeftTime = GameManager.Instance.LevelTime;
         BattleScorePanelManager.Instance.TimeText.text = "1:00";
+    }
+
+    public void EndGame()
+    {
+        isInGame = false;
+        ScoreMenuManager.Instance.M_StateMachine.SetState(ScoreMenuManager.StateMachine.States.Show);
+        ScoreMenuManager.Instance.Initialize(BattleScorePanelManager.Instance.PlayerScoreRank);
+        M_StateMachine.SetState(StateMachine.States.Hide);
+        BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Hide);
+    }
+
+    public void Reset()
+    {
+        foreach (GarbageMain gb in Garbages)
+        {
+            gb.PoolRecycle();
+        }
+
+        Garbages.Clear();
+        GenerateStarterGarbages();
+        M_StateMachine.SetState(StateMachine.States.Hide);
     }
 }

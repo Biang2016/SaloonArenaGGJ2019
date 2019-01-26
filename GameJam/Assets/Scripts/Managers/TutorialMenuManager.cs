@@ -57,7 +57,6 @@ public class TutorialMenuManager : MonoSingleton<TutorialMenuManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/Battle_0");
                         break;
                     }
                 }
@@ -122,11 +121,8 @@ public class TutorialMenuManager : MonoSingleton<TutorialMenuManager>
             {
                 if (PlayerTutorialConfirms[(int) player].M_PlayerState == PlayerTutorialConfirm.PlayerState.Waiting)
                 {
+                    AudioManager.Instance.SoundPlay("sfx/Select", 0.2f);
                     PlayerTutorialConfirms[(int) player].M_PlayerState = PlayerTutorialConfirm.PlayerState.Ready;
-                }
-                else if (PlayerTutorialConfirms[(int) player].M_PlayerState == PlayerTutorialConfirm.PlayerState.Ready)
-                {
-                    PlayerTutorialConfirms[(int) player].M_PlayerState = PlayerTutorialConfirm.PlayerState.Waiting;
                 }
             }
         }
@@ -152,5 +148,13 @@ public class TutorialMenuManager : MonoSingleton<TutorialMenuManager>
         BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Show);
         GameBoardManager.Instance.InitializePlayers();
         GameBoardManager.Instance.StartGame();
+    }
+
+    public void Reset()
+    {
+        IsGameStart = false;
+        PlayerSelection.Clear();
+        Initialize();
+        M_StateMachine.SetState(StateMachine.States.Hide);
     }
 }

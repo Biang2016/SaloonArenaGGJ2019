@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Managers\MonoSingletonManager.cs" />
     <Compile Include="Assets\Scripts\Managers\NoticeManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PoolObject.cs" />
+    <Compile Include="Assets\Scripts\Managers\ScoreMenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\SelectHeroesManager.cs" />
     <Compile Include="Assets\Scripts\Managers\StartMenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\TutorialMenuManager.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\Scripts\Player\Shoot.cs" />
     <Compile Include="Assets\Scripts\Players.cs" />
     <Compile Include="Assets\Scripts\Robots\Robots.cs" />
+    <Compile Include="Assets\Scripts\ScoreBar\ScoreBar.cs" />
     <Compile Include="Assets\Scripts\SelectHeros\HeroButton.cs" />
     <Compile Include="Assets\Scripts\SelectHeros\PlayerTutorialConfirm.cs" />
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindow.cs" />

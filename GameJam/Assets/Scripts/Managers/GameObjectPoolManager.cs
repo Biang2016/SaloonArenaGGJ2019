@@ -21,6 +21,9 @@
 
     public GameObjectPool Pool_GarbageLitter;
     public PoolObject GarbageLitterPrefabs;
+    
+    public GameObjectPool Pool_PlayerScoreBar;
+    public PoolObject PlayerScoreBarPrefab;
 
     void Awake()
     {
@@ -35,5 +38,6 @@
         Pool_HeroButton.Initiate(HeroButtonPrefab, 4);
         Pool_Garbage.Initiate(GarbagePrefab, 300);
         Pool_GarbageLitter.Initiate(GarbageLitterPrefabs, 300);
+        Pool_PlayerScoreBar.Initiate(PlayerScoreBarPrefab, 4);
     }
 }

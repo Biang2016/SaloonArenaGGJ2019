@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class StartMenuManager : MonoSingleton<StartMenuManager>
+public class ScoreMenuManager : MonoSingleton<ScoreMenuManager>
 {
-    private StartMenuManager()
+    private ScoreMenuManager()
     {
     }
 
@@ -12,7 +15,8 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
         M_StateMachine = new StateMachine();
     }
 
-    [SerializeField] private Canvas StartMenuCanvas;
+    [SerializeField] private Canvas ScoreMenuCanvas;
+    [SerializeField] private Transform ScoreMenuPanel;
 
     public StateMachine M_StateMachine;
 
@@ -53,7 +57,7 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/StartMenu");
+                        AudioManager.Instance.BGMFadeIn("bgm/Result");
                         break;
                     }
                 }
@@ -79,27 +83,60 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
 
         private void ShowMenu()
         {
-            Instance.StartMenuCanvas.enabled = true;
+            Instance.ScoreMenuCanvas.enabled = true;
         }
 
         private void HideMenu()
         {
-            Instance.StartMenuCanvas.enabled = false;
+            Instance.ScoreMenuCanvas.enabled = false;
+        }
+    }
+
+    public List<ScoreBar> ScoreBars = new List<ScoreBar>();
+
+    public void Initialize(IOrderedEnumerable<KeyValuePair<Players, int>> playerRankScores)
+    {
+        int maxScore = 0;
+        foreach (KeyValuePair<Players, int> kv in playerRankScores)
+        {
+            maxScore = kv.Value;
+            break;
+        }
+
+        int i = 0;
+        SortedDictionary<Players, ScoreBar> sbs = new SortedDictionary<Players, ScoreBar>();
+        foreach (KeyValuePair<Players, int> kv in playerRankScores)
+        {
+            ScoreBar sb = GameObjectPoolManager.Instance.Pool_PlayerScoreBar.AllocateGameObject<ScoreBar>(ScoreMenuPanel);
+            sb.Initialize(kv.Key, kv.Value, maxScore, i);
+            sbs.Add(kv.Key, sb);
+            ScoreBars.Add(sb);
+            i++;
+        }
+
+        foreach (KeyValuePair<Players, ScoreBar> kv in sbs)
+        {
+            kv.Value.transform.SetAsLastSibling();
         }
     }
 
     void Update()
     {
         if (M_StateMachine.GetState() == StateMachine.States.Hide) return;
-        if (Input.anyKey)
+        if (Input.GetKeyDown(KeyCode.F6))
         {
-            M_StateMachine.SetState(StateMachine.States.Hide);
-            SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Show);
+            GameManager.Instance.RestartGame();
         }
     }
 
     public void Reset()
     {
         M_StateMachine.SetState(StateMachine.States.Hide);
+        foreach (ScoreBar scoreBar in ScoreBars)
+        {
+            scoreBar.PoolRecycle();
+        }
+
+        ScoreBars.Clear();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,45 @@ public class PlayerBody : PoolObject
     float MaxEnerg = 100; //最大电量
     int SolarChargeSpeed; //电力耗尽后复活速度
     public float Energy; //当前电量
-    public int Trash; //携带垃圾量
+    private int trash; //携带垃圾量
+
+    private Vector3 defaultPos;
+
+    public int Trash
+    {
+        get { return trash; }
+        set
+        {
+            if (trash != value)
+            {
+                trash = value;
+                switch (WhichPlayer)
+                {
+                    case Players.Player1:
+                    {
+                        BattleScorePanelManager.Instance.ScorePlayer1 = trash;
+                        break;
+                    }
+                    case Players.Player2:
+                    {
+                        BattleScorePanelManager.Instance.ScorePlayer2 = trash;
+                        break;
+                    }
+                    case Players.Player3:
+                    {
+                        BattleScorePanelManager.Instance.ScorePlayer3 = trash;
+                        break;
+                    }
+                    case Players.Player4:
+                    {
+                        BattleScorePanelManager.Instance.ScorePlayer4 = trash;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     public int Power; //电量消耗速度
     public int Scores; //最后的分数
     public bool Lying; //电量耗尽
@@ -28,15 +67,22 @@ public class PlayerBody : PoolObject
     public Text Hp_Text;
     public Slider Hp;
 
+    public static Vector2 default_arrow_sizeDelta;
+    public static Vector2 default_self_sizeDelta;
+
     void Awake()
     {
         UI_P.sprite = UI_sps[(int) WhichPlayer];
         Index_name = "P" + ((int) WhichPlayer + 1) + "_";
+        default_arrow_sizeDelta = arrow.sizeDelta;
+        default_self_sizeDelta = transform.sizeDelta;
+        defaultPos = transform.position;
     }
 
     public void Initialize()
     {
         GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[WhichRobot];
+        transform.position = defaultPos;
         PlayerImage.sprite = sps[(int) WhichRobot];
         MaxEnerg = rp.MaxEnergy;
         SolarChargeSpeed = rp.SolarChargeSpeed;
@@ -44,9 +90,9 @@ public class PlayerBody : PoolObject
         Power = rp.PowerConsume;
         relife_speed = rp.Relife_speed;
         Energy = rp.StartEnergy;
-        transform.sizeDelta *= rp.RobotScale;
+        transform.sizeDelta = default_self_sizeDelta * rp.RobotScale;
         transform.GetComponent<CircleCollider2D>().radius = transform.sizeDelta.x / 2;
-        arrow.sizeDelta *= rp.RobotScale;
+        arrow.sizeDelta = default_arrow_sizeDelta * rp.RobotScale;
         UpdateHp();
         UpdateTrash();
         Charging = false;
@@ -89,6 +135,7 @@ public class PlayerBody : PoolObject
 
     public void Pick_Garbage(int num)
     {
+        AudioManager.Instance.SoundPlay("sfx/Sweeping");
         Trash += num;
         UpdateTrash();
     }
@@ -135,6 +182,26 @@ public class PlayerBody : PoolObject
     {
         Hp.value = Energy / MaxEnerg;
         //Hp_Text.text = (Hp.value * 100).ToString("##0") + "%";
-        Hp_Text.text = MaxEnerg.ToString("##0") ;
+        Hp_Text.text = MaxEnerg.ToString("##0");
+    }
+
+    public Image EmojiImage;
+
+    public void ShowEmoji(Emojis emoji)
+    {
+        EmojiImage.sprite = EmojiSprites[(int) emoji];
+    }
+
+    public Sprite[] EmojiSprites;
+
+    public enum Emojis
+    {
+        Charging,
+        PowerFull,
+        Han,
+        Hitted,
+        Low,
+        Not,
+        Shot,
     }
 }

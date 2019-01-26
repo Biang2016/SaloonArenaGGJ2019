@@ -15,6 +15,17 @@ public partial class GameManager
         SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Hide);
         TutorialMenuManager.Instance.M_StateMachine.SetState(TutorialMenuManager.StateMachine.States.Hide);
         BattleScorePanelManager.Instance.M_StateMachine.SetState(BattleScorePanelManager.StateMachine.States.Hide);
+        ScoreMenuManager.Instance.M_StateMachine.SetState(ScoreMenuManager.StateMachine.States.Hide);
+    }
+
+    public void RestartGame()
+    {
+        StartMenuManager.Instance.Reset();
+        SelectHeroesManager.Instance.Reset();
+        GameBoardManager.Instance.Reset();
+        TutorialMenuManager.Instance.Reset();
+        BattleScorePanelManager.Instance.Reset();
+        ScoreMenuManager.Instance.Reset();
     }
 
     private void InitializeClientGameSettings()

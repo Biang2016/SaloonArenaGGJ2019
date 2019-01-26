@@ -34,5 +34,5 @@
                AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
                StartTrash="10" RobotScale="0.7"/>
     </Robots>
-    <Map name="LevelTest" StarterFloorGarbage="100" GarbageBulletBeLitterSpeedThreshold="80"/>
+    <Map name="LevelTest" StarterFloorGarbage="100" GarbageBulletBeLitterSpeedThreshold="80" LevelTime="10"/>
 </Level>
