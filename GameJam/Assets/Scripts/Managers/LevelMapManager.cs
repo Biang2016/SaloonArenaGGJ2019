@@ -15,7 +15,7 @@ public class LevelMapManager : MonoSingleton<LevelMapManager>
     {
         foreach (Texture2D t2d in LevelMapImages)
         {
-            int[,] indices = new int[GameBoardManager.GameBoardWidth, GameBoardManager.GameBoardHeight];
+            int[,] indices = new int[GameBoardManager.Instance.GameBoardWidth, GameBoardManager.Instance.GameBoardHeight];
 
             Color[] colors = t2d.GetPixels();
             string debugStr = "";

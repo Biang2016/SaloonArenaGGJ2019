@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <MapGrids>
-    <MapGrid name="Wall" color="#ffffffff"/>
-    <MapGrid name="Floor" color="#ff000000"/>
+    <MapGrid name="Wall" color="#ff000000"/>
+    <MapGrid name="Floor" color="#ffffffff"/>
     <MapGrid name="InsideBlock" color="#ff0000ff"/>
 </MapGrids>

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public partial class GameBoardManager : MonoSingleton<GameBoardManager>
 {
-    public static int GameBoardWidth = 57;
-    public static int GameBoardHeight = 30;
+    public int GameBoardWidth = 57;
+    public int GameBoardHeight = 30;
     [SerializeField] private RectTransform MapContainer;
 
     private GameBoardManager()
