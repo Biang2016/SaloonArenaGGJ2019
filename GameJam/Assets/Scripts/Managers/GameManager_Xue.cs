@@ -9,7 +9,7 @@ public partial class GameManager
 
     void Start_Xue()
     {
-        GameBoardManager.Instance.GenerateMap("LevelTest");
+        GameBoardManager.Instance.GenerateStarterGarbages();
         StartMenuManager.Instance.M_StateMachine.SetState(StartMenuManager.StateMachine.States.Show);
         GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Hide);
         SelectHeroesManager.Instance.M_StateMachine.SetState(SelectHeroesManager.StateMachine.States.Hide);

@@ -9,6 +9,7 @@ public class PlayerBody : PoolObject
     public Image PlayerImage;
     public Players WhichPlayer;
     public Robots WhichRobot;
+
     internal string Index_name;
     public Sprite[] sps;
     float MaxEnerg = 100; //最大电量
@@ -60,15 +61,32 @@ public class PlayerBody : PoolObject
     public bool Charging;
     public RectTransform transform;
     public RectTransform arrow;
+    public float wake; //重新恢复百分比
+    public float Move_Speed;
+
+    public float ContactX; //相撞造成伤害的相对速度最小值
+    public float ContactDamage; //相撞造成的伤害值
+
+    public int Do_num; //偷垃圾量的百分比
 
     public Image UI_P;
     public Sprite[] UI_sps;
     public Text Trash_Text;
     public Text Hp_Text;
     public Slider Hp;
+    public Image Do;
+
+    public CircleCollider2D circleCollider;
+    public Move move;
 
     public static Vector2 default_arrow_sizeDelta;
     public static Vector2 default_self_sizeDelta;
+
+    public Rigidbody2D rb;
+    public CircleCollider2D LootedArea;
+    public CircleCollider2D DoArea;
+
+    public float do_time;
 
     void Awake()
     {
@@ -83,6 +101,13 @@ public class PlayerBody : PoolObject
     {
         GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[WhichRobot];
         transform.position = defaultPos;
+        Do_num = rp.Do_num;
+        if (Do_num > 100) Do_num = 100;
+        do_time = 0;
+        Move_Speed = rp.Move_Speed;
+        ContactX = rp.ContactX;
+        ContactDamage = rp.ContactDamage;
+        wake = rp.wake;
         PlayerImage.sprite = sps[(int) WhichRobot];
         MaxEnerg = rp.MaxEnergy;
         SolarChargeSpeed = rp.SolarChargeSpeed;
@@ -91,8 +116,10 @@ public class PlayerBody : PoolObject
         relife_speed = rp.Relife_speed;
         Energy = rp.StartEnergy;
         transform.sizeDelta = default_self_sizeDelta * rp.RobotScale;
-        transform.GetComponent<CircleCollider2D>().radius = transform.sizeDelta.x / 2;
         arrow.sizeDelta = default_arrow_sizeDelta * rp.RobotScale;
+        circleCollider.radius = transform.sizeDelta.x / 2;
+        LootedArea.radius = (transform.sizeDelta.x / 2) * 1.1f;
+        DoArea.radius = (transform.sizeDelta.x / 2) * 1.5f;
         UpdateHp();
         UpdateTrash();
         Charging = false;
@@ -104,12 +131,38 @@ public class PlayerBody : PoolObject
         if (Lying)
         {
             Add_Energy(SolarChargeSpeed * Time.deltaTime);
-            if ((Energy / MaxEnerg) > 0.2)
+            if ((Energy / MaxEnerg) > wake)
                 Lying = false;
         }
         else if (!Lying && !Charging)
         {
             Hitted(Power * Time.deltaTime);
+        }
+        else if (!Lying)
+        {
+            /*foreach (PlayerBody player in GameBoardManager.Instance.Players)
+            {
+                if (player.isActiveAndEnabled && player.WhichPlayer!= WhichPlayer)
+                {
+                    Vector3 pos3 = player.transform.position - transform.position;
+                    Vector2 pos = new Vector2(pos3.x, pos3.y);
+                    Debug.Log(pos.magnitude);
+                    Vector2 spe = player.rb.velocity - rb.velocity;
+                    if (pos.magnitude<(player.circleCollider.radius * player.transform.localScale.x +circleCollider.radius* transform.localScale.x + 4.7f))
+                    {
+                       
+                        float temp = spe.magnitude;
+                        Debug.Log(temp + "||" + (player.move.max_speed + move.max_speed) * ContactX);
+                        if(temp > (player.move.max_speed + move.max_speed) * ContactX  && Vector2.Dot(pos,spe)<0)
+                        {
+                            player.Hitted(ContactDamage);
+                            SoundPlay("sfx/Collision");
+                        }
+                        
+                    }
+                }
+            }
+        */
         }
     }
 
@@ -181,8 +234,7 @@ public class PlayerBody : PoolObject
     void UpdateHp()
     {
         Hp.value = Energy / MaxEnerg;
-        //Hp_Text.text = (Hp.value * 100).ToString("##0") + "%";
-        Hp_Text.text = MaxEnerg.ToString("##0");
+        Hp_Text.text = (Hp.value * 100).ToString("##0") + "%";
     }
 
     public Image EmojiImage;
@@ -203,5 +255,31 @@ public class PlayerBody : PoolObject
         Low,
         Not,
         Shot,
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        PlayerBody pb = collision.gameObject.GetComponent<PlayerBody>();
+        if (pb != null)
+        {
+            if (pb.WhichPlayer != WhichPlayer)
+            {
+                if (collision.CompareTag("Player") && !pb.Lying)
+                {
+                    Vector3 pos3 = collision.transform.position - transform.position;
+                    Vector2 pos = new Vector2(pos3.x, pos3.y);
+                    //Debug.Log(pos.magnitude);
+                    Vector2 spe = pb.rb.velocity - rb.velocity;
+                    float temp = spe.magnitude;
+
+                    if (temp > (pb.move.max_speed + move.max_speed) * ContactX && Vector2.Dot(pos, spe) < 0)
+                    {
+                        Debug.Log(temp + "||" + (pb.move.max_speed + move.max_speed) * ContactX);
+                        pb.Hitted(ContactDamage);
+                        SoundPlay("sfx/Collision");
+                    }
+                }
+            }
+        }
     }
 }

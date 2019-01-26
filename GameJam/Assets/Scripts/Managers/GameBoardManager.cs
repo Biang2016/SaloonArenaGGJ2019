@@ -166,7 +166,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
 
         LeftTime -= Time.deltaTime;
     }
-
+    /*
     public LevelMapBlock[,] LevelMapBlocks;
 
     public void GenerateMap(string levelName)
@@ -191,7 +191,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
         }
 
         GenerateStarterGarbages();
-    }
+    }*/
 
     public void GenerateStarterGarbages()
     {

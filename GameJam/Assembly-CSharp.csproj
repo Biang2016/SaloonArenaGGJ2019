@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Managers\StartMenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\TutorialMenuManager.cs" />
     <Compile Include="Assets\Scripts\Managers\Utils.cs" />
+    <Compile Include="Assets\Scripts\Player\Doarea.cs" />
     <Compile Include="Assets\Scripts\Player\LoadPlayerValue.cs" />
     <Compile Include="Assets\Scripts\Player\Move.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
