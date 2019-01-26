@@ -86,7 +86,7 @@ public class Move : MonoBehaviour
         }
 
         float cha = target_z - this.transform.rotation.eulerAngles.z;
-        if (this.transform.rotation.eulerAngles.z > target_z - 5 && this.transform.rotation.eulerAngles.z < target_z + 5)
+        if (this.transform.rotation.eulerAngles.z > target_z - 11 && this.transform.rotation.eulerAngles.z < target_z + 11)
         {
             Vector3 temp;
             temp = this.transform.rotation.eulerAngles;

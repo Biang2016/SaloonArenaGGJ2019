@@ -28,9 +28,11 @@ public class GarbageMain : PoolObject
     float time = 0;
     public override void PoolRecycle()
     {
-        base.PoolRecycle();
-        CanPick = false;
+
         Rigidbody2D.drag = 0;
+        CanPick = false;
+        base.PoolRecycle();
+       
     }
 
     private void Awake()
