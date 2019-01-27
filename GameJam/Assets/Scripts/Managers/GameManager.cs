@@ -47,18 +47,20 @@ public partial class GameManager : MonoSingleton<GameManager>
         public float AmmoMass; //子弹质量
         public float AmmoDrag; //子弹阻力
         public float AmmoScale; //子弹尺寸
-        public int AmmoDamage; //子弹伤害
+        public int AmmoDamage; //子弹伤害==消耗垃圾数==爆出垃圾数
         public float RobotScale; //机体尺寸
         public float wake;//重新恢复百分比
         public float ContactDamage;//相撞造成的伤害值
         public float ContactX;//相撞造成伤害的相对速度最小值
-        public float Move_Speed;
+        public float Move_Speed;//移动速度
         public int Do_num;//偷垃圾量的百分比
+
     }
 
     public int StarterFloorGarbage; //起始地面垃圾
     public float GarbageBulletBeLitterSpeedThreshold; //子弹减速阈值（速度低于这个值阻力大幅增大然后停下消失）
     public float LevelTime; //关卡时间
+    
 
     private string playerValueXMLPath = Application.streamingAssetsPath + "/Config/PlayerValues.xml";
 
@@ -108,7 +110,8 @@ public partial class GameManager : MonoSingleton<GameManager>
                         rp.ContactX = float.Parse(robotNode.Attributes["ContactX"].Value);
                         rp.Move_Speed = float.Parse(robotNode.Attributes["Move_Speed"].Value);
                         rp.Do_num= int.Parse(robotNode.Attributes["Do_num"].Value);
-                        if (!RobotParameters.ContainsKey(robot))
+
+                            if (!RobotParameters.ContainsKey(robot))
                         {
                           RobotParameters.Add(robot, rp);
                         }

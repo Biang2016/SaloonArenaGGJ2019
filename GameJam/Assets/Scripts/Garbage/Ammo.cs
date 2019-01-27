@@ -39,7 +39,11 @@ public class Ammo : PoolObject
             collision.gameObject.GetComponent<PlayerBody>().Loss_Garbage(temp);
             */
             Vector2 vector2 = new Vector2(-transform.up.x, -transform.up.y);
-            Drop(vector2);
+            for (int i = 0; i < damage;i++)
+            {
+                Drop(vector2);
+            }
+            
             SoundPlay("sfx/ShootHit");
             Rigidbody2D.velocity = Vector3.zero;
             PoolRecycle();
@@ -65,7 +69,10 @@ public class Ammo : PoolObject
                 default: break;
             }
 
-            Drop(vector2);
+            for (int i = 0; i < damage; i++)
+            {
+                Drop(vector2);
+            }
             Rigidbody2D.velocity = Vector3.zero;
             PoolRecycle();
         }
@@ -77,7 +84,23 @@ public class Ammo : PoolObject
         am.Initialize();
         am.CanPick = true;
         am.transform.position = transform.position;
-        am.Rigidbody2D.velocity = vector2.normalized * Random.Range(100, 200);
+
+
+
+
+        am.Rigidbody2D.velocity = RotateVector2(vector2.normalized, Random.Range(-60, 60)) * Random.Range(100, 200);
+        
         am.Initialize();
+    }
+
+    Vector2 RotateVector2(Vector2 v,float angle)
+    {
+        float x = v.x;
+        float y = v.y;
+        float sin = Mathf.Sin(Mathf.PI * angle / 180);
+        float cos = Mathf.Cos(Mathf.PI * angle / 180);
+        float newX = x * cos + y * sin;
+        float newY = x * -sin + y * cos;
+        return new Vector2((float)newX, (float)newY);
     }
 }
