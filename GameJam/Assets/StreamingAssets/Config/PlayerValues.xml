@@ -1,46 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Level>
-<<<<<<< HEAD
-    <Robots>
-        <Robot name="Robot1"
-               MaxEnergy="200" StartEnergy="200"
-               SolarChargeSpeed="4" Relife_speed="100" PowerConsume="2"
-               Rotate_Speed="300" Max_Speed="400"
-               Shoot_Speed="500" Shoot_CD="0.5"
-               RobotMass="0.008" RobotDrag="0.5" RobotRotateDrag="0.3"
-               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="15"
-               StartTrash="10" RobotScale="1"
-               wake="0.2" ContactDamage="10" ContactX="0.2" Move_Speed="3" Do_num="20"/>
-        <Robot name="Robot2"
-               MaxEnergy="400" StartEnergy="400"
-               SolarChargeSpeed="4" Relife_speed="100" PowerConsume="2"
-               Rotate_Speed="200" Max_Speed="100"
-               Shoot_Speed="200" Shoot_CD="1.5"
-               RobotMass="0.015" RobotDrag="0.8" RobotRotateDrag="0.3"
-               AmmoMass="0.013" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="2" AmmoDamage="25"
-               StartTrash="10" RobotScale="2"
-               wake="0.2" ContactDamage="10" ContactX="0.2" Move_Speed="1" Do_num="20"/>
-        <Robot name="Robot3"
-               MaxEnergy="100" StartEnergy="100"
-               SolarChargeSpeed="4" Relife_speed="100" PowerConsume="2"
-               Rotate_Speed="400" Max_Speed="800"
-               Shoot_Speed="400" Shoot_CD="0.5"
-               RobotMass="0.005" RobotDrag="0.3" RobotRotateDrag="0.3"
-               AmmoMass="0.008" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="0.5" AmmoDamage="10"
-               StartTrash="10" RobotScale="0.5"
-               wake="0.2" ContactDamage="10" ContactX="0.2" Move_Speed="1" Do_num="20"/>
-        <Robot name="Robot4"
-               MaxEnergy="140" StartEnergy="150"
-               SolarChargeSpeed="10" Relife_speed="100" PowerConsume="1"
-               Rotate_Speed="300" Max_Speed="350"
-               Shoot_Speed="500" Shoot_CD="0.5"
-               RobotMass="0.009" RobotDrag="0.5" RobotRotateDrag="0.3"
-               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="12"
-               StartTrash="10" RobotScale="0.7"
-               wake="0.2" ContactDamage="10" ContactX="0.2" Move_Speed="1" Do_num="20"/>
-    </Robots>
-    <Map name="LevelTest" StarterFloorGarbage="100" GarbageBulletBeLitterSpeedThreshold="80" LevelTime="100"/>
-=======
   <Robots>
     <Robot name="Robot1"
            MaxEnergy="200" StartEnergy="200"
@@ -80,5 +39,4 @@
            wake="0.5" ContactDamage="10" ContactX="0.2" Move_Speed="1" Do_num="20"/>
   </Robots>
   <Map name="LevelTest" StarterFloorGarbage="500" GarbageBulletBeLitterSpeedThreshold="80" LevelTime="240"/>
->>>>>>> 812d78f704ee7f4b7b7a013919d0efa7a1a9ec5b
 </Level>

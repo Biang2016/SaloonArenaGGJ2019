@@ -698,16 +698,10 @@ MonoBehaviour:
   rb: {fileID: 3993302147596268468}
   LootedArea: {fileID: 6230563756175378364}
   DoArea: {fileID: 2940399741482287757}
-<<<<<<< HEAD
   NoPowerParticleSystem: {fileID: 3145521902082051319}
   ShootParticleSystem: {fileID: 669722499765624888}
   CrownImage: {fileID: 8289361335600992320}
-=======
-<<<<<<< HEAD
   ammo_need: 0
-=======
->>>>>>> 3e23e085907ed7f09aecaa24946dcedb5e3a687b
->>>>>>> 812d78f704ee7f4b7b7a013919d0efa7a1a9ec5b
   do_time: 0
   EmojiImage: {fileID: 6361887882658461056}
   EmojiSprites:
