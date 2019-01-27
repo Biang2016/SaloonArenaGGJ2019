@@ -38,5 +38,5 @@
                StartTrash="10" RobotScale="0.7"
                wake="0.2" ContactDamage="10" ContactX="0.2" Move_Speed="1" Do_num="20"/>
     </Robots>
-    <Map name="LevelTest" StarterFloorGarbage="100" GarbageBulletBeLitterSpeedThreshold="80" LevelTime="10"/>
+    <Map name="LevelTest" StarterFloorGarbage="100" GarbageBulletBeLitterSpeedThreshold="80" LevelTime="100"/>
 </Level>

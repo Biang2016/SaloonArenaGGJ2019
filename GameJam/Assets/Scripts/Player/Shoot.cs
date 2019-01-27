@@ -51,5 +51,7 @@ public class Shoot : MonoBehaviour
         am.transform.rotation = shoot_point.transform.rotation;
         am.Rigidbody2D.velocity = dir * shoot_speed;
         am.Initialize(PlayerBody.WhichPlayer, PlayerBody.WhichRobot);
+        PlayerBody.ShootParticleSystem.gameObject.SetActive(true);
+        PlayerBody.ShootParticleSystem.Play();
     }
 }

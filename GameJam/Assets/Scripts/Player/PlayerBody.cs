@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -24,14 +25,6 @@ public class PlayerBody : PoolObject
             if (!value.Equals(energy))
             {
                 energy = value;
-                if (energy.Equals(MaxEnerg))
-                {
-                    ShowEmoji(Emojis.PowerFull, 2f);
-                }
-                else if (energy <= wake * MaxEnerg)
-                {
-                    ShowEmoji(Emojis.Low, 2f);
-                }
             }
         }
     }
@@ -102,10 +95,17 @@ public class PlayerBody : PoolObject
 
     public static Vector2 default_arrow_sizeDelta;
     public static Vector2 default_self_sizeDelta;
+    public static Vector3 default_ShootFxScale;
+    public static Vector3 default_NoPowerScale;
 
     public Rigidbody2D rb;
     public CircleCollider2D LootedArea;
     public CircleCollider2D DoArea;
+
+    public ParticleSystem NoPowerParticleSystem;
+    public ParticleSystem ShootParticleSystem;
+
+    public Image CrownImage;
 
     public float do_time;
 
@@ -116,6 +116,10 @@ public class PlayerBody : PoolObject
         default_arrow_sizeDelta = arrow.sizeDelta;
         default_self_sizeDelta = transform.sizeDelta;
         defaultPos = transform.position;
+        NoPowerParticleSystem.gameObject.SetActive(false);
+        ShootParticleSystem.gameObject.SetActive(false);
+        default_ShootFxScale = ShootParticleSystem.transform.localScale;
+        default_NoPowerScale = NoPowerParticleSystem.transform.localScale;
     }
 
     public void Initialize()
@@ -147,18 +151,57 @@ public class PlayerBody : PoolObject
         EmojiImage.enabled = false;
         move.Initialize();
         shoot.Initialize();
+        ShootParticleSystem.transform.localPosition = Vector3.up * (transform.sizeDelta.x);
+        ShootParticleSystem.transform.localScale = default_ShootFxScale * rp.RobotScale;
+        NoPowerParticleSystem.transform.localScale = default_NoPowerScale * rp.RobotScale;
+        CrownImage.enabled = false;
     }
+
+    private float noPowerEmojiCD = 2f;
+    private float noPowerEmojiTick = 0f;
+
+    private float lowPowerEmojiCD = 2f;
+    private float lowPowerEmojiTick = 0f;
 
     void Update()
     {
         if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
+
+        noPowerEmojiTick += Time.deltaTime;
+        lowPowerEmojiTick += Time.deltaTime;
         if (Charging)
         {
             ShowEmoji(Emojis.Charging, 2f);
         }
-        else if (Lying)
+        else
         {
-            ShowEmoji(Emojis.Not, 2f);
+            if (Lying)
+            {
+                if (noPowerEmojiTick > noPowerEmojiCD)
+                {
+                    noPowerEmojiTick = 0;
+                    ShowEmoji(Emojis.Not, 0.3f);
+                }
+
+                NoPowerParticleSystem.gameObject.SetActive(true);
+            }
+            else
+            {
+                NoPowerParticleSystem.gameObject.SetActive(false);
+            }
+        }
+
+        if (energy.Equals(MaxEnerg))
+        {
+            ShowEmoji(Emojis.PowerFull, 0.4f);
+        }
+        else if (energy <= wake * MaxEnerg)
+        {
+            if (lowPowerEmojiTick > lowPowerEmojiCD)
+            {
+                lowPowerEmojiTick = 0;
+                ShowEmoji(Emojis.Low, 0.2f);
+            }
         }
     }
 
@@ -320,6 +363,8 @@ public class PlayerBody : PoolObject
         Low,
         Not,
         Shot,
+        Do,
+        Bedo,
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

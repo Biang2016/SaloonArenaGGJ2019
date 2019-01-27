@@ -19,8 +19,10 @@ public class Doarea : MonoBehaviour
                     pb.Loss_Garbage(temp);
                     playerBody.Pick_Garbage(temp);
                     playerBody.do_time = 0;
-                    pb.ShowEmoji(PlayerBody.Emojis.Han, 3f);
-                    playerBody.ShowEmoji(PlayerBody.Emojis.Shot, 3f);
+                    pb.ShowEmoji(PlayerBody.Emojis.Bedo, 3f);
+                    playerBody.ShowEmoji(PlayerBody.Emojis.Do, 3f);
+                    AudioManager.Instance.SoundPlay("sfx/Do");
+                    AudioManager.Instance.SoundPlay("sfx/BeDo");
                 }
             }
             else

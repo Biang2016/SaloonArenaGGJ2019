@@ -107,7 +107,6 @@ public class BattleScorePanelManager : MonoSingleton<BattleScorePanelManager>
             if (value != _score_Player1)
             {
                 _score_Player1 = value;
-                PlayerScoreTexts[0].text = value.ToString();
                 OnChangePlayerScore();
             }
         }
@@ -123,7 +122,6 @@ public class BattleScorePanelManager : MonoSingleton<BattleScorePanelManager>
             if (value != _score_Player2)
             {
                 _score_Player2 = value;
-                PlayerScoreTexts[1].text = value.ToString();
                 OnChangePlayerScore();
             }
         }
@@ -139,7 +137,6 @@ public class BattleScorePanelManager : MonoSingleton<BattleScorePanelManager>
             if (value != _score_Player3)
             {
                 _score_Player3 = value;
-                PlayerScoreTexts[2].text = value.ToString();
                 OnChangePlayerScore();
             }
         }
@@ -155,7 +152,6 @@ public class BattleScorePanelManager : MonoSingleton<BattleScorePanelManager>
             if (value != _score_Player4)
             {
                 _score_Player4 = value;
-                PlayerScoreTexts[3].text = value.ToString();
                 OnChangePlayerScore();
             }
         }
@@ -194,12 +190,25 @@ public class BattleScorePanelManager : MonoSingleton<BattleScorePanelManager>
         }
 
         PlayerScoreRank = from objDic in PlayerScores orderby objDic.Value descending select objDic;
-        int index = 0;
+        List<int> playerIndices = new List<int>();
         foreach (KeyValuePair<Players, int> kv in PlayerScoreRank)
         {
-            PlayerIcons[(int) kv.Key].sprite = PlayerIconSprites[index];
+            playerIndices.Add((int) kv.Key);
+        }
+
+        int index = 0;
+        Players firstPlayer = Players.Player1;
+        foreach (KeyValuePair<Players, int> kv in PlayerScoreRank)
+        {
+            if (index == 0) firstPlayer = kv.Key;
+            PlayerIcons[index].sprite = PlayerIconSprites[playerIndices[index]];
             PlayerScoreTexts[index].text = kv.Value.ToString();
             index++;
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            GameBoardManager.Instance.Players[i].CrownImage.enabled = i == (int) firstPlayer;
         }
     }
 

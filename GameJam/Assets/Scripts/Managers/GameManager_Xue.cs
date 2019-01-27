@@ -9,6 +9,11 @@ public partial class GameManager
 
     void Start_Xue()
     {
+        foreach (PlayerBody playerBody in GameBoardManager.Instance.Players)
+        {
+            playerBody.EmojiImage.enabled = false;
+        }
+
         GameBoardManager.Instance.GenerateStarterGarbages();
         StartMenuManager.Instance.M_StateMachine.SetState(StartMenuManager.StateMachine.States.Show);
         GameBoardManager.Instance.M_StateMachine.SetState(GameBoardManager.StateMachine.States.Hide);

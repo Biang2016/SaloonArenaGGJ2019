@@ -98,8 +98,11 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
             HeroButton hb = GameObjectPoolManager.Instance.Pool_HeroButton.AllocateGameObject<HeroButton>(BG.transform);
             hb.Initialize(Players.NoPlayer, (Robots) i);
             HeroButtons[i] = hb;
+            HeroButtons[i].JoinKeyText.text = keys.ToCharArray()[i].ToString();
         }
     }
+
+    private string keys = "c,n/";
 
     internal float SelectButtonPressCD = 0.3f;
     internal float[] SelectButtonPressTicks = new float[4] {1f, 1f, 1f, 1f};

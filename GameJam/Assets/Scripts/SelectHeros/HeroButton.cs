@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HeroButton : PoolObject
@@ -9,7 +12,7 @@ public class HeroButton : PoolObject
     [SerializeField] private Image PlayerName;
     [SerializeField] private Image PressJoinTipImage;
     [SerializeField] private Image KeyTips;
-    [SerializeField] private Text JoinKeyText;
+    public Text JoinKeyText;
     [SerializeField] private Text UpKeyText;
     [SerializeField] private Text LeftKeyText;
     [SerializeField] private Text DownKeyText;
@@ -105,6 +108,15 @@ public class HeroButton : PoolObject
             RobotImage.sprite = SPs[(int) robot];
             PlayerName.sprite = PlayerTitleSprites[(int) player];
         }
+
+        if (player != Players.NoPlayer)
+        {
+            UpKeyText.text = RobotKeys[(int) player].ToCharArray()[0].ToString();
+            LeftKeyText.text = RobotKeys[(int) player].ToCharArray()[1].ToString();
+            DownKeyText.text = RobotKeys[(int) player].ToCharArray()[2].ToString();
+            RightKeyText.text = RobotKeys[(int) player].ToCharArray()[3].ToString();
+            ShootKeyText.text = RobotKeys[(int) player].ToCharArray()[4].ToString();
+        }
     }
 
     private int _currentRobotIndex = 0;
@@ -139,4 +151,12 @@ public class HeroButton : PoolObject
         Waiting,
         Ready,
     }
+
+    public string[] RobotKeys = new string[]
+    {
+        "wasdc",
+        "ijkl,",
+        "tfghn",
+        "↑←↓→/"
+    };
 }
