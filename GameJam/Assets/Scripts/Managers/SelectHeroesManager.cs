@@ -102,7 +102,7 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         }
     }
 
-    private string keys = "c,n/";
+    private string keys = "C;N'";
 
     internal float SelectButtonPressCD = 0.3f;
     internal float[] SelectButtonPressTicks = new float[4] {1f, 1f, 1f, 1f};

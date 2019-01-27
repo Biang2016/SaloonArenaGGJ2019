@@ -105,9 +105,9 @@ InputManager:
     m_Name: P2_fire
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: ','
+    negativeButton: ;
     positiveButton: joystick 2 button 9
-    altNegativeButton: ','
+    altNegativeButton: ;
     altPositiveButton: joystick 2 button 5
     gravity: 1000
     dead: 0.001
@@ -233,9 +233,9 @@ InputManager:
     m_Name: P4_fire
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: /
+    negativeButton: ''''
     positiveButton: joystick 4 button 9
-    altNegativeButton: /
+    altNegativeButton: ''''
     altPositiveButton: joystick 4 button 5
     gravity: 1000
     dead: 0.001

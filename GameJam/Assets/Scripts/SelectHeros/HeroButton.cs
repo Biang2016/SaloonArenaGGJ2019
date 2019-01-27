@@ -111,11 +111,11 @@ public class HeroButton : PoolObject
 
         if (player != Players.NoPlayer)
         {
-            UpKeyText.text = RobotKeys[(int) player].ToCharArray()[0].ToString();
-            LeftKeyText.text = RobotKeys[(int) player].ToCharArray()[1].ToString();
-            DownKeyText.text = RobotKeys[(int) player].ToCharArray()[2].ToString();
-            RightKeyText.text = RobotKeys[(int) player].ToCharArray()[3].ToString();
-            ShootKeyText.text = RobotKeys[(int) player].ToCharArray()[4].ToString();
+            UpKeyText.text = RobotKeys[(int) player].ToCharArray()[0].ToString().ToUpper();
+            LeftKeyText.text = RobotKeys[(int) player].ToCharArray()[1].ToString().ToUpper();
+            DownKeyText.text = RobotKeys[(int) player].ToCharArray()[2].ToString().ToUpper();
+            RightKeyText.text = RobotKeys[(int) player].ToCharArray()[3].ToString().ToUpper();
+            ShootKeyText.text = RobotKeys[(int) player].ToCharArray()[4].ToString().ToUpper();
         }
     }
 
@@ -152,11 +152,11 @@ public class HeroButton : PoolObject
         Ready,
     }
 
-    public string[] RobotKeys = new string[]
+  internal  string[] RobotKeys = new string[]
     {
         "WASDC",
-        "IJKL'",
+        "IJKL;",
         "TFGHN",
-        "↑←↓→/"
+        "↑←↓→'"
     };
 }

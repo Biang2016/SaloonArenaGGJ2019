@@ -745,6 +745,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 891c9b23bf43c45d28966b8d9574966a, type: 3}
   - {fileID: 21300000, guid: b6a32bde40075433f9896f7fa811e784, type: 3}
   m_PlayerState: 0
+  RobotKeys:
+  - WASDC
+  - IJKL;
+  - TFGHN
+  - "\u2191\u2190\u2193\u2192/"
 --- !u!1 &4976888571024211153
 GameObject:
   m_ObjectHideFlags: 0
