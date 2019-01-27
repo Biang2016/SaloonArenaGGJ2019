@@ -29,9 +29,12 @@ public class Ammo : PoolObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player") && player != (int) collision.gameObject.GetComponent<PlayerBody>().WhichPlayer && !collision.gameObject.GetComponent<PlayerBody>().Lying)
+        PlayerBody pb = collision.gameObject.GetComponent<PlayerBody>();
+        if (collision.transform.CompareTag("Player") && player != (int) pb.WhichPlayer && !pb.Lying)
         {
-            collision.gameObject.GetComponent<PlayerBody>().Hitted(damage);
+            pb.Hitted(damage);
+            pb.ShowEmoji(PlayerBody.Emojis.Hitted, 0.3f);
+
             /*int temp = (int)Random.Range(6, 9);
             collision.gameObject.GetComponent<PlayerBody>().Loss_Garbage(temp);
             */

@@ -14,7 +14,28 @@ public class PlayerBody : PoolObject
     public Sprite[] sps;
     float MaxEnerg = 100; //最大电量
     int SolarChargeSpeed; //电力耗尽后复活速度
-    public float Energy; //当前电量
+    private float energy; //当前电量
+
+    public float Energy
+    {
+        get { return energy; }
+        set
+        {
+            if (!value.Equals(energy))
+            {
+                energy = value;
+                if (energy.Equals(MaxEnerg))
+                {
+                    ShowEmoji(Emojis.PowerFull, 2f);
+                }
+                else if (energy <= wake * MaxEnerg)
+                {
+                    ShowEmoji(Emojis.Low, 2f);
+                }
+            }
+        }
+    }
+
     private int trash; //携带垃圾量
 
     private Vector3 defaultPos;
@@ -123,6 +144,20 @@ public class PlayerBody : PoolObject
         UpdateHp();
         UpdateTrash();
         Charging = false;
+        EmojiImage.enabled = false;
+    }
+
+    void Update()
+    {
+        if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
+        if (Charging)
+        {
+            ShowEmoji(Emojis.Charging, 2f);
+        }
+        else if (Lying)
+        {
+            ShowEmoji(Emojis.Not, 2f);
+        }
     }
 
     private void FixedUpdate()
@@ -169,8 +204,12 @@ public class PlayerBody : PoolObject
     private void LateUpdate()
     {
         if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
-        UI_P.gameObject.transform.position = transform.position + Vector3.up * (100 + transform.sizeDelta.x / 2);
-        UI_P.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+        UI_P.transform.position = transform.position + Vector3.up * (100 + transform.sizeDelta.x / 2);
+        UI_P.transform.rotation = Quaternion.Euler(Vector3.zero);
+        EmojiImage.transform.position = transform.position + Vector3.up * (transform.sizeDelta.x / 2) * 1.5f + Vector3.right * (transform.sizeDelta.x / 2) * 1.5f;
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[WhichRobot];
+        EmojiImage.transform.rotation = Quaternion.Euler(Vector3.zero);
+        EmojiImage.transform.localScale = Vector3.one * rp.RobotScale;
     }
 
     public void Hitted(float damage) //受到伤害
@@ -238,10 +277,34 @@ public class PlayerBody : PoolObject
     }
 
     public Image EmojiImage;
+    private Coroutine co_showEmoji;
 
-    public void ShowEmoji(Emojis emoji)
+    public void ShowEmoji(Emojis emoji, float duration = 2f)
     {
+        if (co_showEmoji != null)
+        {
+            StopCoroutine(co_showEmoji);
+        }
+
+        co_showEmoji = StartCoroutine(Co_ShowEmoji(emoji, duration));
+    }
+
+    public void HideEmoji()
+    {
+        if (co_showEmoji != null)
+        {
+            StopCoroutine(co_showEmoji);
+        }
+
+        EmojiImage.enabled = false;
+    }
+
+    IEnumerator Co_ShowEmoji(Emojis emoji, float duration)
+    {
+        EmojiImage.enabled = true;
         EmojiImage.sprite = EmojiSprites[(int) emoji];
+        yield return new WaitForSeconds(duration);
+        EmojiImage.enabled = false;
     }
 
     public Sprite[] EmojiSprites;
@@ -268,14 +331,14 @@ public class PlayerBody : PoolObject
                 {
                     Vector3 pos3 = collision.transform.position - transform.position;
                     Vector2 pos = new Vector2(pos3.x, pos3.y);
-                    //Debug.Log(pos.magnitude);
                     Vector2 spe = pb.rb.velocity - rb.velocity;
                     float temp = spe.magnitude;
 
                     if (temp > (pb.move.max_speed + move.max_speed) * ContactX && Vector2.Dot(pos, spe) < 0)
                     {
-                        Debug.Log(temp + "||" + (pb.move.max_speed + move.max_speed) * ContactX);
+//                        Debug.Log(temp + "||" + (pb.move.max_speed + move.max_speed) * ContactX);
                         pb.Hitted(ContactDamage);
+                        pb.ShowEmoji(Emojis.Hitted, 0.3f);
                         SoundPlay("sfx/Collision");
                     }
                 }

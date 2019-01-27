@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public partial class GameBoardManager : MonoSingleton<GameBoardManager>
 {
@@ -18,42 +20,10 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
         set
         {
             leftTime = value;
-            Min = Mathf.CeilToInt(Mathf.CeilToInt(leftTime) / 60);
-            Second = Mathf.CeilToInt(Mathf.CeilToInt(leftTime) - Min * 60);
-
-            if (Min == 0 && Second == 0)
+            BattleScorePanelManager.Instance.TimeText.text = String.Format("{0:F}", leftTime) + "s";
+            if (leftTime < 0)
             {
                 EndGame();
-            }
-        }
-    }
-
-    private int min;
-
-    public int Min
-    {
-        get { return min; }
-        set
-        {
-            if (value != min)
-            {
-                BattleScorePanelManager.Instance.TimeText.text = Min.ToString() + ":" + Second.ToString();
-                min = value;
-            }
-        }
-    }
-
-    private int second;
-
-    public int Second
-    {
-        get { return second; }
-        set
-        {
-            if (value != second)
-            {
-                BattleScorePanelManager.Instance.TimeText.text = Min.ToString() + ":" + Second.ToString();
-                second = value;
             }
         }
     }
@@ -65,10 +35,6 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
     void Awake()
     {
         M_StateMachine = new StateMachine();
-    }
-
-    void Start()
-    {
     }
 
     [SerializeField] private Canvas GameBoardCanvas;
