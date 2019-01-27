@@ -104,8 +104,12 @@
     <Compile Include="Assets\Scripts\UI\ConfirmWindow\ConfirmWindowManager.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenFitness.cs" />
     <Compile Include="Assets\Scripts\UI\ScreenSetting.cs" />
+    <Compile Include="Assets\StylizedExplosionPack\scripts\destroyMe.cs" />
+    <Compile Include="Assets\StylizedExplosionPack\scripts\instantiateEffectCaller.cs" />
+    <Compile Include="Assets\StylizedExplosionPack\scripts\particleColorChanger.cs" />
     <None Include="Assets\StreamingAssets\Config\PlayerValues.xml" />
     <None Include="Assets\StreamingAssets\Config\LevelMapColor.xml" />
+    <None Include="Assets\StylizedExplosionPack\shader\alphaBlend_glow.shader" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>D:/GameJam2019/GameJam2019/GameJam/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>

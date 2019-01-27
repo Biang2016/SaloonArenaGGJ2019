@@ -6,7 +6,9 @@ using System.Xml;
 public class Move : MonoBehaviour
 {
     public PlayerBody PlayerBody;
+
     public float hor, ver;
+
     //public float Rhor, Rver;
     public float Rotate_Speed;
     public float max_speed;
@@ -23,7 +25,11 @@ public class Move : MonoBehaviour
 
     void Start()
     {
-        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) PlayerBody.WhichPlayer];
+    }
+
+    public void Initialize()
+    {
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) PlayerBody.WhichRobot];
         Rotate_Speed = rp.Rotate_Speed;
         max_speed = rp.Max_Speed;
         Rigidbody2D.mass = rp.RobotMass;
@@ -54,7 +60,7 @@ public class Move : MonoBehaviour
     void Rota()
     {
         //float target_z = Vector2.Angle(new Vector2(0, 1), new Vector2(Rhor, Rver));
-        float target_z = 180-Vector2.SignedAngle(new Vector2(0, 1), new Vector2(hor, -ver));
+        float target_z = 180 - Vector2.SignedAngle(new Vector2(0, 1), new Vector2(hor, -ver));
         tar = target_z;
         float cha = target_z - this.transform.rotation.eulerAngles.z;
         if (this.transform.rotation.eulerAngles.z > target_z - Rotate_Speed * Time.deltaTime && this.transform.rotation.eulerAngles.z < target_z + Rotate_Speed * Time.deltaTime)
@@ -91,6 +97,7 @@ public class Move : MonoBehaviour
 
             this.transform.rotation = Quaternion.Euler(temp);
         }
+
         /*
         float target_z = 0;
         if (hor == 1)
@@ -171,15 +178,12 @@ public class Move : MonoBehaviour
             this.transform.rotation = Quaternion.Euler(temp);
         }
         */
-
-
-
     }
 
     void Trans()
     {
         if (Rigidbody2D.velocity.x > -max_speed && Rigidbody2D.velocity.x < max_speed)
-            Rigidbody2D.AddForce(new Vector2(hor*PlayerBody.Move_Speed, 0));
+            Rigidbody2D.AddForce(new Vector2(hor * PlayerBody.Move_Speed, 0));
         if (Rigidbody2D.velocity.y > -max_speed && Rigidbody2D.velocity.y < max_speed)
             Rigidbody2D.AddForce(new Vector2(0, ver * PlayerBody.Move_Speed));
         speed = Rigidbody2D.velocity.magnitude;
