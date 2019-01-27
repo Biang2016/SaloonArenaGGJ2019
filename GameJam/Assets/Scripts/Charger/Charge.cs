@@ -14,7 +14,6 @@ public class Charge : MonoBehaviour
         {
             p.Charging = true;
             p.Add_Energy(p.relife_speed * Time.deltaTime);
-            
         }
 
     }

@@ -154,9 +154,9 @@ public class HeroButton : PoolObject
 
     public string[] RobotKeys = new string[]
     {
-        "wasdc",
-        "ijkl,",
-        "tfghn",
+        "WASDC",
+        "IJKL'",
+        "TFGHN",
         "↑←↓→/"
     };
 }

@@ -17,7 +17,6 @@ public class PlayerBody : PoolObject
     int SolarChargeSpeed; //电力耗尽后复活速度
     private float energy; //当前电量
 
-
     public float Energy
     {
         get { return energy; }
@@ -111,8 +110,6 @@ public class PlayerBody : PoolObject
 
     public float do_time;
 
-
-
     void Awake()
     {
         UI_P.sprite = UI_sps[(int) WhichPlayer];
@@ -169,12 +166,18 @@ public class PlayerBody : PoolObject
     private float lowPowerEmojiCD = 2f;
     private float lowPowerEmojiTick = 0f;
 
+    private float PowerFullSFXCD = 2f;
+    private float PowerFullSFXTick = 0f;
+
     void Update()
     {
         if (GameBoardManager.Instance.M_StateMachine.GetState() == GameBoardManager.StateMachine.States.Hide) return;
 
         noPowerEmojiTick += Time.deltaTime;
         lowPowerEmojiTick += Time.deltaTime;
+        PowerFullSFXTick += Time.deltaTime;
+        HardCollisionTick += Time.deltaTime;
+        CollisionTick += Time.deltaTime;
         if (Charging)
         {
             ShowEmoji(Emojis.Charging, 2f);
@@ -200,7 +203,12 @@ public class PlayerBody : PoolObject
 
         if (energy.Equals(MaxEnerg))
         {
-            ShowEmoji(Emojis.PowerFull, 0.4f);
+            if (PowerFullSFXTick > PowerFullSFXCD)
+            {
+                PowerFullSFXTick = 0;
+                SoundPlay("sfx/OnChargeFull");
+                ShowEmoji(Emojis.PowerFull, 0.4f);
+            }
         }
         else if (energy <= wake * MaxEnerg)
         {
@@ -261,7 +269,7 @@ public class PlayerBody : PoolObject
         EmojiImage.transform.position = transform.position + Vector3.up * (transform.sizeDelta.x / 2) * 1.5f + Vector3.right * (transform.sizeDelta.x / 2) * 1.5f;
         GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[WhichRobot];
         EmojiImage.transform.rotation = Quaternion.Euler(Vector3.zero);
-        EmojiImage.transform.localScale = Vector3.one * rp.RobotScale;
+        EmojiImage.transform.localScale = Vector3.one * rp.EmojiScale;
     }
 
     public void Hitted(float damage) //受到伤害
@@ -378,6 +386,12 @@ public class PlayerBody : PoolObject
         Bedo,
     }
 
+    private float HardCollisionCD = 2f;
+    private float HardCollisionTick = 0f;
+
+    private float CollisionCD = 2f;
+    private float CollisionTick = 0f;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerBody pb = collision.gameObject.GetComponent<PlayerBody>();
@@ -397,12 +411,19 @@ public class PlayerBody : PoolObject
 //                        Debug.Log(temp + "||" + (pb.move.max_speed + move.max_speed) * ContactX);
                         pb.Hitted(ContactDamage);
                         pb.ShowEmoji(Emojis.Hitted, 0.3f);
-                        
-                        SoundPlay("sfx/HardCollision");
+
+                        if (HardCollisionTick > HardCollisionCD)
+                        {
+                            HardCollisionTick = 0;
+                            SoundPlay("sfx/HardCollision");
+                        }
                     }
                     else
                     {
-                        SoundPlay("sfx/Collision");
+                        if (CollisionTick > CollisionCD)
+                        {
+                            SoundPlay("sfx/Collision");
+                        }
                     }
                 }
             }
