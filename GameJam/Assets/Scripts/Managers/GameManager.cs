@@ -52,7 +52,7 @@ public partial class GameManager : MonoSingleton<GameManager>
         public float wake;//重新恢复百分比
         public float ContactDamage;//相撞造成的伤害值
         public float ContactX;//相撞造成伤害的相对速度最小值
-        public float Move_Speed;
+        public float Move_Speed;//移动速度
         public int Do_num;//偷垃圾量的百分比
     }
 
