@@ -7,12 +7,14 @@ public class ScoreBar : PoolObject
     [SerializeField] private Image Scorebar;
     [SerializeField] private Image PlayerIcon;
     [SerializeField] private Image RankIcon;
+    [SerializeField] private Image PlayerRobotImage;
     [SerializeField] private Text ScoreText;
     [SerializeField] private Transform HigherPivot;
     [SerializeField] private Transform LowerPivot;
     [SerializeField] private Sprite[] ScorebarSprites;
     [SerializeField] private Sprite[] RankSprites;
     [SerializeField] private Sprite[] PlayerIconSprites;
+    [SerializeField] private Sprite[] PlayerRobotImages;
 
     private static float barHeight;
     private static float barWidth;
@@ -29,6 +31,7 @@ public class ScoreBar : PoolObject
         Scorebar.sprite = ScorebarSprites[(int) player];
         PlayerIcon.sprite = PlayerIconSprites[(int) player];
         RankIcon.sprite = RankSprites[Rank];
+        PlayerRobotImage.sprite = PlayerRobotImages[(int) TutorialMenuManager.Instance.PlayerSelection[player]];
 
         ScoreText.text = Score.ToString();
         RankIconTargetPosY = (HigherPivot.localPosition.y - LowerPivot.localPosition.y) * (float) Score / highestScore + LowerPivot.localPosition.y;
