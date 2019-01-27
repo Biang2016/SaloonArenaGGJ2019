@@ -8,9 +8,9 @@ public class Shoot : MonoBehaviour
     public Transform shoot_point;
     public float shoot_speed;
 
-    void Start()
+    public void Initialize()
     {
-        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) PlayerBody.WhichPlayer];
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) PlayerBody.WhichRobot];
         shoot_speed = rp.Shoot_Speed;
         ShootCD = rp.Shoot_CD;
     }
@@ -50,6 +50,6 @@ public class Shoot : MonoBehaviour
         am.transform.position = shoot_point.transform.position;
         am.transform.rotation = shoot_point.transform.rotation;
         am.Rigidbody2D.velocity = dir * shoot_speed;
-        am.Initialize(PlayerBody.WhichPlayer);
+        am.Initialize(PlayerBody.WhichPlayer, PlayerBody.WhichRobot);
     }
 }

@@ -13,13 +13,13 @@ public class Ammo : PoolObject
 
     private void Awake()
     {
-        Initialize(Players.Player1);
+        Initialize(Players.Player1, Robots.Robot1);
     }
 
-    public void Initialize(Players _player)
+    public void Initialize(Players _player, Robots whichRobot)
     {
         player = (int) _player;
-        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) _player];
+        GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[whichRobot];
         damage = rp.AmmoDamage;
         Rigidbody2D.mass = rp.AmmoMass;
         Rigidbody2D.drag = rp.AmmoDrag;

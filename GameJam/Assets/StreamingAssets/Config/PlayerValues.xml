@@ -13,7 +13,7 @@
         <Robot name="Robot2"
                MaxEnergy="400" StartEnergy="400"
                SolarChargeSpeed="4" Relife_speed="100" PowerConsume="2"
-               Rotate_Speed="200" Max_Speed="300"
+               Rotate_Speed="200" Max_Speed="100"
                Shoot_Speed="200" Shoot_CD="1.5"
                RobotMass="0.015" RobotDrag="0.8" RobotRotateDrag="0.3"
                AmmoMass="0.013" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="2" AmmoDamage="25"

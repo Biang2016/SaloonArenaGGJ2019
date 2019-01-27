@@ -95,10 +95,10 @@ public class PlayerBody : PoolObject
     public Text Trash_Text;
     public Text Hp_Text;
     public Slider Hp;
-    public Image Do;
 
     public CircleCollider2D circleCollider;
     public Move move;
+    public Shoot shoot;
 
     public static Vector2 default_arrow_sizeDelta;
     public static Vector2 default_self_sizeDelta;
@@ -145,6 +145,8 @@ public class PlayerBody : PoolObject
         UpdateTrash();
         Charging = false;
         EmojiImage.enabled = false;
+        move.Initialize();
+        shoot.Initialize();
     }
 
     void Update()
