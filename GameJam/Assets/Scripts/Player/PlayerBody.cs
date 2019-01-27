@@ -190,6 +190,7 @@ public class PlayerBody : PoolObject
                 }
 
                 NoPowerParticleSystem.gameObject.SetActive(true);
+                rb.velocity = Vector2.zero;
             }
             else
             {
