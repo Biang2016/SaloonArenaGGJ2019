@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Player\Move.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBody.cs" />
     <Compile Include="Assets\Scripts\Player\Shoot.cs" />
+    <Compile Include="Assets\Scripts\Player\Skill_TimeStop.cs" />
     <Compile Include="Assets\Scripts\Player\Skills.cs" />
     <Compile Include="Assets\Scripts\Players.cs" />
     <Compile Include="Assets\Scripts\Robots\Robots.cs" />
