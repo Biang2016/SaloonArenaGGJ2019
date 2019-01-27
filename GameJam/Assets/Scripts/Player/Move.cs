@@ -11,7 +11,7 @@ public class Move : MonoBehaviour
     public float Rotate_Speed;
     public float max_speed;
     public float tar;
-
+    //public bool rushing;
     public float speed; //当前速度
 
     Vector3 lastestSpeed;
@@ -39,12 +39,15 @@ public class Move : MonoBehaviour
             hor = Input.GetAxisRaw(PlayerBody.Index_name + "hor");
             ver = Input.GetAxisRaw(PlayerBody.Index_name + "ver");
 
-           // Rhor = Input.GetAxis(PlayerBody.Index_name + "Rhor");
+            // Rhor = Input.GetAxis(PlayerBody.Index_name + "Rhor");
             //Rver = Input.GetAxis(PlayerBody.Index_name + "Rver");
 
             if (hor != 0 || ver != 0)
+            {
                 Rota();
-            Trans();
+                Trans();
+
+            }
         }
     }
 
@@ -181,4 +184,7 @@ public class Move : MonoBehaviour
             Rigidbody2D.AddForce(new Vector2(0, ver * PlayerBody.Move_Speed));
         speed = Rigidbody2D.velocity.magnitude;
     }
+
+
+
 }

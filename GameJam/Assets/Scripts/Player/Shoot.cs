@@ -7,11 +7,12 @@ public class Shoot : MonoBehaviour
     public PlayerBody PlayerBody;
     public Transform shoot_point;
     public float shoot_speed;
-
+    public int damage;
     void Start()
     {
         GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[(Robots) PlayerBody.WhichPlayer];
         shoot_speed = rp.Shoot_Speed;
+        damage = rp.AmmoDamage;
         ShootCD = rp.Shoot_CD;
     }
 
@@ -31,7 +32,7 @@ public class Shoot : MonoBehaviour
             if (shootTick > ShootCD)
             {
                 shootTick = 0f;
-                if (PlayerBody.Trash > 0)
+                if (PlayerBody.Trash >= damage)
                 {
                     Fire();
                 }
@@ -41,7 +42,7 @@ public class Shoot : MonoBehaviour
 
     void Fire()
     {
-        PlayerBody.Loss_Garbage(1);
+        PlayerBody.Loss_Garbage(damage);
         Vector3 dir = shoot_point.position - transform.position;
         dir.Normalize();
         int sfx_index = Random.Range(0, 2);

@@ -78,5 +78,9 @@ public class GarbageMain : PoolObject
             collision.gameObject.GetComponent<PlayerBody>().Pick_Garbage(num_);
             PoolRecycle();
         }
+        if(collision.CompareTag("Wall"))
+        {
+            Rigidbody2D.velocity = Vector2.zero;
+        }
     }
 }

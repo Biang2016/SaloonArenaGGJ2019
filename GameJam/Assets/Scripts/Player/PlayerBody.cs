@@ -16,6 +16,7 @@ public class PlayerBody : PoolObject
     int SolarChargeSpeed; //电力耗尽后复活速度
     private float energy; //当前电量
 
+
     public float Energy
     {
         get { return energy; }
@@ -106,8 +107,11 @@ public class PlayerBody : PoolObject
     public Rigidbody2D rb;
     public CircleCollider2D LootedArea;
     public CircleCollider2D DoArea;
+    public int ammo_need;
 
     public float do_time;
+
+
 
     void Awake()
     {
@@ -121,6 +125,8 @@ public class PlayerBody : PoolObject
     public void Initialize()
     {
         GameManager.RobotParameter rp = GameManager.Instance.RobotParameters[WhichRobot];
+
+        ammo_need = rp.AmmoDamage;
         transform.position = defaultPos;
         Do_num = rp.Do_num;
         if (Do_num > 100) Do_num = 100;
@@ -139,7 +145,7 @@ public class PlayerBody : PoolObject
         transform.sizeDelta = default_self_sizeDelta * rp.RobotScale;
         arrow.sizeDelta = default_arrow_sizeDelta * rp.RobotScale;
         circleCollider.radius = transform.sizeDelta.x / 2;
-        LootedArea.radius = (transform.sizeDelta.x / 2) * 1.1f;
+        LootedArea.radius = (transform.sizeDelta.x / 2);
         DoArea.radius = (transform.sizeDelta.x / 2) * 1.5f;
         UpdateHp();
         UpdateTrash();
@@ -268,6 +274,10 @@ public class PlayerBody : PoolObject
     void UpdateTrash()
     {
         Trash_Text.text = Trash.ToString();
+        if (trash < ammo_need)
+            Trash_Text.color = Color.red;
+        else
+            Trash_Text.color = Color.black;
     }
 
     void UpdateHp()
@@ -339,6 +349,11 @@ public class PlayerBody : PoolObject
 //                        Debug.Log(temp + "||" + (pb.move.max_speed + move.max_speed) * ContactX);
                         pb.Hitted(ContactDamage);
                         pb.ShowEmoji(Emojis.Hitted, 0.3f);
+                        
+                        SoundPlay("sfx/HardCollision");
+                    }
+                    else
+                    {
                         SoundPlay("sfx/Collision");
                     }
                 }

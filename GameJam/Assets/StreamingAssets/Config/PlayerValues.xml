@@ -7,7 +7,7 @@
                Rotate_Speed="300" Max_Speed="400"
                Shoot_Speed="500" Shoot_CD="0.5"
                RobotMass="0.008" RobotDrag="0.5" RobotRotateDrag="0.3"
-               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="15"
+               AmmoMass="0.01" AmmoDrag="0.01" AmmoRotateDrag="0.01" AmmoScale="1" AmmoDamage="5"
                StartTrash="10" RobotScale="1"
                wake="0.2" ContactDamage="10" ContactX="0.2" Move_Speed="1" Do_num="20"/>
         <Robot name="Robot2"
