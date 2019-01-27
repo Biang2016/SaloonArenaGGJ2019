@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public partial class GameManager
 {
@@ -32,14 +33,16 @@ public partial class GameManager
         BattleScorePanelManager.Instance.Reset();
         ScoreMenuManager.Instance.Reset();
     }
+
     public void RestartGame_1()
     {
-        StartMenuManager.Instance.Reset_1();
-        SelectHeroesManager.Instance.Reset_1();
-        GameBoardManager.Instance.Reset();
-        TutorialMenuManager.Instance.Reset();
-        BattleScorePanelManager.Instance.Reset();
-        ScoreMenuManager.Instance.Reset();
+        SceneManager.LoadScene("MainScene");
+//        StartMenuManager.Instance.Reset_1();
+//        SelectHeroesManager.Instance.Reset_1();
+//        GameBoardManager.Instance.Reset();
+//        TutorialMenuManager.Instance.Reset();
+//        BattleScorePanelManager.Instance.Reset();
+//        ScoreMenuManager.Instance.Reset();
     }
 
     private void InitializeClientGameSettings()
@@ -54,5 +57,4 @@ public partial class GameManager
             RestartGame_1();
         }
     }
-
 }
