@@ -253,7 +253,25 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         int index = 0;
         foreach (HeroButton heroButton in HeroButtons)
         {
-            heroButton.Initialize(Players.NoPlayer, (Robots) index);
+            heroButton.Initialize(Players.NoPlayer, (Robots)index);
+            index++;
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            SelectButtonPressTicks[i] = 0;
+        }
+
+        IsGameStart = false;
+    }
+
+    public void Reset_1()
+    {
+        M_StateMachine.SetState(StateMachine.States.Hide);
+        int index = 0;
+        foreach (HeroButton heroButton in HeroButtons)
+        {
+            heroButton.Initialize(Players.NoPlayer, (Robots)index);
             index++;
         }
 

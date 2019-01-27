@@ -32,9 +32,27 @@ public partial class GameManager
         BattleScorePanelManager.Instance.Reset();
         ScoreMenuManager.Instance.Reset();
     }
+    public void RestartGame_1()
+    {
+        StartMenuManager.Instance.Reset_1();
+        SelectHeroesManager.Instance.Reset_1();
+        GameBoardManager.Instance.Reset();
+        TutorialMenuManager.Instance.Reset();
+        BattleScorePanelManager.Instance.Reset();
+        ScoreMenuManager.Instance.Reset();
+    }
 
     private void InitializeClientGameSettings()
     {
         AllLevelMapColors.AddAllColors(Application.streamingAssetsPath + "/Config/LevelMapColor.xml");
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            RestartGame_1();
+        }
+    }
+
 }

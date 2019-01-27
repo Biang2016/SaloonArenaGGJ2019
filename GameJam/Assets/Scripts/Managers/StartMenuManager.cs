@@ -102,4 +102,9 @@ public class StartMenuManager : MonoSingleton<StartMenuManager>
     {
         M_StateMachine.SetState(StateMachine.States.Hide);
     }
+
+    public void Reset_1()
+    {
+        M_StateMachine.SetState(StateMachine.States.Show);
+    }
 }
