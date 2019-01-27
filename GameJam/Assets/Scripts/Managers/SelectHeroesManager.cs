@@ -227,11 +227,15 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
         IsGameStart = true;
         M_StateMachine.SetState(StateMachine.States.Hide);
         TutorialMenuManager.Instance.M_StateMachine.SetState(TutorialMenuManager.StateMachine.States.Show);
+        TutorialMenuManager.Instance.PlayerSelection.Clear();
         foreach (HeroButton bh in HeroButtons)
         {
             if (bh.M_PlayerState == HeroButton.PlayerState.Ready)
             {
-                TutorialMenuManager.Instance.PlayerSelection.Add(bh.Player, (Robots) bh.CurrentRobotIndex);
+                if (!TutorialMenuManager.Instance.PlayerSelection.ContainsKey(bh.Player))
+                {
+                    TutorialMenuManager.Instance.PlayerSelection.Add(bh.Player, (Robots) bh.CurrentRobotIndex);
+                }
             }
         }
 
