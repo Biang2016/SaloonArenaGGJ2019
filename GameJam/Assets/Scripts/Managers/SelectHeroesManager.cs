@@ -56,7 +56,7 @@ public class SelectHeroesManager : MonoSingleton<SelectHeroesManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/SelectHero_2");
+                        AudioManager.Instance.BGMLoop("bgm/SelectHero_2");
                         break;
                     }
                 }

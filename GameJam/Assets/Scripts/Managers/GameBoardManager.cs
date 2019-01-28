@@ -82,7 +82,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/Battle_0");
+                        AudioManager.Instance.BGMLoop("bgm/Battle_0");
                         break;
                     }
                 }
@@ -132,6 +132,7 @@ public partial class GameBoardManager : MonoSingleton<GameBoardManager>
 
         LeftTime -= Time.deltaTime;
     }
+
     /*
     public LevelMapBlock[,] LevelMapBlocks;
 

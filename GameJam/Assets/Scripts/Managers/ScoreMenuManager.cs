@@ -57,7 +57,7 @@ public class ScoreMenuManager : MonoSingleton<ScoreMenuManager>
                     case States.Show:
                     {
                         ShowMenu();
-                        AudioManager.Instance.BGMFadeIn("bgm/Result");
+                        AudioManager.Instance.BGMLoop("bgm/Result");
                         break;
                     }
                 }

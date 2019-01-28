@@ -109,6 +109,26 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     private string currentBGM;
 
+
+    public void BGMLoop(string bgmname, float duration = 1f, float volume = 0.6f)
+    {
+        if (currentBGM == bgmname) return;
+        else
+        {
+            if (bgmname != null)
+            {
+                AudioClip bgmsound = GetAudioClip(bgmname);
+                if (bgmsound != null)
+                {
+                    currentBGM = bgmname;
+                    StartCoroutine(Co_BGMFadeOut(duration));
+                    PlayOnceBGMAudioClip(bgmsound, volume);
+                    StartCoroutine(Co_BGMFadeIn(duration, volume));
+                }
+            }
+        }
+    }
+
     public void BGMFadeIn(string bgmname, float duration = 1f, float volume = 0.6f)
     {
         if (currentBGM == bgmname) return;
